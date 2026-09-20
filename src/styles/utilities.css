@@ -1,6 +1,6 @@
 @layer utilities {
   .heading-display {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: var(--heading-display-size);
     line-height: var(--heading-display-line);
     font-weight: var(--heading-display-weight);
@@ -8,7 +8,7 @@
   }
 
   .heading-xlarge {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: var(--heading-xlarge-size);
     line-height: var(--heading-xlarge-line);
     font-weight: var(--heading-xlarge-weight);
@@ -16,7 +16,7 @@
   }
 
   .heading-large {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: var(--heading-large-size);
     line-height: var(--heading-large-line);
     font-weight: var(--heading-large-weight);
@@ -24,7 +24,7 @@
   }
 
   .heading-mlarge {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: var(--heading-mlarge-size);
     line-height: var(--heading-mlarge-line);
     font-weight: var(--heading-mlarge-weight);
@@ -125,6 +125,14 @@
 
   .text-color-accent {
     color: var(--color-accent);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .text-italic {
+    font-style: italic;
   }
 
   .text-color-paper {

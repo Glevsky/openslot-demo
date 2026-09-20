@@ -49,16 +49,19 @@ const body = (markdown) => (markdown ? markdownToPortableText(markdown) : []);
 
 const assetCache = new Map();
 
-const uploadCover = async (relative, fromDir) => {
+const uploadCover = async (relative, kind) => {
   if (!relative) return undefined;
-  const path = join(fromDir, relative);
+  const path = join("src/assets", kind, relative.split("/").pop());
   if (assetCache.has(path)) return assetCache.get(path);
 
   const filename = path.split("/").pop();
-  const existing = await client.fetch(
-    `*[_type == "sanity.imageAsset" && originalFilename == $filename][0]._id`,
-    { filename }
-  );
+  const reupload = process.env.REUPLOAD_ASSETS === "1";
+  const existing = reupload
+    ? null
+    : await client.fetch(
+        `*[_type == "sanity.imageAsset" && originalFilename == $filename][0]._id`,
+        { filename }
+      );
 
   let id = existing;
   if (!id) {
@@ -121,7 +124,7 @@ const run = async () => {
       draft: entry.data.draft ?? false,
       summary: entry.data.summary,
       excerpt: entry.data.excerpt,
-      cover: await uploadCover(entry.data.cover, "seed/blog"),
+      cover: await uploadCover(entry.data.cover, "blog"),
       body: body(entry.body),
     });
     count += 1;
@@ -145,7 +148,7 @@ const run = async () => {
       highlights: data.highlights,
       summary: data.summary,
       excerpt: data.excerpt,
-      cover: await uploadCover(data.cover, "seed/resources"),
+      cover: await uploadCover(data.cover, "resources"),
       body: body(entry.body),
       ...(data.duration ? { duration: data.duration } : {}),
       ...(data.status ? { status: data.status } : {}),

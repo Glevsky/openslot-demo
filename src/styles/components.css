@@ -141,6 +141,7 @@
   .prose_component h2 {
     margin-top: var(--space-24);
     color: var(--color-ink);
+    font-family: var(--font-display);
     font-size: var(--heading-mlarge-size);
     line-height: var(--heading-mlarge-line);
     letter-spacing: var(--heading-mlarge-tracking);
@@ -188,10 +189,10 @@
   .prose_component blockquote {
     padding: var(--space-4) 0 var(--space-4) var(--space-24);
     color: var(--color-ink);
-    font-family: var(--font-heading);
-    font-size: var(--heading-medium-size);
-    line-height: var(--heading-medium-line);
-    letter-spacing: var(--heading-medium-tracking);
+    font-family: var(--font-display);
+    font-size: var(--heading-mlarge-size);
+    line-height: var(--heading-mlarge-line);
+    letter-spacing: var(--heading-mlarge-tracking);
     border-left: 3px solid var(--color-accent);
   }
 
@@ -269,7 +270,7 @@
   }
 
   .stat_value {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: var(--heading-large-size);
     line-height: var(--heading-large-line);
     font-weight: var(--heading-large-weight);

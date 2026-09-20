@@ -1,40 +1,24 @@
 @layer base {
   @font-face {
-    font-family: "Instrument Sans";
-    src: url("/fonts/InstrumentSans-Variable.woff2") format("woff2-variations");
-    font-weight: 400 700;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Inter";
-    src: url("/fonts/Inter-Regular.woff2") format("woff2");
+    font-family: "Instrument Serif";
+    src: url("/fonts/InstrumentSerif-Regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
 
   @font-face {
-    font-family: "Inter";
-    src: url("/fonts/Inter-Medium.woff2") format("woff2");
-    font-weight: 500;
-    font-style: normal;
+    font-family: "Instrument Serif";
+    src: url("/fonts/InstrumentSerif-Italic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
     font-display: swap;
   }
 
   @font-face {
-    font-family: "Inter";
-    src: url("/fonts/Inter-SemiBold.woff2") format("woff2");
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Inter";
-    src: url("/fonts/Inter-Bold.woff2") format("woff2");
-    font-weight: 700;
+    font-family: "Schibsted Grotesk";
+    src: url("/fonts/SchibstedGrotesk-Variable.woff2") format("woff2-variations");
+    font-weight: 400 700;
     font-style: normal;
     font-display: swap;
   }
@@ -59,7 +43,11 @@
 
   h1,
   h2,
-  h3,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
   h4,
   h5,
   h6 {
@@ -159,5 +147,12 @@
   ::selection {
     background-color: var(--color-accent);
     color: var(--color-paper);
+  }
+
+  mark {
+    padding: 0.05em 0.2em;
+    color: inherit;
+    background-color: var(--color-accent-soft);
+    border-radius: 0.2em;
   }
 }

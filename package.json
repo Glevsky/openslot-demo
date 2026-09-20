@@ -9,7 +9,8 @@
     "astro": "astro",
     "import": "node scripts/import-to-sanity.mjs",
     "generate-types": "wrangler types",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "covers": "node scripts/generate-covers.mjs"
   },
   "type": "module",
   "private": "true",

@@ -1,80 +1,81 @@
 @layer tokens {
   :root {
     --color-paper: #ffffff;
-    --color-canvas: #f8f7f4;
-    --color-surface: #f1efe9;
-    --color-surface-strong: #e9e6de;
+    --color-canvas: #edf1e8;
+    --color-surface: #e2e8da;
+    --color-surface-strong: #d4dcc8;
 
-    --color-ink: #17171b;
-    --color-ink-muted: #5c6068;
-    --color-ink-subtle: #8b8f97;
+    --color-ink: #16241c;
+    --color-ink-muted: #4d5b52;
+    --color-ink-subtle: #65746a;
 
-    --color-line: #e7e4dc;
-    --color-line-strong: #d5d1c6;
+    --color-line: #dde3d5;
+    --color-line-strong: #c6cfba;
 
-    --color-accent: #d9531e;
-    --color-accent-strong: #bc4416;
-    --color-accent-soft: #fbeee7;
-    --color-accent-ink: #8f3310;
+    --color-accent: #a8412a;
+    --color-accent-strong: #8b3421;
+    --color-accent-soft: #f4e7e1;
+    --color-accent-ink: #73301e;
 
-    --color-dark: #17171b;
-    --color-dark-raised: #232329;
-    --color-dark-line: #32323a;
+    --color-dark: #16241c;
+    --color-dark-raised: #1f3227;
+    --color-dark-line: #31453a;
 
-    --color-positive: #2f7a4f;
-    --color-error: #c0392b;
+    --color-positive: #2f6b45;
+    --color-error: #b23a2b;
 
-    --color-ink-5: rgb(23 23 27 / 0.05);
-    --color-ink-8: rgb(23 23 27 / 0.08);
-    --color-ink-12: rgb(23 23 27 / 0.12);
+    --color-ink-5: rgb(22 36 28 / 0.05);
+    --color-ink-8: rgb(22 36 28 / 0.08);
+    --color-ink-12: rgb(22 36 28 / 0.12);
 
     --color-paper-10: rgb(255 255 255 / 0.1);
     --color-paper-15: rgb(255 255 255 / 0.15);
-    --color-paper-60: rgb(255 255 255 / 0.6);
-    --color-paper-70: rgb(255 255 255 / 0.7);
+    --color-paper-60: rgb(255 255 255 / 0.62);
+    --color-paper-70: rgb(255 255 255 / 0.74);
 
-    --font-heading: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
-    --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+    --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+    --font-heading: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
 
     --weight-regular: 400;
     --weight-medium: 500;
     --weight-semibold: 600;
     --weight-bold: 700;
 
-    --heading-display-size: 4rem;
-    --heading-display-line: 1.03125;
-    --heading-display-weight: var(--weight-semibold);
-    --heading-display-tracking: -0.033em;
+    --heading-display-size: 4.5rem;
+    --heading-display-line: 1.02778;
+    --heading-display-weight: var(--weight-regular);
+    --heading-display-tracking: -0.021em;
 
-    --heading-xlarge-size: 3.25rem;
-    --heading-xlarge-line: 1.07692;
-    --heading-xlarge-weight: var(--weight-semibold);
-    --heading-xlarge-tracking: -0.03em;
+    --heading-xlarge-size: 3.5rem;
+    --heading-xlarge-line: 1.07143;
+    --heading-xlarge-weight: var(--weight-regular);
+    --heading-xlarge-tracking: -0.019em;
 
-    --heading-large-size: 2.25rem;
-    --heading-large-line: 1.16667;
-    --heading-large-weight: var(--weight-semibold);
-    --heading-large-tracking: -0.026em;
+    --heading-large-size: 2.5rem;
+    --heading-large-line: 1.125;
+    --heading-large-weight: var(--weight-regular);
+    --heading-large-tracking: -0.016em;
 
-    --heading-mlarge-size: 1.75rem;
-    --heading-mlarge-line: 1.25;
-    --heading-mlarge-weight: var(--weight-semibold);
-    --heading-mlarge-tracking: -0.022em;
+    --heading-mlarge-size: 1.9375rem;
+    --heading-mlarge-line: 1.19355;
+    --heading-mlarge-weight: var(--weight-regular);
+    --heading-mlarge-tracking: -0.013em;
 
     --heading-medium-size: 1.375rem;
     --heading-medium-line: 1.31818;
     --heading-medium-weight: var(--weight-semibold);
-    --heading-medium-tracking: -0.018em;
+    --heading-medium-tracking: -0.016em;
 
     --heading-small-size: 1.125rem;
     --heading-small-line: 1.38889;
     --heading-small-weight: var(--weight-semibold);
-    --heading-small-tracking: -0.014em;
+    --heading-small-tracking: -0.013em;
 
     --heading-xsmall-size: 1rem;
     --heading-xsmall-line: 1.4;
     --heading-xsmall-weight: var(--weight-semibold);
-    --heading-xsmall-tracking: -0.01em;
+    --heading-xsmall-tracking: -0.009em;
 
     --heading-xxsmall-size: 0.875rem;
     --heading-xxsmall-line: 1.42857;
@@ -96,9 +97,9 @@
     --text-xsmall-size: 0.8125rem;
     --text-xsmall-line: 1.53846;
 
-    --label-size: 0.8125rem;
-    --label-line: 1.23077;
-    --label-tracking: 0.06em;
+    --label-size: 0.75rem;
+    --label-line: 1.25;
+    --label-tracking: 0.085em;
 
     --space-0: 0rem;
     --space-2: 0.125rem;
@@ -137,9 +138,9 @@
 
     --border-width: 1px;
 
-    --shadow-card: 0 1px 2px rgb(23 23 27 / 0.04), 0 8px 24px -12px rgb(23 23 27 / 0.12);
-    --shadow-raised: 0 2px 4px rgb(23 23 27 / 0.05), 0 18px 40px -16px rgb(23 23 27 / 0.18);
-    --shadow-pop: 0 4px 8px rgb(23 23 27 / 0.06), 0 32px 64px -24px rgb(23 23 27 / 0.24);
+    --shadow-card: 0 1px 2px rgb(22 36 28 / 0.05), 0 8px 24px -12px rgb(22 36 28 / 0.14);
+    --shadow-raised: 0 2px 4px rgb(22 36 28 / 0.06), 0 18px 40px -16px rgb(22 36 28 / 0.2);
+    --shadow-pop: 0 4px 8px rgb(22 36 28 / 0.07), 0 32px 64px -24px rgb(22 36 28 / 0.26);
 
     --transition-duration: 0.18s;
     --transition-easing: ease-out;
@@ -155,12 +156,12 @@
 
   @media (max-width: 991px) {
     :root {
-      --heading-display-size: 3rem;
-      --heading-display-line: 1.08333;
-      --heading-xlarge-size: 2.625rem;
-      --heading-xlarge-line: 1.11905;
-      --heading-large-size: 2rem;
-      --heading-mlarge-size: 1.5rem;
+      --heading-display-size: 3.375rem;
+      --heading-display-line: 1.07407;
+      --heading-xlarge-size: 2.875rem;
+      --heading-xlarge-line: 1.10345;
+      --heading-large-size: 2.125rem;
+      --heading-mlarge-size: 1.6875rem;
       --text-xlarge-size: 1.1875rem;
 
       --padding-global: var(--space-32);
@@ -172,14 +173,14 @@
 
   @media (max-width: 767px) {
     :root {
-      --heading-display-size: 2.375rem;
-      --heading-display-line: 1.10526;
-      --heading-display-tracking: -0.028em;
-      --heading-xlarge-size: 2.125rem;
-      --heading-xlarge-line: 1.14706;
-      --heading-large-size: 1.75rem;
-      --heading-large-line: 1.21429;
-      --heading-mlarge-size: 1.375rem;
+      --heading-display-size: 2.625rem;
+      --heading-display-line: 1.09524;
+      --heading-display-tracking: -0.018em;
+      --heading-xlarge-size: 2.25rem;
+      --heading-xlarge-line: 1.13889;
+      --heading-large-size: 1.875rem;
+      --heading-large-line: 1.2;
+      --heading-mlarge-size: 1.5rem;
       --heading-medium-size: 1.25rem;
       --text-xlarge-size: 1.125rem;
 

@@ -51,24 +51,6 @@ const formId = `resource-${resource.type.toLowerCase()}`;
           )
         }
 
-        {
-          resource.speakers && resource.speakers.length > 0 && (
-            <div class="layout14_speakers">
-              <h2 class="heading-medium">Who is presenting</h2>
-              <ul class="layout14_speaker-list" role="list">
-                {resource.speakers.map((speaker) => (
-                  <li class="layout14_speaker">
-                    <Avatar name={speaker.name} size="medium" />
-                    <span class="layout14_speaker-body">
-                      <span class="layout14_speaker-name">{speaker.name}</span>
-                      <span class="layout14_speaker-role">{speaker.role}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )
-        }
       </div>
 
       <aside class="layout14_aside">
@@ -95,7 +77,7 @@ const formId = `resource-${resource.type.toLowerCase()}`;
 
             <ul class="layout14_facts" role="list">
               <li><Icon name="book" size={16} /> {resource.meta}</li>
-              {resource.duration && (
+              {resource.duration && resource.duration !== resource.meta && (
                 <li><Icon name="clock" size={16} /> {resource.duration}</li>
               )}
               {resource.status && (
@@ -143,6 +125,25 @@ const formId = `resource-${resource.type.toLowerCase()}`;
             }
           </ul>
         </div>
+
+        {
+          resource.speakers && resource.speakers.length > 0 && (
+            <div class="layout14_speakers">
+              <p class="layout14_highlights-label text-label">Presented by</p>
+              <ul class="layout14_speaker-list" role="list">
+                {resource.speakers.map((speaker) => (
+                  <li class="layout14_speaker">
+                    <Avatar name={speaker.name} />
+                    <span class="layout14_speaker-body">
+                      <span class="layout14_speaker-name">{speaker.name}</span>
+                      <span class="layout14_speaker-role">{speaker.role}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
 
         <div class="layout14_topics">
           <p class="layout14_highlights-label text-label">Topics</p>
@@ -216,22 +217,19 @@ const formId = `resource-${resource.type.toLowerCase()}`;
   .layout14_speakers {
     display: flex;
     flex-direction: column;
-    gap: var(--space-20);
+    gap: var(--space-12);
   }
 
   .layout14_speaker-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
   }
 
   .layout14_speaker {
     display: flex;
     align-items: center;
     gap: var(--space-12);
-    padding: var(--space-16);
-    background-color: var(--color-canvas);
-    border-radius: var(--radius-medium);
   }
 
   .layout14_speaker-body {
@@ -382,11 +380,7 @@ const formId = `resource-${resource.type.toLowerCase()}`;
     }
   }
 
-  @media (max-width: 767px) {
-    .layout14_speaker-list {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
+
 </style>
 
 <script>

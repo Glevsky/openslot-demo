@@ -52,6 +52,15 @@ SANITY_WRITE_TOKEN=<an editor token> npm run import
 The script converts markdown to Portable Text, uploads cover art as assets,
 and matches existing documents by slug so it can be run more than once.
 
+## Design
+
+Instrument Serif for display type, Schibsted Grotesk for everything else, on a
+pine, sage and clay palette. Both fonts are served from `public/fonts`, so the
+site makes no third-party requests at runtime.
+
+Cover art is generated, not drawn: `npm run covers` rewrites every SVG in
+`src/assets/` from the slug, so the set stays consistent when posts are added.
+
 ## Conventions
 
 `CLAUDE.md` is the rulebook: tokens, naming, CSS discipline and what may be

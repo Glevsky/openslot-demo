@@ -30,6 +30,20 @@ Nothing is pulled from the internet at runtime. Fonts ship from `public/fonts`,
 subset to Latin. No icon packs, no CDN links. New packages get announced before
 they are installed.
 
+## Type and colour
+
+Two families, and they do different jobs. **Instrument Serif** is the display
+face: `h1`, `h2`, `h3`, the `heading-display/xlarge/large/mlarge` utilities,
+stat values, prices, pull quotes and the wordmark. It has one weight, so never
+ask it for bold. **Schibsted Grotesk** carries everything else, including
+`h4`-`h6` and every small heading, because a high-contrast serif falls apart
+below about 20px.
+
+The palette is pine, sage and clay: `--color-ink` is a near-black with a green
+cast, `--color-canvas` a pale sage, `--color-accent` a warm clay that reads on
+both. Do not introduce a fourth hue, and never use the accent as small text on
+anything but paper or canvas.
+
 ## JavaScript
 
 No JS by default. Where it exists it is progressive: the filter grid, the
