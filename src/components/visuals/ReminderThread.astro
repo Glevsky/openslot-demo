@@ -1,0 +1,117 @@
+---
+import Icon from "../ui/Icon.astro";
+
+const messages = [
+  {
+    channel: "mail",
+    label: "Email, 24 hours before",
+    text: "Your call with Mara is tomorrow at 11:30. Need a different time?",
+    action: "Reschedule",
+  },
+  {
+    channel: "bell",
+    label: "SMS, 1 hour before",
+    text: "Reminder: Openslot call at 11:30 CET. Reply here or move it.",
+    action: "Move it",
+  },
+];
+---
+
+<div class="thread_component" aria-hidden="true">
+  {
+    messages.map((message) => (
+      <div class="thread_item">
+        <span class="thread_icon"><Icon name={message.channel} size={16} /></span>
+        <div class="thread_body">
+          <p class="thread_label">{message.label}</p>
+          <p class="thread_text">{message.text}</p>
+          <span class="thread_action">{message.action}</span>
+        </div>
+      </div>
+    ))
+  }
+
+  <div class="thread_result">
+    <Icon name="check" size={16} />
+    <span>Moved to Thursday 09:00, nobody sent an email about it</span>
+  </div>
+</div>
+
+<style>
+  .thread_component {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    user-select: none;
+  }
+
+  .thread_item {
+    display: flex;
+    gap: var(--space-12);
+    padding: var(--space-16);
+    background-color: var(--color-paper);
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-card);
+  }
+
+  .thread_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-accent);
+    background-color: var(--color-accent-soft);
+    border-radius: var(--radius-xsmall);
+  }
+
+  .thread_body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+    min-width: 0;
+  }
+
+  .thread_label {
+    color: var(--color-ink-subtle);
+    font-size: 0.6875rem;
+    line-height: 1.2;
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+  }
+
+  .thread_text {
+    font-size: var(--text-small-size);
+    line-height: 1.42857;
+  }
+
+  .thread_action {
+    margin-top: var(--space-4);
+    color: var(--color-accent);
+    font-size: var(--text-xsmall-size);
+    line-height: 1.2;
+    font-weight: var(--weight-semibold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .thread_result {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-12) var(--space-16);
+    color: var(--color-ink-muted);
+    background-color: var(--color-surface);
+    border-radius: var(--radius-medium);
+    font-size: var(--text-xsmall-size);
+    line-height: 1.4;
+  }
+
+  .thread_result :global(.icon_component) {
+    color: var(--color-positive);
+  }
+</style>

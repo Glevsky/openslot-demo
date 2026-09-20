@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Layout08 from "../../components/sections/Layout08.astro";
+import Layout09 from "../../components/sections/Layout09.astro";
+import Layout07 from "../../components/sections/Layout07.astro";
+import { listPosts, formatDateShort } from "../../lib/content";
+import { coverUrl } from "../../lib/image";
+import { blogHref } from "../../lib/taxonomy";
+
+const posts = await listPosts();
+
+const cards = posts.map((post) => ({
+  href: blogHref(post.slug),
+  title: post.title,
+  text: post.excerpt,
+  cover: coverUrl(post.cover),
+  pills: [post.category],
+  meta: [post.author.name, formatDateShort(post.date), `${post.readTime} min`],
+  tags: [post.category],
+}));
+
+const categories = [...new Set(posts.map((post) => post.category))].sort();
+---
+
+<BaseLayout
+  title="Blog"
+  description="Guides, product notes and engineering write-ups from the team building Openslot. Written by the people who ship it."
+>
+  <Layout08
+    eyebrow="Blog"
+    heading="What we learn from 4.1 million bookings a year"
+    text="Practical guides, notes on what we shipped, and the occasional write-up of a bug that took a week to find."
+  />
+
+  <Layout09
+    items={cards}
+    filters={categories}
+    filterLabel="Filter posts by category"
+    emptyLabel="No posts in that category yet."
+    padding="large"
+  />
+
+  <Layout07 />
+</BaseLayout>

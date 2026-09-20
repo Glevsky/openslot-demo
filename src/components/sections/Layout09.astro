@@ -1,0 +1,204 @@
+---
+import Card from "../ui/Card.astro";
+
+interface Item {
+  href: string;
+  title: string;
+  text?: string;
+  cover?: string;
+  kicker?: string;
+  pills?: string[];
+  meta?: string[];
+  tags: string[];
+}
+
+interface Props {
+  items: Item[];
+  filters?: string[];
+  filterLabel?: string;
+  emptyLabel?: string;
+  columns?: 2 | 3;
+  tone?: "paper" | "canvas";
+  padding?: "large" | "medium";
+}
+
+const {
+  items,
+  filters = [],
+  filterLabel = "Filter by topic",
+  emptyLabel = "Nothing matches that filter yet.",
+  columns = 3,
+  tone = "paper",
+  padding = "large",
+} = Astro.props;
+---
+
+<section class:list={["section_layout09", `is-${tone}`]}>
+  <div class:list={["padding-global", `padding-section-${padding}`]}>
+    <div class="container-large">
+      <div class="layout09_component">
+        {
+          filters.length > 0 && (
+            <div class="layout09_filters" role="group" aria-label={filterLabel}>
+              <button
+                class="layout09_filter is-active"
+                type="button"
+                data-filter="all"
+                aria-pressed="true"
+              >
+                All
+              </button>
+              {filters.map((filter) => (
+                <button
+                  class="layout09_filter"
+                  type="button"
+                  data-filter={filter}
+                  aria-pressed="false"
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          )
+        }
+
+        <ul class:list={["layout09_list", columns === 2 && "is-2column"]} role="list">
+          {
+            items.map((item) => (
+              <li class="layout09_item" data-tags={item.tags.join("|")}>
+                <Card
+                  href={item.href}
+                  title={item.title}
+                  text={item.text}
+                  cover={item.cover}
+                  kicker={item.kicker}
+                  pills={item.pills}
+                  meta={item.meta}
+                />
+              </li>
+            ))
+          }
+        </ul>
+
+        <p class="layout09_empty" hidden>{emptyLabel}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section_layout09.is-canvas {
+    background-color: var(--color-canvas);
+    border-block: var(--border-width) solid var(--color-line);
+  }
+
+  .layout09_component {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+  }
+
+  .layout09_filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+  }
+
+  .layout09_filter {
+    padding: var(--space-6) var(--space-16);
+    color: var(--color-ink-muted);
+    font-size: var(--text-small-size);
+    line-height: 1.57143;
+    font-weight: var(--weight-medium);
+    background-color: var(--color-paper);
+    border: var(--border-width) solid var(--color-line-strong);
+    border-radius: var(--radius-pill);
+    transition: var(--transition-interactive);
+  }
+
+  @media (hover: hover) {
+    .layout09_filter:hover {
+      color: var(--color-ink);
+      border-color: var(--color-ink-subtle);
+    }
+  }
+
+  .layout09_filter.is-active {
+    color: var(--color-paper);
+    background-color: var(--color-ink);
+    border-color: var(--color-ink);
+  }
+
+  .layout09_list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-24);
+  }
+
+  .layout09_list.is-2column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .layout09_item {
+    display: flex;
+  }
+
+  .layout09_item.is-hidden {
+    display: none;
+  }
+
+  .layout09_empty {
+    color: var(--color-ink-muted);
+  }
+
+  @media (max-width: 991px) {
+    .layout09_list,
+    .layout09_list.is-2column {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .layout09_list,
+    .layout09_list.is-2column {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-16);
+    }
+  }
+</style>
+
+<script>
+  for (const section of document.querySelectorAll<HTMLElement>(".section_layout09")) {
+    const buttons = [
+      ...section.querySelectorAll<HTMLButtonElement>(".layout09_filter"),
+    ];
+    if (!buttons.length) continue;
+
+    const items = [...section.querySelectorAll<HTMLElement>(".layout09_item")];
+    const empty = section.querySelector<HTMLElement>(".layout09_empty");
+
+    const apply = (active: string) => {
+      let shown = 0;
+
+      for (const item of items) {
+        const tags = (item.dataset.tags ?? "").split("|");
+        const on = active === "all" || tags.includes(active);
+        item.classList.toggle("is-hidden", !on);
+        if (on) shown += 1;
+      }
+
+      if (empty) empty.hidden = shown > 0;
+    };
+
+    for (const button of buttons) {
+      button.addEventListener("click", () => {
+        for (const other of buttons) {
+          const on = other === button;
+          other.classList.toggle("is-active", on);
+          other.setAttribute("aria-pressed", String(on));
+        }
+        apply(button.dataset.filter ?? "all");
+      });
+    }
+  }
+</script>

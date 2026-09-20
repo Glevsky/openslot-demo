@@ -1,0 +1,29 @@
+---
+interface Props {
+  node: { code?: string; language?: string };
+}
+
+const { node } = Astro.props;
+---
+
+<pre class="code_component" data-language={node.language}><code>{node.code}</code></pre>
+
+<style>
+  .code_component {
+    position: relative;
+  }
+
+  .code_component::before {
+    content: attr(data-language);
+    position: absolute;
+    top: var(--space-8);
+    right: var(--space-12);
+    color: var(--color-paper-60);
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    line-height: 1;
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+  }
+</style>

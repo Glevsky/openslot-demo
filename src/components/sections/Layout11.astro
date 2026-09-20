@@ -1,0 +1,172 @@
+---
+import Eyebrow from "../ui/Eyebrow.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+
+interface Item {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  heading?: string;
+  items: Item[];
+  tone?: "paper" | "canvas";
+}
+
+const {
+  eyebrow = "Questions",
+  heading = "Things people ask before they sign up",
+  items,
+  tone = "paper",
+} = Astro.props;
+---
+
+<section class:list={["section_layout11", `is-${tone}`]}>
+  <div class="padding-global padding-section-large">
+    <div class="container-large layout11_component">
+      <SectionIntro>
+        {eyebrow && <Eyebrow slot="eyebrow">{eyebrow}</Eyebrow>}
+        <h2>{heading}</h2>
+      </SectionIntro>
+
+      <ul class="layout11_list" role="list">
+        {
+          items.map((item) => (
+            <li>
+              <details class="layout11_item">
+                <summary class="layout11_question">
+                  <span>{item.question}</span>
+                  <span class="layout11_sign" aria-hidden="true"></span>
+                </summary>
+                <div class="layout11_answer">
+                  <p>{item.answer}</p>
+                </div>
+              </details>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section_layout11.is-canvas {
+    background-color: var(--color-canvas);
+    border-block: var(--border-width) solid var(--color-line);
+  }
+
+  .layout11_component {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: var(--space-64);
+    align-items: start;
+  }
+
+  .layout11_list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .layout11_item {
+    --faq-duration: 0.26s;
+    --faq-ease: cubic-bezier(0.25, 0.9, 0.3, 1);
+    border-top: var(--border-width) solid var(--color-line);
+    interpolate-size: allow-keywords;
+  }
+
+  .layout11_list > li:last-child .layout11_item {
+    border-bottom: var(--border-width) solid var(--color-line);
+  }
+
+  .layout11_question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-24);
+    padding-block: var(--space-20);
+    font-family: var(--font-heading);
+    font-size: var(--heading-small-size);
+    line-height: 1.38889;
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--heading-small-tracking);
+    cursor: pointer;
+    list-style: none;
+    transition: var(--transition-interactive);
+  }
+
+  .layout11_question::-webkit-details-marker {
+    display: none;
+  }
+
+  @media (hover: hover) {
+    .layout11_question:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  .layout11_sign {
+    position: relative;
+    flex-shrink: 0;
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .layout11_sign::before,
+  .layout11_sign::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background-color: currentColor;
+    border-radius: 1px;
+    transition: transform var(--faq-duration) var(--faq-ease);
+  }
+
+  .layout11_sign::after {
+    transform: rotate(90deg);
+  }
+
+  .layout11_item[open] .layout11_sign::after {
+    transform: rotate(0deg);
+  }
+
+  .layout11_answer {
+    padding-bottom: var(--space-20);
+    color: var(--color-ink-muted);
+    text-wrap: pretty;
+  }
+
+  .layout11_item::details-content {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      height var(--faq-duration) var(--faq-ease),
+      content-visibility var(--faq-duration) allow-discrete,
+      opacity var(--faq-duration) var(--faq-ease);
+  }
+
+  .layout11_item[open]::details-content {
+    height: auto;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .layout11_item::details-content,
+    .layout11_sign::before,
+    .layout11_sign::after {
+      transition: none;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .layout11_component {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-32);
+    }
+  }
+</style>

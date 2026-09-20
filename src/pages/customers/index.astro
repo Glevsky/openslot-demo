@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Layout08 from "../../components/sections/Layout08.astro";
+import Layout09 from "../../components/sections/Layout09.astro";
+import Layout05 from "../../components/sections/Layout05.astro";
+import Layout02 from "../../components/sections/Layout02.astro";
+import Layout07 from "../../components/sections/Layout07.astro";
+import { listCustomers } from "../../lib/content";
+import { customerHref } from "../../lib/taxonomy";
+
+const stories = await listCustomers();
+
+const cards = stories.map((story) => ({
+  href: customerHref(story.slug),
+  title: story.title,
+  text: story.excerpt,
+  kicker: story.name,
+  pills: [story.industry, story.plan],
+  meta: story.stats.slice(0, 1).map((stat) => `${stat.value} ${stat.label}`),
+  tags: [story.industry],
+}));
+
+const stats = [
+  { value: "38%", label: "fewer no-shows at Halcyon Health" },
+  { value: "1.5 days", label: "to first interview at Orbital Recruiting" },
+  { value: "21,000", label: "sessions a month at Lumen Tutoring" },
+  { value: "70%", label: "fewer scheduling tickets at Lumen Tutoring" },
+];
+---
+
+<BaseLayout
+  title="Customer stories"
+  description="Three teams that book all day: a clinic group, a recruiting agency and a tutoring marketplace, and what changed for each of them."
+>
+  <Layout08
+    eyebrow="Customers"
+    heading="Teams whose whole week runs on bookings"
+    text="A clinic group, a recruiting agency and a tutoring marketplace. Different problems, the same half hour that kept going missing."
+  />
+
+  <Layout09 items={cards} columns={3} padding="large" />
+
+  <Layout05 heading="What changed" stats={stats} />
+
+  <Layout02 label="Also booking with Openslot" />
+
+  <Layout07 />
+</BaseLayout>

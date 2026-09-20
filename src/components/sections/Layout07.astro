@@ -1,0 +1,116 @@
+---
+import Button from "../ui/Button.astro";
+import Icon from "../ui/Icon.astro";
+
+interface Props {
+  heading?: string;
+  text?: string;
+  primary?: { label: string; href: string };
+  secondary?: { label: string; href: string };
+  note?: string;
+}
+
+const {
+  heading = "Send one link instead of six messages",
+  text = "Set up a booking page in a few minutes. The free plan is genuinely free, and the Team trial runs for 14 days without a card.",
+  primary = { label: "Start free", href: "/signup" },
+  secondary = { label: "See pricing", href: "/pricing" },
+  note = "No card. Cancel whenever.",
+} = Astro.props;
+---
+
+<section class="section_layout07">
+  <div class="padding-global padding-section-large">
+    <div class="container-large">
+      <div class="layout07_component">
+        <div class="layout07_copy">
+          <h2 class="heading-xlarge">{heading}</h2>
+          <p class="text-large layout07_text">{text}</p>
+        </div>
+
+        <div class="layout07_actions">
+          <div class="button-group">
+            <Button href={primary.href} variant="inverse" size="large" arrow>
+              {primary.label}
+            </Button>
+            {
+              secondary && (
+                <Button href={secondary.href} variant="ghost" size="large" class="layout07_ghost">
+                  {secondary.label}
+                </Button>
+              )
+            }
+          </div>
+          {
+            note && (
+              <p class="layout07_note">
+                <Icon name="check" size={15} /> {note}
+              </p>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section_layout07 {
+    color: var(--color-paper);
+    background-color: var(--color-dark);
+  }
+
+  .layout07_component {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: var(--space-48);
+    align-items: end;
+  }
+
+  .layout07_copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  .layout07_text {
+    max-width: 32rem;
+    color: var(--color-paper-70);
+    text-wrap: pretty;
+  }
+
+  .layout07_actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-16);
+  }
+
+  .layout07_ghost {
+    color: var(--color-paper);
+  }
+
+  @media (hover: hover) {
+    .layout07_ghost:hover {
+      color: var(--color-paper);
+      background-color: var(--color-paper-10);
+    }
+  }
+
+  .layout07_note {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    color: var(--color-paper-60);
+    font-size: var(--text-small-size);
+    line-height: 1.3;
+  }
+
+  @media (max-width: 991px) {
+    .layout07_component {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-32);
+      align-items: start;
+    }
+  }
+</style>

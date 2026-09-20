@@ -1,0 +1,91 @@
+---
+interface Props {
+  label?: string;
+  tone?: "light" | "dark";
+}
+
+const {
+  label = "Teams on Openslot",
+  tone = "light",
+} = Astro.props;
+
+const brands = [
+  "Northwind Legal",
+  "Bramble Studio",
+  "Fieldnote",
+  "Kestrel Insurance",
+  "Parallax Labs",
+  "Tidewater Realty",
+];
+---
+
+<section class:list={["section_layout02", `is-${tone}`]}>
+  <div class="padding-global layout02_padding">
+    <div class="container-large">
+      <div class="layout02_component">
+        <p class="layout02_label text-label">{label}</p>
+        <ul class="layout02_list" role="list">
+          {brands.map((brand) => <li class="layout02_brand">{brand}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section_layout02.is-dark {
+    color: var(--color-paper);
+    background-color: var(--color-dark);
+  }
+
+  .layout02_padding {
+    padding-block: var(--space-48);
+  }
+
+  .layout02_component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-24);
+  }
+
+  .layout02_label {
+    color: var(--color-ink-subtle);
+  }
+
+  .section_layout02.is-dark .layout02_label {
+    color: var(--color-paper-60);
+  }
+
+  .layout02_list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-24) var(--space-48);
+  }
+
+  .layout02_brand {
+    color: var(--color-ink-muted);
+    font-family: var(--font-heading);
+    font-size: 1.0625rem;
+    line-height: 1.2;
+    font-weight: var(--weight-semibold);
+    letter-spacing: -0.02em;
+    opacity: 0.72;
+  }
+
+  .section_layout02.is-dark .layout02_brand {
+    color: var(--color-paper);
+  }
+
+  @media (max-width: 767px) {
+    .layout02_list {
+      gap: var(--space-16) var(--space-24);
+    }
+
+    .layout02_brand {
+      font-size: 0.9375rem;
+    }
+  }
+</style>

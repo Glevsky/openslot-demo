@@ -1,0 +1,164 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Layout01 from "../components/sections/Layout01.astro";
+import Layout02 from "../components/sections/Layout02.astro";
+import Layout03 from "../components/sections/Layout03.astro";
+import Layout04 from "../components/sections/Layout04.astro";
+import Layout05 from "../components/sections/Layout05.astro";
+import Layout06 from "../components/sections/Layout06.astro";
+import Layout07 from "../components/sections/Layout07.astro";
+import Layout19 from "../components/sections/Layout19.astro";
+import TeamRotation from "../components/visuals/TeamRotation.astro";
+import ReminderThread from "../components/visuals/ReminderThread.astro";
+import WorkflowChain from "../components/visuals/WorkflowChain.astro";
+import { listPosts, formatDateShort } from "../lib/content";
+import { coverUrl } from "../lib/image";
+import { blogHref } from "../lib/taxonomy";
+
+const posts = (await listPosts()).slice(0, 3);
+
+const cards = posts.map((post) => ({
+  href: blogHref(post.slug),
+  title: post.title,
+  text: post.excerpt,
+  cover: coverUrl(post.cover),
+  pills: [post.category],
+  meta: [formatDateShort(post.date), `${post.readTime} min read`],
+}));
+
+const features = [
+  {
+    icon: "calendar",
+    title: "Availability people can trust",
+    text: "Working hours per weekday, buffers on both sides, a daily cap and a minimum notice. Nobody books the gap between two other meetings.",
+  },
+  {
+    icon: "globe",
+    title: "Their time zone, not yours",
+    text: "Invitees always see times in the zone their browser reports. Nobody counts backwards from a number in an email.",
+  },
+  {
+    icon: "bell",
+    title: "Reminders that get replies",
+    text: "Email on every plan, SMS on paid ones. Every message carries a link to move the meeting instead of missing it.",
+  },
+  {
+    icon: "users",
+    title: "Team pages that route",
+    text: "Round-robin sends the booking to whoever is up. Collective only offers times when everyone invited is free.",
+  },
+  {
+    icon: "link",
+    title: "Embed it anywhere",
+    text: "Two lines of markup put a booking page inline or behind a button, on a site you already have.",
+  },
+  {
+    icon: "zap",
+    title: "Automate what comes after",
+    text: "Workflows run when a booking is made, moved or cancelled. Webhooks hand the same event to your own systems.",
+  },
+];
+
+const stats = [
+  { value: "4.1M", label: "bookings scheduled in 2025" },
+  { value: "38,000", label: "teams on Openslot" },
+  { value: "140", label: "countries" },
+  { value: "99.98%", label: "uptime in 2025" },
+];
+
+const quotes = [
+  {
+    text: "We moved fourteen clinics onto one workspace in two days. The reschedule link in the reminder did more for our no-show rate than anything we had tried before.",
+    name: "Dr. Amara Whitfield",
+    role: "Operations Director, Halcyon Health",
+  },
+  {
+    text: "Time to first interview went from six days to a day and a half. Our coordinators stopped living in their inbox and started working on the shortlist.",
+    name: "Felix Brandt",
+    role: "Head of Talent, Orbital Recruiting",
+  },
+  {
+    text: "Nine hundred tutors, each with a booking page embedded on their profile. Support tickets about scheduling fell by seventy percent.",
+    name: "Sofia Moreau",
+    role: "Co-founder, Lumen Tutoring",
+  },
+];
+---
+
+<BaseLayout
+  title="Openslot"
+  description="Openslot is scheduling for teams. Share one link, let people pick a time you are actually free, and stop the back-and-forth."
+>
+  <Layout01 />
+  <Layout02 />
+
+  <Layout03
+    eyebrow="What you get"
+    heading="Everything a booking needs, and nothing it does not"
+    text="Openslot does one job. It finds a time that works, writes it to both calendars, and makes sure the meeting happens."
+    items={features}
+    columns={3}
+  />
+
+  <Layout04
+    eyebrow="Team pages"
+    heading="Send the booking to whoever should take it"
+    text="A round-robin page rotates across a team and skips anyone who is busy. A collective page only offers times when every person invited is free."
+    points={[
+      "Rotation is even, and it never double-books",
+      "Collective pages check every calendar before they offer a slot",
+      "Add or remove people without reissuing the link",
+    ]}
+    link={{ label: "See how teams use it", href: "/customers/orbital-recruiting" }}
+    tone="canvas"
+  >
+    <TeamRotation />
+  </Layout04>
+
+  <Layout04
+    eyebrow="Reminders"
+    heading="A missed meeting is usually a moved one"
+    text="Across 1.2 million bookings, no-shows ran at 19 percent with no reminders. With an email, an SMS and a reschedule link in the message, they ran at 11 percent."
+    points={[
+      "Email reminders on every plan, SMS on paid plans",
+      "Reschedule and cancel links in every message",
+      "Nobody has to write the follow-up email",
+    ]}
+    link={{ label: "Read the study", href: "/blog/what-1-2-million-bookings-taught-us-about-no-shows" }}
+    reverse
+  >
+    <ReminderThread />
+  </Layout04>
+
+  <Layout04
+    eyebrow="Workflows"
+    heading="The booking is the start, not the end"
+    text="Run something the moment a booking is made, moved or cancelled. Send the brief, open the ticket, post to your own endpoint."
+    points={[
+      "Triggers on booked, rescheduled and cancelled",
+      "Webhooks carry the whole event to your systems",
+      "No code needed for the common cases",
+    ]}
+    link={{ label: "See the product", href: "/product" }}
+    tone="canvas"
+  >
+    <WorkflowChain />
+  </Layout04>
+
+  <Layout05 heading="A year of bookings, counted" stats={stats} />
+
+  <Layout06
+    eyebrow="Customers"
+    heading="Teams that book all day, and stopped thinking about it"
+    quotes={quotes}
+  />
+
+  <Layout19
+    heading="Written by the people who build it"
+    items={cards}
+    link={{ label: "Read the blog", href: "/blog" }}
+    tone="paper"
+  />
+
+  <Layout07 />
+</BaseLayout>

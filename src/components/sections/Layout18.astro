@@ -1,0 +1,46 @@
+---
+import Prose from "../ui/Prose.astro";
+
+interface Props {
+  title: string;
+  updated: string;
+  body: unknown;
+}
+
+const { title, updated, body } = Astro.props;
+---
+
+<section class="section_layout18">
+  <div class="padding-global padding-section-medium">
+    <div class="container-small layout18_component">
+      <header class="layout18_head">
+        <h1 class="heading-large">{title}</h1>
+        <p class="layout18_updated">Last updated {updated}</p>
+      </header>
+
+      <Prose value={body} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .layout18_component {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-40);
+  }
+
+  .layout18_head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    padding-bottom: var(--space-24);
+    border-bottom: var(--border-width) solid var(--color-line);
+  }
+
+  .layout18_updated {
+    color: var(--color-ink-subtle);
+    font-size: var(--text-small-size);
+    line-height: var(--text-small-line);
+  }
+</style>

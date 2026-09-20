@@ -1,0 +1,79 @@
+---
+interface Props {
+  name: string;
+  size?: "small" | "medium" | "large";
+  class?: string;
+}
+
+const { name, size = "small", class: className } = Astro.props;
+
+const initials = name
+  .split(" ")
+  .filter((part) => /[A-Za-zÀ-ÿ]/.test(part[0] ?? ""))
+  .slice(0, 2)
+  .map((part) => part[0]?.toUpperCase())
+  .join("");
+
+const tones = ["a", "b", "c", "d", "e"];
+const sum = [...name].reduce((total, char) => total + char.charCodeAt(0), 0);
+const tone = tones[sum % tones.length];
+---
+
+<span
+  class:list={["avatar_component", `is-${size}`, `is-tone-${tone}`, className]}
+  aria-hidden="true">{initials}</span
+>
+
+<style>
+  .avatar_component {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    line-height: 1;
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.01em;
+    border-radius: var(--radius-pill);
+  }
+
+  .avatar_component.is-medium {
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 0.9375rem;
+  }
+
+  .avatar_component.is-large {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.25rem;
+  }
+
+  .avatar_component.is-tone-a {
+    color: #8f3310;
+    background-color: #fbeee7;
+  }
+
+  .avatar_component.is-tone-b {
+    color: #1f4f6b;
+    background-color: #e6f0f5;
+  }
+
+  .avatar_component.is-tone-c {
+    color: #2f5d3f;
+    background-color: #e8f1ea;
+  }
+
+  .avatar_component.is-tone-d {
+    color: #5a4275;
+    background-color: #efeaf5;
+  }
+
+  .avatar_component.is-tone-e {
+    color: #6b5320;
+    background-color: #f5efe0;
+  }
+</style>

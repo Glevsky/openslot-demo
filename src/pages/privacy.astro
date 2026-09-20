@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Layout18 from "../components/sections/Layout18.astro";
+import { getLegalPage, formatDate } from "../lib/content";
+
+const page = await getLegalPage("privacy");
+if (!page) throw new Error("The privacy page is missing from Sanity.");
+---
+
+<BaseLayout title={page.title} description={page.summary}>
+  <Layout18 title={page.title} updated={formatDate(page.updated)} body={page.body} />
+</BaseLayout>

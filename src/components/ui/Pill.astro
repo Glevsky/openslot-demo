@@ -1,0 +1,51 @@
+---
+interface Props {
+  tone?: "neutral" | "accent" | "outline" | "dark" | "paper";
+  class?: string;
+}
+
+const { tone = "neutral", class: className } = Astro.props;
+---
+
+<span class:list={["pill_component", `is-${tone}`, className]}><slot /></span>
+
+<style>
+  .pill_component {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-4) var(--space-12);
+    font-size: var(--text-xsmall-size);
+    line-height: 1.5;
+    font-weight: var(--weight-medium);
+    white-space: nowrap;
+    border: var(--border-width) solid transparent;
+    border-radius: var(--radius-pill);
+  }
+
+  .pill_component.is-neutral {
+    color: var(--color-ink-muted);
+    background-color: var(--color-surface);
+  }
+
+  .pill_component.is-accent {
+    color: var(--color-accent-ink);
+    background-color: var(--color-accent-soft);
+  }
+
+  .pill_component.is-outline {
+    color: var(--color-ink-muted);
+    border-color: var(--color-line-strong);
+  }
+
+  .pill_component.is-dark {
+    color: var(--color-paper);
+    background-color: var(--color-ink);
+  }
+
+  .pill_component.is-paper {
+    color: var(--color-paper);
+    background-color: var(--color-paper-10);
+    border-color: var(--color-paper-15);
+  }
+</style>

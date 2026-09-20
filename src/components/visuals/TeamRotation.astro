@@ -1,0 +1,132 @@
+---
+import Avatar from "../ui/Avatar.astro";
+import Icon from "../ui/Icon.astro";
+
+const people = [
+  { name: "Ruth Kaplan", state: "next" },
+  { name: "Samir Haddad", state: "busy" },
+  { name: "Diego Ferreira", state: "free" },
+  { name: "Hana Sato", state: "free" },
+];
+
+const labels: Record<string, string> = {
+  next: "Takes this one",
+  busy: "Booked 11:30",
+  free: "Free",
+};
+---
+
+<div class="rotation_component" aria-hidden="true">
+  <div class="rotation_head">
+    <p class="rotation_title">Sales intro call</p>
+    <span class="rotation_tag"><Icon name="refresh" size={14} /> Round-robin</span>
+  </div>
+
+  <ul class="rotation_list" role="list">
+    {
+      people.map((person) => (
+        <li class:list={["rotation_row", `is-${person.state}`]}>
+          <Avatar name={person.name} />
+          <span class="rotation_name">{person.name}</span>
+          <span class="rotation_state">{labels[person.state]}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="rotation_foot">
+    The next booking goes to whoever is up, and skips anyone who is not free.
+  </p>
+</div>
+
+<style>
+  .rotation_component {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    padding: var(--space-24);
+    background-color: var(--color-paper);
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-card);
+    user-select: none;
+  }
+
+  .rotation_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-12);
+  }
+
+  .rotation_title {
+    font-family: var(--font-heading);
+    font-size: var(--heading-small-size);
+    line-height: 1.2;
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--heading-small-tracking);
+  }
+
+  .rotation_tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-4) var(--space-8);
+    color: var(--color-ink-muted);
+    background-color: var(--color-surface);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-xsmall-size);
+    line-height: 1.3;
+  }
+
+  .rotation_list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .rotation_row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-12);
+    padding: var(--space-8) var(--space-12);
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-small);
+  }
+
+  .rotation_row.is-next {
+    border-color: var(--color-accent);
+    background-color: var(--color-accent-soft);
+  }
+
+  .rotation_name {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: var(--text-small-size);
+    line-height: 1.3;
+    font-weight: var(--weight-medium);
+  }
+
+  .rotation_state {
+    flex-shrink: 0;
+    color: var(--color-ink-subtle);
+    font-size: var(--text-xsmall-size);
+    line-height: 1.3;
+  }
+
+  .rotation_row.is-next .rotation_state {
+    color: var(--color-accent-ink);
+    font-weight: var(--weight-semibold);
+  }
+
+  .rotation_row.is-busy .rotation_name,
+  .rotation_row.is-busy .rotation_state {
+    color: var(--color-ink-subtle);
+  }
+
+  .rotation_foot {
+    color: var(--color-ink-subtle);
+    font-size: var(--text-xsmall-size);
+    line-height: var(--text-xsmall-line);
+  }
+</style>

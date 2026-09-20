@@ -1,0 +1,167 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Layout08 from "../components/sections/Layout08.astro";
+import Layout03 from "../components/sections/Layout03.astro";
+import Layout04 from "../components/sections/Layout04.astro";
+import Layout05 from "../components/sections/Layout05.astro";
+import Layout07 from "../components/sections/Layout07.astro";
+import Layout11 from "../components/sections/Layout11.astro";
+import BookingMock from "../components/visuals/BookingMock.astro";
+import TeamRotation from "../components/visuals/TeamRotation.astro";
+import ReminderThread from "../components/visuals/ReminderThread.astro";
+import WorkflowChain from "../components/visuals/WorkflowChain.astro";
+
+const rules = [
+  {
+    icon: "clock",
+    title: "Working hours per weekday",
+    text: "Thursday can end at three and Friday can stop at noon. The page only ever offers hours somebody actually works.",
+  },
+  {
+    icon: "shield",
+    title: "Buffers on both sides",
+    text: "Hold time before and after a meeting so the day does not turn into an unbroken wall of calls.",
+  },
+  {
+    icon: "target",
+    title: "Daily limits",
+    text: "Cap how many meetings a day can hold. Once the cap is hit, the rest of the day closes.",
+  },
+  {
+    icon: "calendar",
+    title: "Minimum notice",
+    text: "Stop a booking from landing twenty minutes from now, when nobody has had time to prepare.",
+  },
+  {
+    icon: "globe",
+    title: "Time-zone detection",
+    text: "Invitees see their own zone. Openslot handles the weeks when one country moves its clocks and another does not.",
+  },
+  {
+    icon: "refresh",
+    title: "Date ranges",
+    text: "Open a rolling window of two weeks, or a fixed range for a hiring round that ends in March.",
+  },
+];
+
+const stats = [
+  { value: "2 days", label: "average time from signup to first booking" },
+  { value: "11%", label: "no-show rate with reminders and a reschedule link" },
+  { value: "140", label: "countries with active bookings" },
+  { value: "99.98%", label: "uptime in 2025" },
+];
+
+const faq = [
+  {
+    question: "Which calendar does it work with?",
+    answer:
+      "Openslot connects to the calendar your team already uses and writes the meeting straight into it. Free connects one calendar per person, paid plans connect as many as you need.",
+  },
+  {
+    question: "What happens when somebody reschedules?",
+    answer:
+      "Every reminder and confirmation carries a link to move or cancel. The change is written to both calendars, and any workflow you have set on reschedule runs.",
+  },
+  {
+    question: "Can I put a booking page on my own site?",
+    answer:
+      "Yes. An embed is two lines of markup, inline or behind a button, and it is on Pro and above. The page keeps working on its own link at the same time.",
+  },
+  {
+    question: "Do invitees need an account?",
+    answer:
+      "No. They open a link, pick a time, and fill in whatever fields you asked for. Nothing to install and nothing to sign up for.",
+  },
+  {
+    question: "How do routing forms work?",
+    answer:
+      "You ask a question first, such as company size or which product the person is asking about, and the answer decides which booking page they land on. Routing forms are on Team.",
+  },
+];
+---
+
+<BaseLayout
+  title="Product"
+  description="Booking pages, availability rules, team routing, reminders and workflows. See what Openslot does and how each piece fits together."
+>
+  <Layout08
+    eyebrow="Product"
+    heading="Scheduling that holds up when the calendar gets busy"
+    text="One link per event type, availability rules that reflect how people actually work, and reminders that stop meetings from quietly disappearing."
+    primary={{ label: "Start free", href: "/signup" }}
+    secondary={{ label: "See pricing", href: "/pricing" }}
+  />
+
+  <section class="product_visual">
+    <div class="padding-global padding-section-medium">
+      <div class="container-large">
+        <BookingMock />
+      </div>
+    </div>
+  </section>
+
+  <Layout03
+    eyebrow="Availability"
+    heading="Six rules that decide every slot on the page"
+    text="Availability is the part that goes wrong quietly. These six settings cover almost every case we see."
+    items={rules}
+    columns={3}
+    tone="canvas"
+  />
+
+  <Layout04
+    eyebrow="Team pages"
+    heading="Round-robin and collective, on one link"
+    text="Round-robin rotates evenly across a team and skips anyone who is busy. Collective only offers a slot when every invited person is free."
+    points={[
+      "Rotation stays even as people join and leave",
+      "Collective checks every calendar before offering a time",
+      "One link survives a reorganised team",
+    ]}
+    link={{ label: "How a 60-recruiter agency uses it", href: "/customers/orbital-recruiting" }}
+  >
+    <TeamRotation />
+  </Layout04>
+
+  <Layout04
+    eyebrow="Reminders"
+    heading="Email on every plan, SMS on paid plans"
+    text="A reminder without a way to change the meeting is just a notification. Every message we send carries a reschedule and a cancel link."
+    points={[
+      "The evening before and roughly an hour before",
+      "Reschedule and cancel links in every message",
+      "Moved meetings do not need an email thread",
+    ]}
+    link={{ label: "The no-show study", href: "/blog/what-1-2-million-bookings-taught-us-about-no-shows" }}
+    reverse
+    tone="canvas"
+  >
+    <ReminderThread />
+  </Layout04>
+
+  <Layout04
+    eyebrow="Workflows and webhooks"
+    heading="Run something after the booking"
+    text="Workflows fire on booked, rescheduled and cancelled. Webhooks hand the whole event to your own systems so nothing has to be copied by hand."
+    points={[
+      "Send a brief to the host before the call",
+      "Post the event to your CRM or your own endpoint",
+      "Chain several actions on one trigger",
+    ]}
+    link={{ label: "How workflows are built", href: "/blog/workflows-and-webhooks" }}
+  >
+    <WorkflowChain />
+  </Layout04>
+
+  <Layout05 stats={stats} />
+
+  <Layout11 items={faq} tone="paper" />
+
+  <Layout07 />
+</BaseLayout>
+
+<style>
+  .product_visual {
+    background-color: var(--color-paper);
+  }
+</style>

@@ -1,0 +1,101 @@
+---
+import Icon from "../ui/Icon.astro";
+import { RESOURCE_HUBS } from "../../lib/taxonomy";
+
+interface Props {
+  current?: string;
+  counts: Record<string, number>;
+}
+
+const { current, counts } = Astro.props;
+
+const hubIcons: Record<string, string> = {
+  Webinar: "play",
+  Ebook: "book",
+  Report: "chart",
+  Template: "grid",
+  Course: "cap",
+};
+---
+
+<nav class="layout21_component" aria-label="Resource types">
+  <ul class="layout21_list" role="list">
+    <li>
+      <a
+        class:list={["layout21_tab", !current && "is-active"]}
+        href="/resources"
+        aria-current={!current ? "page" : undefined}
+      >
+        <Icon name="filter" size={16} />
+        <span>Everything</span>
+        <span class="layout21_count">
+          {Object.values(counts).reduce((total, value) => total + value, 0)}
+        </span>
+      </a>
+    </li>
+    {
+      RESOURCE_HUBS.map((hub) => (
+        <li>
+          <a
+            class:list={["layout21_tab", current === hub.type && "is-active"]}
+            href={`/resources/${hub.path}`}
+            aria-current={current === hub.type ? "page" : undefined}
+          >
+            <Icon name={hubIcons[hub.type] ?? "book"} size={16} />
+            <span>{hub.title}</span>
+            <span class="layout21_count">{counts[hub.type] ?? 0}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .layout21_component {
+    width: 100%;
+  }
+
+  .layout21_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+  }
+
+  .layout21_tab {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-8) var(--space-16);
+    color: var(--color-ink-muted);
+    font-size: var(--text-small-size);
+    line-height: 1.3;
+    font-weight: var(--weight-medium);
+    background-color: var(--color-paper);
+    border: var(--border-width) solid var(--color-line-strong);
+    border-radius: var(--radius-pill);
+  }
+
+  @media (hover: hover) {
+    .layout21_tab:hover {
+      color: var(--color-ink);
+      border-color: var(--color-ink-subtle);
+    }
+  }
+
+  .layout21_tab.is-active {
+    color: var(--color-paper);
+    background-color: var(--color-ink);
+    border-color: var(--color-ink);
+  }
+
+  .layout21_count {
+    color: var(--color-ink-subtle);
+    font-size: var(--text-xsmall-size);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .layout21_tab.is-active .layout21_count {
+    color: var(--color-paper-60);
+  }
+</style>

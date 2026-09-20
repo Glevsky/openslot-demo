@@ -1,0 +1,610 @@
+---
+import Logo from "../ui/Logo.astro";
+import Button from "../ui/Button.astro";
+import Icon from "../ui/Icon.astro";
+import { RESOURCE_HUBS } from "../../lib/taxonomy";
+
+const hubIcons: Record<string, string> = {
+  Webinar: "play",
+  Ebook: "book",
+  Report: "chart",
+  Template: "grid",
+  Course: "cap",
+};
+
+const resourceLinks = RESOURCE_HUBS.map((hub) => ({
+  label: hub.title,
+  href: `/resources/${hub.path}`,
+  icon: hubIcons[hub.type] ?? "book",
+  text: hub.description,
+}));
+
+const readingLinks = [
+  { label: "Blog", href: "/blog", text: "Product notes, guides and engineering write-ups." },
+  { label: "Customer stories", href: "/customers", text: "How three teams changed the way they book." },
+];
+
+const links = [
+  { label: "Product", href: "/product" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Resources", href: "/resources", menu: true },
+  { label: "About", href: "/about" },
+];
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) =>
+  href === "/" ? path === "/" : path === href || path.startsWith(`${href}/`);
+---
+
+<header class="navbar_component">
+  <div class="padding-global">
+    <div class="container-large navbar_inner">
+      <Logo href="/" class="navbar_logo" />
+
+      <nav class="navbar_nav" aria-label="Main">
+        <ul class="navbar_list" role="list">
+          {
+            links.map((link) =>
+              link.menu ? (
+                <li class="navbar_item has-menu">
+                  <a
+                    class="navbar_link"
+                    href={link.href}
+                    aria-current={isCurrent(link.href) ? "page" : undefined}
+                  >
+                    {link.label}
+                    <Icon name="caret" size={14} class="navbar_caret" />
+                  </a>
+
+                  <div class="navbar_dropdown">
+                    <div class="navbar_panel">
+                      <ul class="navbar_hubs" role="list">
+                        {resourceLinks.map((item) => (
+                          <li>
+                            <a class="navbar_hub" href={item.href}>
+                              <span class="navbar_hub-icon" aria-hidden="true">
+                                <Icon name={item.icon} size={16} />
+                              </span>
+                              <span class="navbar_hub-body">
+                                <span class="navbar_hub-title">{item.label}</span>
+                                <span class="navbar_hub-text">{item.text}</span>
+                              </span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div class="navbar_rail">
+                        <p class="navbar_rail-label text-label">Keep reading</p>
+                        <ul class="navbar_rail-list" role="list">
+                          {readingLinks.map((item) => (
+                            <li>
+                              <a class="navbar_rail-link" href={item.href}>
+                                <span class="navbar_rail-title">{item.label}</span>
+                                <span class="navbar_hub-text">{item.text}</span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ) : (
+                <li class="navbar_item">
+                  <a
+                    class="navbar_link"
+                    href={link.href}
+                    aria-current={isCurrent(link.href) ? "page" : undefined}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              )
+            )
+          }
+        </ul>
+      </nav>
+
+      <div class="navbar_actions">
+        <a class="navbar_login" href="/contact">Log in</a>
+        <Button href="/signup" variant="primary">Start free</Button>
+
+        <button
+          class="navbar_burger"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="navbar-menu"
+        >
+          <Icon name="burger" size={20} />
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navbar_overlay" id="navbar-menu" hidden>
+  <div class="navbar_sheet">
+    <div class="navbar_sheet-head">
+      <Logo href="/" />
+      <button class="navbar_close" type="button" aria-label="Close menu">
+        <Icon name="close" size={18} />
+      </button>
+    </div>
+
+    <nav class="navbar_sheet-body" aria-label="Mobile">
+      <ul class="navbar_sheet-list" role="list">
+        <li><a class="navbar_sheet-link" href="/product">Product</a></li>
+        <li><a class="navbar_sheet-link" href="/pricing">Pricing</a></li>
+        <li>
+          <details class="navbar_details">
+            <summary class="navbar_sheet-link is-toggle">
+              Resources
+              <Icon name="caret" size={16} class="navbar_sheet-caret" />
+            </summary>
+            <ul class="navbar_sheet-sublist" role="list">
+              <li><a class="navbar_sheet-sublink" href="/resources">All resources</a></li>
+              {
+                resourceLinks.map((item) => (
+                  <li>
+                    <a class="navbar_sheet-sublink" href={item.href}>
+                      {item.label}
+                    </a>
+                  </li>
+                ))
+              }
+              {
+                readingLinks.map((item) => (
+                  <li>
+                    <a class="navbar_sheet-sublink" href={item.href}>
+                      {item.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </details>
+        </li>
+        <li><a class="navbar_sheet-link" href="/about">About</a></li>
+        <li><a class="navbar_sheet-link" href="/contact">Log in</a></li>
+      </ul>
+
+      <Button href="/signup" variant="primary" size="large" full>Start free</Button>
+    </nav>
+  </div>
+</div>
+
+<style>
+  .navbar_component {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background-color: color-mix(in srgb, var(--color-paper) 88%, transparent);
+    border-bottom: var(--border-width) solid var(--color-line);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .navbar_inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-32);
+    height: 4.25rem;
+  }
+
+  .navbar_logo {
+    flex-shrink: 0;
+  }
+
+  .navbar_nav {
+    flex: 1 0 auto;
+  }
+
+  .navbar_list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .navbar_item.has-menu {
+    position: relative;
+  }
+
+  .navbar_link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    height: 2.25rem;
+    padding-inline: var(--space-12);
+    color: var(--color-ink-muted);
+    font-size: var(--text-small-size);
+    line-height: 1;
+    font-weight: var(--weight-medium);
+    border-radius: var(--radius-xsmall);
+  }
+
+  @media (hover: hover) {
+    .navbar_link:hover {
+      color: var(--color-ink);
+      background-color: var(--color-ink-5);
+    }
+  }
+
+  .navbar_link[aria-current="page"] {
+    color: var(--color-ink);
+  }
+
+  .navbar_caret {
+    color: var(--color-ink-subtle);
+    transition: transform var(--transition-duration) var(--transition-easing);
+  }
+
+  .navbar_item.has-menu:hover .navbar_caret,
+  .navbar_item.has-menu:focus-within .navbar_caret {
+    transform: rotate(180deg);
+  }
+
+  .navbar_dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 5;
+    width: 46rem;
+    padding-top: var(--space-8);
+    transform: translateX(-50%);
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 -0.375rem;
+    transition:
+      opacity var(--transition-duration) var(--transition-easing),
+      translate var(--transition-duration) var(--transition-easing),
+      visibility 0s linear var(--transition-duration);
+  }
+
+  .navbar_item.has-menu:hover .navbar_dropdown,
+  .navbar_item.has-menu:focus-within .navbar_dropdown {
+    opacity: 1;
+    visibility: visible;
+    translate: 0 0;
+    transition-delay: 0s, 0s, 0s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .navbar_dropdown,
+    .navbar_caret {
+      transition: none;
+    }
+  }
+
+  .navbar_panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    padding: var(--space-8);
+    background-color: var(--color-paper);
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-pop);
+  }
+
+  .navbar_hubs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+
+  .navbar_hubs > li:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .navbar_hub {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-12);
+    height: 100%;
+    padding: var(--space-12);
+    border-radius: var(--radius-small);
+  }
+
+  @media (hover: hover) {
+    .navbar_hub:hover {
+      background-color: var(--color-canvas);
+    }
+  }
+
+  .navbar_hub-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-accent);
+    background-color: var(--color-accent-soft);
+    border-radius: var(--radius-xsmall);
+  }
+
+  .navbar_hub-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+
+  .navbar_hub-title {
+    color: var(--color-ink);
+    font-size: var(--text-small-size);
+    line-height: 1.42857;
+    font-weight: var(--weight-semibold);
+  }
+
+  .navbar_hub-text {
+    color: var(--color-ink-subtle);
+    font-size: var(--text-xsmall-size);
+    line-height: 1.46154;
+    text-wrap: pretty;
+  }
+
+  .navbar_rail {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    padding: var(--space-16) var(--space-12);
+    background-color: var(--color-canvas);
+    border-radius: var(--radius-small);
+  }
+
+  .navbar_rail-label {
+    padding-inline: var(--space-12);
+    color: var(--color-ink-subtle);
+  }
+
+  .navbar_rail-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .navbar_rail-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-8) var(--space-12);
+    border-radius: var(--radius-xsmall);
+  }
+
+  @media (hover: hover) {
+    .navbar_rail-link:hover {
+      background-color: var(--color-paper);
+    }
+  }
+
+  .navbar_rail-title {
+    color: var(--color-ink);
+    font-size: var(--text-small-size);
+    line-height: 1.42857;
+    font-weight: var(--weight-semibold);
+  }
+
+  .navbar_actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    flex-shrink: 0;
+  }
+
+  .navbar_login {
+    display: flex;
+    align-items: center;
+    height: 2.25rem;
+    padding-inline: var(--space-12);
+    color: var(--color-ink-muted);
+    font-size: var(--text-small-size);
+    line-height: 1;
+    font-weight: var(--weight-medium);
+    border-radius: var(--radius-xsmall);
+  }
+
+  @media (hover: hover) {
+    .navbar_login:hover {
+      color: var(--color-ink);
+      background-color: var(--color-ink-5);
+    }
+  }
+
+  .navbar_burger,
+  .navbar_close {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--color-ink);
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-xsmall);
+  }
+
+  .navbar_overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgb(23 23 27 / 0);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.24s var(--transition-easing),
+      visibility 0.24s var(--transition-easing),
+      background-color 0.24s var(--transition-easing);
+  }
+
+  .navbar_overlay[hidden] {
+    display: none;
+  }
+
+  .navbar_overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    background-color: rgb(23 23 27 / 0.32);
+  }
+
+  .navbar_sheet {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+    width: 22rem;
+    max-width: 100%;
+    height: 100%;
+    padding: var(--space-20) var(--space-24) var(--space-32);
+    background-color: var(--color-paper);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    translate: 1.5rem 0;
+    transition: translate 0.24s var(--transition-easing);
+  }
+
+  .navbar_overlay.is-open .navbar_sheet {
+    translate: 0 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .navbar_overlay,
+    .navbar_sheet {
+      transition: none;
+    }
+  }
+
+  .navbar_sheet-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navbar_sheet-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+  }
+
+  .navbar_sheet-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar_sheet-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    padding-block: var(--space-12);
+    color: var(--color-ink);
+    font-family: var(--font-heading);
+    font-size: var(--heading-small-size);
+    line-height: 1.38889;
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--heading-small-tracking);
+    border-bottom: var(--border-width) solid var(--color-line);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .navbar_sheet-link.is-toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .navbar_sheet-caret {
+    color: var(--color-ink-subtle);
+    transition: transform var(--transition-duration) var(--transition-easing);
+  }
+
+  .navbar_details[open] .navbar_sheet-caret {
+    transform: rotate(180deg);
+  }
+
+  .navbar_sheet-sublist {
+    display: flex;
+    flex-direction: column;
+    padding-block: var(--space-8);
+  }
+
+  .navbar_sheet-sublink {
+    display: block;
+    padding: var(--space-8) 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-small-size);
+    line-height: var(--text-small-line);
+  }
+
+  @media (max-width: 991px) {
+    .navbar_nav,
+    .navbar_login {
+      display: none;
+    }
+
+    .navbar_burger,
+    .navbar_close {
+      display: flex;
+    }
+
+    .navbar_inner {
+      justify-content: space-between;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .navbar_inner {
+      height: 3.75rem;
+    }
+  }
+</style>
+
+<script>
+  const burger = document.querySelector<HTMLButtonElement>(".navbar_burger");
+  const overlay = document.querySelector<HTMLElement>(".navbar_overlay");
+  const closeButton = document.querySelector<HTMLButtonElement>(".navbar_close");
+
+  if (burger && overlay && closeButton) {
+    const open = () => {
+      overlay.hidden = false;
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => overlay.classList.add("is-open"))
+      );
+      burger.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+      closeButton.focus();
+    };
+
+    const close = () => {
+      overlay.classList.remove("is-open");
+      burger.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+      burger.focus();
+
+      const finish = (event?: TransitionEvent) => {
+        if (event && event.target !== overlay) return;
+        overlay.hidden = true;
+        overlay.removeEventListener("transitionend", finish);
+      };
+
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) finish();
+      else overlay.addEventListener("transitionend", finish);
+    };
+
+    burger.addEventListener("click", open);
+    closeButton.addEventListener("click", close);
+
+    overlay.addEventListener("click", (event) => {
+      if (!(event.target as HTMLElement).closest(".navbar_sheet")) close();
+    });
+
+    overlay.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", close);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !overlay.hidden) close();
+    });
+  }
+</script>

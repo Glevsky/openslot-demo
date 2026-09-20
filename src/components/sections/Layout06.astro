@@ -1,0 +1,141 @@
+---
+import Avatar from "../ui/Avatar.astro";
+import Icon from "../ui/Icon.astro";
+import Eyebrow from "../ui/Eyebrow.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+
+interface Quote {
+  text: string;
+  name: string;
+  role: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  quotes: Quote[];
+  tone?: "paper" | "canvas";
+}
+
+const { eyebrow, heading, quotes, tone = "canvas" } = Astro.props;
+---
+
+<section class:list={["section_layout06", `is-${tone}`]}>
+  <div class="padding-global padding-section-large">
+    <div class="container-large">
+      <div class="layout06_component">
+        <SectionIntro align="center" width="600px">
+          {eyebrow && <Eyebrow slot="eyebrow">{eyebrow}</Eyebrow>}
+          <h2>{heading}</h2>
+        </SectionIntro>
+
+        <ul class="layout06_list" role="list">
+          {
+            quotes.map((quote) => (
+              <li class="layout06_item">
+                <figure class="layout06_figure">
+                  <Icon name="quote" size={22} class="layout06_mark" />
+                  <blockquote class="layout06_quote">{quote.text}</blockquote>
+                  <figcaption class="layout06_person">
+                    <Avatar name={quote.name} />
+                    <span class="layout06_person-body">
+                      <cite class="layout06_name">{quote.name}</cite>
+                      <span class="layout06_role">{quote.role}</span>
+                    </span>
+                  </figcaption>
+                </figure>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section_layout06.is-canvas {
+    background-color: var(--color-canvas);
+    border-block: var(--border-width) solid var(--color-line);
+  }
+
+  .layout06_component {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-56);
+  }
+
+  .layout06_list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-24);
+  }
+
+  .layout06_item {
+    display: flex;
+  }
+
+  .layout06_figure {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    width: 100%;
+    padding: var(--space-24);
+    background-color: var(--color-paper);
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-medium);
+  }
+
+  .layout06_mark {
+    color: var(--color-accent);
+    stroke: none;
+    fill: currentColor;
+  }
+
+  .layout06_quote {
+    flex: 1 0 auto;
+    font-size: var(--text-medium-size);
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  .layout06_person {
+    display: flex;
+    align-items: center;
+    gap: var(--space-12);
+    padding-top: var(--space-16);
+    border-top: var(--border-width) solid var(--color-line);
+  }
+
+  .layout06_person-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .layout06_name {
+    font-size: var(--text-small-size);
+    line-height: 1.42857;
+    font-weight: var(--weight-semibold);
+  }
+
+  .layout06_role {
+    color: var(--color-ink-subtle);
+    font-size: var(--text-xsmall-size);
+    line-height: 1.38462;
+  }
+
+  @media (max-width: 991px) {
+    .layout06_component {
+      gap: var(--space-40);
+    }
+
+    .layout06_list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .layout06_item:nth-child(n + 3) {
+      display: none;
+    }
+  }
+</style>

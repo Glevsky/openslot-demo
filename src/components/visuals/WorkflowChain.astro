@@ -1,0 +1,104 @@
+---
+import Icon from "../ui/Icon.astro";
+
+const steps = [
+  { icon: "calendar", label: "Booking made", note: "Trigger" },
+  { icon: "zap", label: "Send the brief to the host", note: "Action" },
+  { icon: "link", label: "POST to your CRM", note: "Webhook" },
+  { icon: "bell", label: "Remind, 1 hour before", note: "Action" },
+];
+---
+
+<ol class="chain_component" aria-hidden="true">
+  {
+    steps.map((step, index) => (
+      <li class="chain_step">
+        <span class="chain_icon"><Icon name={step.icon} size={16} /></span>
+        <span class="chain_body">
+          <span class="chain_note">{step.note}</span>
+          <span class="chain_label">{step.label}</span>
+        </span>
+        <span class="chain_index">{index + 1}</span>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .chain_component {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    user-select: none;
+  }
+
+  .chain_step {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-12);
+    padding: var(--space-12) var(--space-16);
+    background-color: var(--color-paper);
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-small);
+  }
+
+  .chain_step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 2rem;
+    width: var(--border-width);
+    height: var(--space-8);
+    background-color: var(--color-line-strong);
+  }
+
+  .chain_step:first-child {
+    border-color: var(--color-accent);
+    background-color: var(--color-accent-soft);
+  }
+
+  .chain_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 1.75rem;
+    height: 1.75rem;
+    color: var(--color-accent);
+    background-color: var(--color-paper);
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-xsmall);
+  }
+
+  .chain_body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .chain_note {
+    color: var(--color-ink-subtle);
+    font-size: 0.6875rem;
+    line-height: 1.2;
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+  }
+
+  .chain_label {
+    font-size: var(--text-small-size);
+    line-height: 1.3;
+    font-weight: var(--weight-medium);
+  }
+
+  .chain_index {
+    flex-shrink: 0;
+    color: var(--color-ink-subtle);
+    font-family: var(--font-heading);
+    font-size: var(--text-small-size);
+    font-weight: var(--weight-semibold);
+  }
+</style>

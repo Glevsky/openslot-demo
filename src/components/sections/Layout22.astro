@@ -1,0 +1,60 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+  heading: string;
+  text: string;
+  links: { label: string; href: string }[];
+}
+
+const { heading, text, links } = Astro.props;
+---
+
+<section class="section_layout22">
+  <div class="padding-global padding-section-large">
+    <div class="container-small layout22_component">
+      <p class="layout22_code">404</p>
+      <h1 class="heading-large">{heading}</h1>
+      <p class="text-large text-color-muted">{text}</p>
+
+      <div class="button-group layout22_actions">
+        {
+          links.map((link, index) => (
+            <Button
+              href={link.href}
+              variant={index === 0 ? "primary" : "secondary"}
+              size="large"
+              arrow={index === 0}
+            >
+              {link.label}
+            </Button>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .layout22_component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-16);
+    text-align: center;
+  }
+
+  .layout22_code {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    line-height: 1;
+    font-weight: var(--weight-semibold);
+    letter-spacing: -0.04em;
+    color: var(--color-accent);
+  }
+
+  .layout22_actions {
+    margin-top: var(--space-8);
+    justify-content: center;
+  }
+</style>

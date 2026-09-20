@@ -1,0 +1,131 @@
+---
+import Button from "../ui/Button.astro";
+import Pill from "../ui/Pill.astro";
+import Icon from "../ui/Icon.astro";
+import BookingMock from "../visuals/BookingMock.astro";
+---
+
+<section class="section_layout01">
+  <div class="padding-global layout01_padding">
+    <div class="container-large">
+      <div class="layout01_component">
+        <div class="layout01_intro">
+          <Pill tone="accent">
+            <Icon name="sparkle" size={13} /> Meeting polls are live
+          </Pill>
+
+          <h1 class="heading-display">
+            One link, and the<br class="hide-mobile-landscape" /> meeting is booked
+          </h1>
+
+          <p class="layout01_text text-xlarge text-color-muted">
+            Openslot shows people when you are actually free, in their own time
+            zone, and writes the meeting to your calendar. No six-message thread
+            to find a half hour.
+          </p>
+
+          <div class="button-group layout01_actions">
+            <Button href="/signup" variant="primary" size="large" arrow>
+              Start free
+            </Button>
+            <Button href="/pricing" variant="secondary" size="large">
+              See pricing
+            </Button>
+          </div>
+
+          <ul class="layout01_proof" role="list">
+            <li><Icon name="check" size={16} /> Free plan, no card</li>
+            <li><Icon name="check" size={16} /> 14-day Team trial</li>
+            <li><Icon name="check" size={16} /> Works with your calendar</li>
+          </ul>
+        </div>
+
+        <div class="layout01_visual">
+          <BookingMock />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section_layout01 {
+    background-color: var(--color-canvas);
+    border-bottom: var(--border-width) solid var(--color-line);
+  }
+
+  .layout01_padding {
+    padding-top: var(--space-96);
+    padding-bottom: var(--space-96);
+  }
+
+  .layout01_component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-64);
+  }
+
+  .layout01_intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-20);
+    max-width: 44rem;
+    text-align: center;
+  }
+
+  .layout01_text {
+    max-width: 36rem;
+    text-wrap: pretty;
+  }
+
+  .layout01_actions {
+    margin-top: var(--space-4);
+    justify-content: center;
+  }
+
+  .layout01_proof {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-8) var(--space-24);
+    margin-top: var(--space-4);
+  }
+
+  .layout01_proof li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    color: var(--color-ink-subtle);
+    font-size: var(--text-small-size);
+    line-height: 1.3;
+  }
+
+  .layout01_proof :global(.icon_component) {
+    color: var(--color-positive);
+  }
+
+  .layout01_visual {
+    width: 100%;
+    max-width: 68rem;
+  }
+
+  @media (max-width: 991px) {
+    .layout01_padding {
+      padding-top: var(--space-64);
+      padding-bottom: var(--space-64);
+    }
+
+    .layout01_component {
+      gap: var(--space-48);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .layout01_padding {
+      padding-top: var(--space-48);
+      padding-bottom: var(--space-48);
+    }
+  }
+</style>

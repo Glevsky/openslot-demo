@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Layout08 from "../components/sections/Layout08.astro";
+import Layout17 from "../components/sections/Layout17.astro";
+import Layout11 from "../components/sections/Layout11.astro";
+
+const faq = [
+  {
+    question: "How fast do you reply?",
+    answer:
+      "Within one working day for everything, and sooner for anything that has stopped a workspace from booking. Team and Enterprise go to the front of the queue.",
+  },
+  {
+    question: "Can we get a security review pack?",
+    answer:
+      "Yes. Pick the security topic on the form and say which framework your team works to, and we will send what we have rather than making you ask twice.",
+  },
+  {
+    question: "Do you do demos?",
+    answer:
+      "For teams of ten and up, yes. Below that the free plan will tell you more in twenty minutes than we could in a call.",
+  },
+];
+---
+
+<BaseLayout
+  title="Contact"
+  description="Questions about plans, security reviews or an account that is misbehaving. One form, answered within a working day."
+>
+  <Layout08
+    eyebrow="Contact"
+    heading="Tell us what you need"
+    text="Sales, security questions and support all arrive in the same place. We answer within one working day."
+  />
+
+  <Layout17 variant="contact" />
+
+  <Layout11 heading="Before you write" items={faq} tone="canvas" />
+</BaseLayout>

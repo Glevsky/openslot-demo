@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Layout08 from "../../components/sections/Layout08.astro";
+import Layout09 from "../../components/sections/Layout09.astro";
+import Layout20 from "../../components/sections/Layout20.astro";
+import Layout21 from "../../components/sections/Layout21.astro";
+import Layout07 from "../../components/sections/Layout07.astro";
+import { listResources, formatDateShort } from "../../lib/content";
+import { coverUrl } from "../../lib/image";
+import { hubFor, resourceHref, RESOURCE_HUBS } from "../../lib/taxonomy";
+
+const resources = await listResources();
+
+const counts = Object.fromEntries(
+  RESOURCE_HUBS.map((hub) => [
+    hub.type,
+    resources.filter((item) => item.type === hub.type).length,
+  ])
+);
+
+const featured = resources.find((item) => item.featured) ?? resources[0];
+
+const rest = resources.filter((item) => item.slug !== featured?.slug);
+
+const cards = rest.map((item) => ({
+  href: resourceHref(item.type, item.slug),
+  title: item.title,
+  text: item.excerpt,
+  cover: coverUrl(item.cover),
+  kicker: hubFor(item.type).title,
+  pills: item.topics,
+  meta: [item.meta, formatDateShort(item.date)],
+  tags: [...item.topics, item.type, item.level],
+}));
+
+const topics = [...new Set(resources.flatMap((item) => item.topics))].sort();
+---
+
+<BaseLayout
+  title="Resources"
+  description="Webinars, guides, reports, templates and courses on scheduling, from the team that reads 4.1 million bookings a year."
+>
+  <Layout08
+    eyebrow="Resource center"
+    heading="Everything we have learned about booking a meeting"
+    text="Fifteen things worth your time: recorded sessions, long-form guides, benchmark reports, templates you can copy, and short video courses."
+  >
+    <Layout21 counts={counts} />
+  </Layout08>
+
+  {
+    featured && (
+      <Layout20
+        href={resourceHref(featured.type, featured.slug)}
+        title={featured.title}
+        text={featured.summary}
+        type={hubFor(featured.type).title}
+        meta={featured.meta}
+        cta={featured.cta}
+        cover={coverUrl(featured.cover, 1000)}
+        highlights={featured.highlights}
+      />
+    )
+  }
+
+  <Layout09
+    items={cards}
+    filters={topics}
+    filterLabel="Filter resources by topic"
+    emptyLabel="No resources on that topic yet."
+    padding="large"
+  />
+
+  <Layout07
+    heading="The best resource is a booking page that works"
+    text="Everything here describes something you can set up in an afternoon. The free plan is enough to try all of it."
+  />
+</BaseLayout>

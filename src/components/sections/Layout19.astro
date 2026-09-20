@@ -1,0 +1,99 @@
+---
+import Card from "../ui/Card.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+import Button from "../ui/Button.astro";
+
+interface Item {
+  href: string;
+  title: string;
+  text?: string;
+  cover?: string;
+  pills?: string[];
+  meta?: string[];
+}
+
+interface Props {
+  heading: string;
+  items: Item[];
+  link?: { label: string; href: string };
+  tone?: "paper" | "canvas";
+}
+
+const { heading, items, link, tone = "canvas" } = Astro.props;
+---
+
+<section class:list={["section_layout19", `is-${tone}`]}>
+  <div class="padding-global padding-section-medium">
+    <div class="container-large">
+      <div class="layout19_component">
+        <SectionIntro inline={Boolean(link)}>
+          <h2 class="heading-mlarge">{heading}</h2>
+          {
+            link && (
+              <Button slot="actions" href={link.href} variant="secondary" arrow>
+                {link.label}
+              </Button>
+            )
+          }
+        </SectionIntro>
+
+        <ul class="layout19_list" role="list">
+          {
+            items.map((item) => (
+              <li class="layout19_item">
+                <Card
+                  href={item.href}
+                  title={item.title}
+                  text={item.text}
+                  cover={item.cover}
+                  pills={item.pills}
+                  meta={item.meta}
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section_layout19.is-canvas {
+    background-color: var(--color-canvas);
+    border-top: var(--border-width) solid var(--color-line);
+  }
+
+  .layout19_component {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+  }
+
+  .layout19_list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-24);
+  }
+
+  .layout19_item {
+    display: flex;
+  }
+
+  @media (max-width: 991px) {
+    .layout19_list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .layout19_item:nth-child(n + 3) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .layout19_list {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-16);
+    }
+  }
+</style>

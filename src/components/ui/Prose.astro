@@ -1,0 +1,28 @@
+---
+import { PortableText } from "astro-portabletext";
+import CodeBlock from "../portable/CodeBlock.astro";
+import TableBlock from "../portable/TableBlock.astro";
+import Heading from "../portable/Heading.astro";
+
+interface Props {
+  value: unknown;
+  class?: string;
+}
+
+const { value, class: className } = Astro.props;
+
+const components = {
+  type: {
+    code: CodeBlock,
+    table: TableBlock,
+  },
+  block: {
+    h2: Heading,
+    h3: Heading,
+  },
+};
+---
+
+<div class:list={["prose_component", className]}>
+  <PortableText value={value as never} components={components} />
+</div>

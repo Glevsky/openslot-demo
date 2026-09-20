@@ -1,0 +1,53 @@
+---
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Layout08 from "../../components/sections/Layout08.astro";
+import Layout05 from "../../components/sections/Layout05.astro";
+import Layout15 from "../../components/sections/Layout15.astro";
+import Layout19 from "../../components/sections/Layout19.astro";
+import Layout07 from "../../components/sections/Layout07.astro";
+import { listCustomers, getCustomer } from "../../lib/content";
+import { customerHref } from "../../lib/taxonomy";
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { listCustomers: all } = await import("../../lib/content");
+  return (await all()).map((story) => ({ params: { slug: story.slug } }));
+};
+
+const { slug } = Astro.params;
+const story = await getCustomer(slug!);
+
+if (!story) return Astro.rewrite("/404");
+
+const stories = await listCustomers();
+
+const cards = stories
+  .filter((item) => item.slug !== story.slug)
+  .map((item) => ({
+    href: customerHref(item.slug),
+    title: item.title,
+    text: item.excerpt,
+    pills: [item.industry],
+    meta: item.stats.slice(0, 1).map((stat) => `${stat.value} ${stat.label}`),
+  }));
+---
+
+<BaseLayout title={story.name} description={story.summary} ogType="article">
+  <Layout08 eyebrow={story.name} heading={story.title} text={story.summary} />
+
+  <Layout05 stats={story.stats} tone="canvas" />
+
+  <Layout15 story={story} />
+
+  {
+    cards.length > 0 && (
+      <Layout19
+        heading="Other customer stories"
+        items={cards}
+        link={{ label: "All stories", href: "/customers" }}
+      />
+    )
+  }
+
+  <Layout07 />
+</BaseLayout>

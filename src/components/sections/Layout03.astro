@@ -1,0 +1,123 @@
+---
+import Icon from "../ui/Icon.astro";
+import Eyebrow from "../ui/Eyebrow.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+
+interface Item {
+  icon: string;
+  title: string;
+  text: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  text?: string;
+  items: Item[];
+  columns?: 3 | 4;
+  tone?: "paper" | "canvas";
+  align?: "left" | "center";
+  padding?: "large" | "medium";
+}
+
+const {
+  eyebrow,
+  heading,
+  text,
+  items,
+  columns = 3,
+  tone = "paper",
+  align = "center",
+  padding = "large",
+} = Astro.props;
+---
+
+<section class:list={["section_layout03", `is-${tone}`]}>
+  <div class:list={["padding-global", `padding-section-${padding}`]}>
+    <div class="container-large">
+      <div class="layout03_component">
+        <SectionIntro align={align} width={align === "center" ? "640px" : "720px"}>
+          {eyebrow && <Eyebrow slot="eyebrow">{eyebrow}</Eyebrow>}
+          <h2>{heading}</h2>
+          {text && <p class="text-large text-color-muted">{text}</p>}
+        </SectionIntro>
+
+        <ul class:list={["layout03_list", `is-${columns}column`]} role="list">
+          {
+            items.map((item) => (
+              <li class="layout03_item">
+                <span class="layout03_icon"><Icon name={item.icon} size={20} /></span>
+                <h3 class="heading-small">{item.title}</h3>
+                <p class="text-small text-color-muted text-pretty">{item.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section_layout03.is-canvas {
+    background-color: var(--color-canvas);
+    border-block: var(--border-width) solid var(--color-line);
+  }
+
+  .layout03_component {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-64);
+  }
+
+  .layout03_list {
+    display: grid;
+    gap: var(--space-40) var(--space-32);
+  }
+
+  .layout03_list.is-3column {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .layout03_list.is-4column {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .layout03_item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-12);
+  }
+
+  .layout03_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-accent);
+    background-color: var(--color-accent-soft);
+    border-radius: var(--radius-small);
+  }
+
+  @media (max-width: 991px) {
+    .layout03_component {
+      gap: var(--space-48);
+    }
+
+    .layout03_list.is-3column,
+    .layout03_list.is-4column {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .layout03_list.is-3column,
+    .layout03_list.is-4column {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-32);
+    }
+  }
+</style>

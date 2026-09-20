@@ -1,0 +1,244 @@
+---
+import Field from "../ui/Field.astro";
+import Checkbox from "../ui/Checkbox.astro";
+import Button from "../ui/Button.astro";
+import Icon from "../ui/Icon.astro";
+
+interface Props {
+  variant?: "contact" | "signup";
+}
+
+const { variant = "contact" } = Astro.props;
+
+const isSignup = variant === "signup";
+
+const asides = isSignup
+  ? [
+      { icon: "check", text: "The free plan does not ask for a card, ever." },
+      { icon: "check", text: "The Team trial runs 14 days, then drops to Free." },
+      { icon: "check", text: "Average time from signup to first booking is 2 days." },
+    ]
+  : [
+      { icon: "mail", text: "Sales and billing questions, answered within a working day." },
+      { icon: "shield", text: "Security reviews and data questions go to the same place." },
+      { icon: "building", text: "Openslot Technologies, Lda., Rua do Relogio 14, Lisboa." },
+    ];
+---
+
+<section class="section_layout17">
+  <div class="padding-global padding-section-large">
+    <div class="container-large layout17_component">
+      <div class="layout17_form-wrap">
+        <form class="layout17_form" novalidate>
+          <div class="layout17_row">
+            <Field name="first-name" label="First name" required autocomplete="given-name" placeholder="Mara" />
+            <Field name="last-name" label="Last name" required autocomplete="family-name" placeholder="Lindqvist" />
+          </div>
+
+          <Field
+            name="email"
+            label="Work email"
+            type="email"
+            required
+            autocomplete="email"
+            placeholder="you@company.com"
+          />
+
+          <Field name="company" label="Company" placeholder="Where you work" />
+
+          {
+            isSignup ? (
+              <Field
+                name="team-size"
+                label="How many people will book"
+                type="select"
+                placeholder="Pick a size"
+                required
+                options={[
+                  { label: "Just me", value: "1" },
+                  { label: "2 to 10", value: "2-10" },
+                  { label: "11 to 50", value: "11-50" },
+                  { label: "More than 50", value: "50+" },
+                ]}
+              />
+            ) : (
+              <Field
+                name="topic"
+                label="What is this about"
+                type="select"
+                placeholder="Pick a topic"
+                required
+                options={[
+                  { label: "Pricing and plans", value: "pricing" },
+                  { label: "A security or data question", value: "security" },
+                  { label: "Help with my account", value: "support" },
+                  { label: "Something else", value: "other" },
+                ]}
+              />
+            )
+          }
+
+          {
+            !isSignup && (
+              <Field
+                name="message"
+                label="Message"
+                type="textarea"
+                required
+                placeholder="Tell us what you need."
+              />
+            )
+          }
+
+          <Checkbox
+            name="consent"
+            label="Send me an occasional email about scheduling. No more than once a month."
+          />
+
+          <Button type="submit" variant="primary" size="large" full>
+            {isSignup ? "Create my workspace" : "Send it"}
+          </Button>
+
+          <p class="layout17_fineprint">
+            This is a demo form. Nothing is sent, nothing is stored.
+          </p>
+        </form>
+      </div>
+
+      <aside class="layout17_aside">
+        <ul class="layout17_points" role="list">
+          {
+            asides.map((point) => (
+              <li>
+                <Icon name={point.icon} size={18} />
+                <span>{point.text}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .layout17_component {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: var(--space-64);
+    align-items: start;
+  }
+
+  .layout17_form-wrap {
+    padding: var(--space-32);
+    background-color: var(--color-paper);
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-card);
+  }
+
+  .layout17_form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  .layout17_row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-16);
+  }
+
+  .layout17_fineprint {
+    color: var(--color-ink-subtle);
+    font-size: var(--text-xsmall-size);
+    line-height: 1.46154;
+    text-align: center;
+  }
+
+  .layout17_aside {
+    padding-top: var(--space-8);
+  }
+
+  .layout17_points {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-20);
+  }
+
+  .layout17_points li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-12);
+    color: var(--color-ink-muted);
+    font-size: var(--text-medium-size);
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  .layout17_points :global(.icon_component) {
+    margin-top: 0.1875rem;
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 991px) {
+    .layout17_component {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-32);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .layout17_form-wrap {
+      padding: var(--space-20);
+    }
+
+    .layout17_row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
+
+<script>
+  for (const form of document.querySelectorAll<HTMLFormElement>(".layout17_form")) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        for (const field of form.querySelectorAll<HTMLElement>(".field_component")) {
+          const input = field.querySelector<HTMLInputElement | HTMLSelectElement>(
+            ".field_input"
+          );
+          field.classList.toggle("is-invalid", Boolean(input && !input.checkValidity()));
+        }
+        return;
+      }
+
+      const done = document.createElement("div");
+      done.className = "layout17_done";
+      done.innerHTML =
+        "<p class='layout17_done-title'>That would normally be on its way.</p>" +
+        "<p class='layout17_fineprint'>This site is a demo, so nothing was sent or stored.</p>";
+      form.replaceWith(done);
+    });
+  }
+</script>
+
+<style is:global>
+  .layout17_done {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    padding-block: var(--space-32);
+    text-align: center;
+  }
+
+  .layout17_done-title {
+    font-family: var(--font-heading);
+    font-size: var(--heading-medium-size);
+    line-height: 1.3;
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--heading-medium-tracking);
+    color: var(--color-positive);
+  }
+</style>

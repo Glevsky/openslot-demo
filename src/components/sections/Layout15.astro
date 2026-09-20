@@ -1,0 +1,194 @@
+---
+import Pill from "../ui/Pill.astro";
+import Icon from "../ui/Icon.astro";
+import Prose from "../ui/Prose.astro";
+import Avatar from "../ui/Avatar.astro";
+
+interface Props {
+  story: {
+    name: string;
+    title: string;
+    industry: string;
+    plan: string;
+    products: string[];
+    stats: { value: string; label: string }[];
+    quote: { text: string; name: string; role: string };
+    body?: unknown;
+  };
+}
+
+const { story } = Astro.props;
+---
+
+<section class="section_layout15">
+  <div class="padding-global padding-section-medium">
+    <div class="container-large layout15_component">
+      <div class="layout15_main">
+        <figure class="layout15_quote">
+          <Icon name="quote" size={26} class="layout15_mark" />
+          <blockquote>{story.quote.text}</blockquote>
+          <figcaption>
+            <Avatar name={story.quote.name} />
+            <span>
+              <cite>{story.quote.name}</cite>
+              <span class="layout15_role">{story.quote.role}</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        {story.body && <Prose value={story.body} />}
+      </div>
+
+      <aside class="layout15_aside">
+        <dl class="layout15_facts">
+          <div>
+            <dt>Company</dt>
+            <dd>{story.name}</dd>
+          </div>
+          <div>
+            <dt>Industry</dt>
+            <dd>{story.industry}</dd>
+          </div>
+          <div>
+            <dt>Plan</dt>
+            <dd>{story.plan}</dd>
+          </div>
+        </dl>
+
+        <div class="layout15_products">
+          <p class="text-label layout15_products-label">What they use</p>
+          <div class="layout15_pills">
+            {story.products.map((product) => <Pill tone="neutral">{product}</Pill>)}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .layout15_component {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 18rem;
+    gap: var(--space-64);
+    align-items: start;
+  }
+
+  .layout15_main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-40);
+    max-width: 42rem;
+  }
+
+  .layout15_quote {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    padding: var(--space-32);
+    background-color: var(--color-canvas);
+    border-radius: var(--radius-large);
+  }
+
+  .layout15_mark {
+    color: var(--color-accent);
+    stroke: none;
+    fill: currentColor;
+  }
+
+  .layout15_quote blockquote {
+    font-family: var(--font-heading);
+    font-size: var(--heading-mlarge-size);
+    line-height: 1.33;
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--heading-mlarge-tracking);
+    text-wrap: pretty;
+  }
+
+  .layout15_quote figcaption {
+    display: flex;
+    align-items: center;
+    gap: var(--space-12);
+  }
+
+  .layout15_quote figcaption > span {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .layout15_quote cite {
+    font-size: var(--text-small-size);
+    line-height: 1.35;
+    font-weight: var(--weight-semibold);
+  }
+
+  .layout15_role {
+    color: var(--color-ink-subtle);
+    font-size: var(--text-xsmall-size);
+    line-height: 1.4;
+  }
+
+  .layout15_aside {
+    position: sticky;
+    top: 5.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+    padding: var(--space-24);
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-medium);
+  }
+
+  .layout15_facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  .layout15_facts dt {
+    color: var(--color-ink-subtle);
+    font-size: var(--text-xsmall-size);
+    line-height: 1.4;
+  }
+
+  .layout15_facts dd {
+    margin: 0;
+    font-size: var(--text-small-size);
+    line-height: 1.4;
+    font-weight: var(--weight-medium);
+  }
+
+  .layout15_products {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .layout15_products-label {
+    color: var(--color-ink-subtle);
+  }
+
+  .layout15_pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+  }
+
+  @media (max-width: 991px) {
+    .layout15_component {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-40);
+    }
+
+    .layout15_aside {
+      position: static;
+      max-width: 26rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .layout15_quote {
+      padding: var(--space-20);
+    }
+  }
+</style>

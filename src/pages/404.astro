@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Layout22 from "../components/sections/Layout22.astro";
+---
+
+<BaseLayout
+  title="Page not found"
+  description="That page is not here. Try the product overview, the resource center or the blog."
+>
+  <Layout22
+    heading="That slot is not on the calendar"
+    text="The page you asked for is not here. It may have moved, or the link may have been wrong to begin with."
+    links={[
+      { label: "Go to the homepage", href: "/" },
+      { label: "Browse resources", href: "/resources" },
+      { label: "Read the blog", href: "/blog" },
+    ]}
+  />
+</BaseLayout>

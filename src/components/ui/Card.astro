@@ -1,0 +1,96 @@
+---
+import Pill from "./Pill.astro";
+
+interface Props {
+  href: string;
+  title: string;
+  text?: string;
+  cover?: string;
+  kicker?: string;
+  pills?: string[];
+  meta?: string[];
+  headingLevel?: "h2" | "h3";
+  class?: string;
+}
+
+const {
+  href,
+  title,
+  text,
+  cover,
+  kicker,
+  pills = [],
+  meta = [],
+  headingLevel = "h3",
+  class: className,
+} = Astro.props;
+
+const Heading = headingLevel;
+const hasFooter = Astro.slots.has("footer") || meta.length > 0;
+---
+
+<article class:list={["card_component", className]}>
+  {
+    cover && (
+      <img
+        class="card_cover"
+        src={cover}
+        alt=""
+        width="800"
+        height="500"
+        loading="lazy"
+        decoding="async"
+      />
+    )
+  }
+
+  <div class="card_body">
+    {
+      pills.length > 0 && (
+        <div class="card_pills">
+          {pills.map((pill) => (
+            <Pill tone="neutral">{pill}</Pill>
+          ))}
+        </div>
+      )
+    }
+
+    {kicker && <p class="card_kicker text-label">{kicker}</p>}
+
+    <Heading class="card_title heading-small">
+      <a class="card_link" href={href}>{title}</a>
+    </Heading>
+
+    {text && <p class="card_text">{text}</p>}
+
+    {
+      hasFooter && (
+        <div class="card_footer">
+          <slot name="footer" />
+          {meta.length > 0 && (
+            <p class="card_meta">
+              {meta.map((entry, index) => (
+                <>
+                  {index > 0 && <span class="card_meta-dot" aria-hidden="true" />}
+                  <span>{entry}</span>
+                </>
+              ))}
+            </p>
+          )}
+        </div>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .card_pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+  }
+
+  .card_kicker {
+    color: var(--color-accent);
+  }
+</style>

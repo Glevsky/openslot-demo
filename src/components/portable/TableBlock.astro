@@ -1,0 +1,71 @@
+---
+import { toPlainText } from "astro-portabletext";
+
+interface Cell {
+  _key?: string;
+  value?: unknown;
+}
+
+interface Row {
+  _key?: string;
+  cells?: Cell[];
+}
+
+interface Props {
+  node: { headerRows?: number; rows?: Row[] };
+}
+
+const { node } = Astro.props;
+const headerRows = node.headerRows ?? 0;
+const rows = node.rows ?? [];
+
+const head = rows.slice(0, headerRows);
+const body = rows.slice(headerRows);
+
+const text = (cell: Cell) => (cell.value ? toPlainText(cell.value as never) : "");
+---
+
+<div class="table_component">
+  <table>
+    {
+      head.length > 0 && (
+        <thead>
+          {head.map((row) => (
+            <tr>
+              {(row.cells ?? []).map((cell) => (
+                <th scope="col">{text(cell)}</th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+      )
+    }
+    <tbody>
+      {
+        body.map((row) => (
+          <tr>
+            {(row.cells ?? []).map((cell) => (
+              <td>{text(cell)}</td>
+            ))}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .table_component {
+    overflow-x: auto;
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-small);
+  }
+
+  .table_component table {
+    min-width: 28rem;
+  }
+
+  .table_component :global(tr:last-child td) {
+    border-bottom: 0;
+  }
+</style>

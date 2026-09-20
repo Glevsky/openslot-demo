@@ -1,0 +1,38 @@
+---
+interface Props {
+  as?: "span" | "p" | "h2" | "h3";
+  tone?: "accent" | "muted" | "paper";
+  class?: string;
+}
+
+const { as = "span", tone = "accent", class: className } = Astro.props;
+const Text = as;
+---
+
+<Text class:list={["eyebrow_component", `is-${tone}`, className]}>
+  <slot />
+</Text>
+
+<style>
+  .eyebrow_component {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--label-size);
+    line-height: var(--label-line);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+  }
+
+  .eyebrow_component.is-accent {
+    color: var(--color-accent);
+  }
+
+  .eyebrow_component.is-muted {
+    color: var(--color-ink-subtle);
+  }
+
+  .eyebrow_component.is-paper {
+    color: var(--color-paper-60);
+  }
+</style>

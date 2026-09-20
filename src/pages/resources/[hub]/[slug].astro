@@ -1,0 +1,77 @@
+---
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Layout12 from "../../../components/sections/Layout12.astro";
+import Layout14 from "../../../components/sections/Layout14.astro";
+import Layout19 from "../../../components/sections/Layout19.astro";
+import Layout07 from "../../../components/sections/Layout07.astro";
+import {
+  listResources,
+  getResource,
+  relatedResources,
+  formatDate,
+  formatDateShort,
+} from "../../../lib/content";
+import { coverUrl } from "../../../lib/image";
+import { hubFor, resourceHref } from "../../../lib/taxonomy";
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { listResources: all } = await import("../../../lib/content");
+  const { hubFor: hub } = await import("../../../lib/taxonomy");
+
+  return (await all()).map((item) => ({
+    params: { hub: hub(item.type).path, slug: item.slug },
+  }));
+};
+
+const { slug } = Astro.params;
+const resource = await getResource(slug!);
+
+if (!resource) return Astro.rewrite("/404");
+
+const all = await listResources();
+const related = relatedResources(all, resource);
+const hub = hubFor(resource.type);
+
+const meta = [
+  resource.level,
+  resource.duration ?? resource.meta,
+  resource.status ?? formatDate(resource.date),
+];
+
+const cards = related.map((item) => ({
+  href: resourceHref(item.type, item.slug),
+  title: item.title,
+  text: item.excerpt,
+  cover: coverUrl(item.cover),
+  pills: [hubFor(item.type).title],
+  meta: [item.meta, formatDateShort(item.date)],
+}));
+---
+
+<BaseLayout title={resource.title} description={resource.summary} ogType="article">
+  <Layout12
+    backHref={`/resources/${hub.path}`}
+    backLabel={`Back to ${hub.title.toLowerCase()}`}
+    kicker={hub.title}
+    title={resource.title}
+    author={resource.author}
+    meta={meta}
+  />
+
+  <Layout14
+    resource={{ ...resource, cover: coverUrl(resource.cover, 800) }}
+  />
+
+  {
+    cards.length > 0 && (
+      <Layout19
+        heading="More from the resource center"
+        items={cards}
+        link={{ label: "All resources", href: "/resources" }}
+      />
+    )
+  }
+
+  <Layout07 />
+</BaseLayout>

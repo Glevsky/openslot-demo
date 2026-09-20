@@ -1,0 +1,254 @@
+---
+interface Option {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  name: string;
+  label: string;
+  type?: "text" | "email" | "tel" | "url" | "textarea" | "select";
+  placeholder?: string;
+  required?: boolean;
+  autocomplete?: string;
+  rows?: number;
+  options?: Option[];
+  hint?: string;
+  error?: string;
+  tone?: "light" | "dark";
+  class?: string;
+}
+
+const {
+  name,
+  label,
+  type = "text",
+  placeholder,
+  required = false,
+  autocomplete,
+  rows = 4,
+  options = [],
+  hint,
+  error = "Please complete this field.",
+  tone = "light",
+  class: className,
+} = Astro.props;
+
+const id = `field-${name}`;
+const errorId = `${id}-error`;
+const hintId = `${id}-hint`;
+const describedBy = [hint && hintId, errorId].filter(Boolean).join(" ");
+---
+
+<div class:list={["field_component", `is-${type}`, `is-${tone}`, className]}>
+  <label class="field_label" for={id}>
+    {label}
+    {!required && <span class="field_optional">Optional</span>}
+  </label>
+
+  <div class="field_control">
+    {
+      type === "textarea" ? (
+        <textarea
+          class="field_input"
+          id={id}
+          name={name}
+          rows={rows}
+          placeholder={placeholder}
+          required={required}
+          autocomplete={autocomplete}
+          aria-describedby={describedBy}
+        />
+      ) : type === "select" ? (
+        <>
+          <select
+            class="field_input"
+            id={id}
+            name={name}
+            required={required}
+            autocomplete={autocomplete}
+            aria-describedby={describedBy}
+          >
+            <option value="" selected disabled>
+              {placeholder}
+            </option>
+            {options.map((option) => (
+              <option value={option.value}>{option.label}</option>
+            ))}
+          </select>
+          <svg
+            class="field_caret"
+            viewBox="0 0 16 16"
+            width="16"
+            height="16"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="m4 6.5 4 4 4-4"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </>
+      ) : (
+        <input
+          class="field_input"
+          id={id}
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          required={required}
+          autocomplete={autocomplete}
+          aria-describedby={describedBy}
+        />
+      )
+    }
+  </div>
+
+  {hint && <p class="field_hint" id={hintId}>{hint}</p>}
+  <p class="field_error" id={errorId}>{error}</p>
+</div>
+
+<style>
+  .field_component {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    min-width: 0;
+  }
+
+  .field_label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-8);
+    font-size: var(--text-small-size);
+    line-height: var(--text-small-line);
+    font-weight: var(--weight-medium);
+    color: var(--color-ink);
+  }
+
+  .field_optional {
+    color: var(--color-ink-subtle);
+    font-size: var(--text-xsmall-size);
+    font-weight: var(--weight-regular);
+  }
+
+  .field_control {
+    position: relative;
+    display: flex;
+  }
+
+  .field_input {
+    width: 100%;
+    min-width: 0;
+    height: 2.75rem;
+    padding-inline: var(--space-12);
+    font-family: var(--font-body);
+    font-size: var(--text-small-size);
+    line-height: var(--text-small-line);
+    color: var(--color-ink);
+    background-color: var(--color-paper);
+    border: var(--border-width) solid var(--color-line-strong);
+    border-radius: var(--radius-xsmall);
+    transition: var(--transition-interactive);
+    appearance: none;
+  }
+
+  .field_input::placeholder {
+    color: var(--color-ink-subtle);
+    opacity: 1;
+  }
+
+  @media (hover: hover) {
+    .field_input:hover {
+      border-color: var(--color-ink-subtle);
+    }
+  }
+
+  .field_input:focus-visible {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
+  }
+
+  .field_component.is-textarea .field_input {
+    height: auto;
+    min-height: 7rem;
+    padding-block: var(--space-12);
+    resize: vertical;
+  }
+
+  .field_component.is-select .field_input {
+    padding-right: var(--space-40);
+    cursor: pointer;
+  }
+
+  .field_component.is-select .field_input:invalid {
+    color: var(--color-ink-subtle);
+  }
+
+  .field_caret {
+    position: absolute;
+    top: 50%;
+    right: var(--space-12);
+    color: var(--color-ink-muted);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .field_hint {
+    color: var(--color-ink-subtle);
+    font-size: var(--text-xsmall-size);
+    line-height: var(--text-xsmall-line);
+  }
+
+  .field_error {
+    display: none;
+    color: var(--color-error);
+    font-size: var(--text-xsmall-size);
+    line-height: var(--text-xsmall-line);
+  }
+
+  .field_component:has(.field_input:user-invalid) .field_error,
+  .field_component.is-invalid .field_error {
+    display: block;
+  }
+
+  .field_component:has(.field_input:user-invalid) .field_input,
+  .field_component.is-invalid .field_input {
+    border-color: var(--color-error);
+  }
+
+  .field_component.is-dark .field_label {
+    color: var(--color-paper);
+  }
+
+  .field_component.is-dark .field_optional,
+  .field_component.is-dark .field_hint {
+    color: var(--color-paper-60);
+  }
+
+  .field_component.is-dark .field_input {
+    color: var(--color-paper);
+    background-color: var(--color-paper-10);
+    border-color: var(--color-paper-15);
+  }
+
+  .field_component.is-dark .field_input::placeholder {
+    color: var(--color-paper-60);
+  }
+
+  .field_component.is-dark .field_caret {
+    color: var(--color-paper-60);
+  }
+
+  @media (max-width: 767px) {
+    .field_input {
+      font-size: var(--text-medium-size);
+    }
+  }
+</style>

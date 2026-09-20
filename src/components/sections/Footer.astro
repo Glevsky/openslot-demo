@@ -1,0 +1,195 @@
+---
+import Logo from "../ui/Logo.astro";
+import { RESOURCE_HUBS } from "../../lib/taxonomy";
+
+const groups = [
+  {
+    title: "Product",
+    links: [
+      { label: "Overview", href: "/product" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Customer stories", href: "/customers" },
+      { label: "Start free", href: "/signup" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "All resources", href: "/resources" },
+      ...RESOURCE_HUBS.map((hub) => ({
+        label: hub.title,
+        href: `/resources/${hub.path}`,
+      })),
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Blog", href: "/blog" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+];
+
+const year = 2026;
+---
+
+<footer class="footer_component">
+  <div class="padding-global footer_padding">
+    <div class="container-large">
+      <div class="footer_top">
+        <div class="footer_brand">
+          <Logo href="/" tone="paper" />
+          <p class="footer_pitch">
+            Scheduling for teams. One link, no back-and-forth.
+          </p>
+        </div>
+
+        <nav class="footer_nav" aria-label="Footer">
+          {
+            groups.map((group) => (
+              <div class="footer_group">
+                <h2 class="footer_group-title text-label">{group.title}</h2>
+                <ul class="footer_list" role="list">
+                  {group.links.map((link) => (
+                    <li>
+                      <a class="footer_link" href={link.href}>
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </nav>
+      </div>
+
+      <div class="footer_legal">
+        <p class="footer_note">
+          © {year} Openslot Technologies, Lda. A fictional product, built as a
+          demo.
+        </p>
+        <ul class="footer_legal-links" role="list">
+          <li><a class="footer_link" href="/privacy">Privacy</a></li>
+          <li><a class="footer_link" href="/terms">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer_component {
+    color: var(--color-paper);
+    background-color: var(--color-dark);
+    --logo-slot-color: var(--color-accent);
+  }
+
+  .footer_padding {
+    padding-top: var(--space-80);
+    padding-bottom: var(--space-40);
+  }
+
+  .footer_top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-64);
+    padding-bottom: var(--space-64);
+  }
+
+  .footer_brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-16);
+  }
+
+  .footer_pitch {
+    max-width: 18rem;
+    color: var(--color-paper-60);
+    font-size: var(--text-small-size);
+    line-height: var(--text-small-line);
+  }
+
+  .footer_nav {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: var(--space-64);
+  }
+
+  .footer_group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  .footer_group-title {
+    color: var(--color-paper-60);
+  }
+
+  .footer_list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .footer_link {
+    display: inline-flex;
+    color: var(--color-paper-70);
+    font-size: var(--text-small-size);
+    line-height: var(--text-small-line);
+  }
+
+  @media (hover: hover) {
+    .footer_link:hover {
+      color: var(--color-paper);
+    }
+  }
+
+  .footer_legal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-16);
+    padding-top: var(--space-32);
+    border-top: var(--border-width) solid var(--color-dark-line);
+  }
+
+  .footer_note {
+    color: var(--color-paper-60);
+    font-size: var(--text-xsmall-size);
+    line-height: var(--text-xsmall-line);
+  }
+
+  .footer_legal-links {
+    display: flex;
+    gap: var(--space-24);
+  }
+
+  @media (max-width: 991px) {
+    .footer_top {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-48);
+    }
+
+    .footer_nav {
+      gap: var(--space-32);
+      justify-content: space-between;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .footer_nav {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-32);
+    }
+
+    .footer_legal {
+      justify-content: flex-start;
+      gap: var(--space-12);
+    }
+  }
+</style>

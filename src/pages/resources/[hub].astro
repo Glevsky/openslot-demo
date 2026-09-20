@@ -1,0 +1,57 @@
+---
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Layout08 from "../../components/sections/Layout08.astro";
+import Layout09 from "../../components/sections/Layout09.astro";
+import Layout21 from "../../components/sections/Layout21.astro";
+import Layout07 from "../../components/sections/Layout07.astro";
+import { listResources, formatDateShort } from "../../lib/content";
+import { coverUrl } from "../../lib/image";
+import { resourceHref, RESOURCE_HUBS } from "../../lib/taxonomy";
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { RESOURCE_HUBS: hubs } = await import("../../lib/taxonomy");
+  return hubs.map((hub) => ({ params: { hub: hub.path }, props: { hub } }));
+};
+
+const { hub } = Astro.props;
+
+const all = await listResources();
+const resources = all.filter((item) => item.type === hub.type);
+
+const counts = Object.fromEntries(
+  RESOURCE_HUBS.map((entry) => [
+    entry.type,
+    all.filter((item) => item.type === entry.type).length,
+  ])
+);
+
+const cards = resources.map((item) => ({
+  href: resourceHref(item.type, item.slug),
+  title: item.title,
+  text: item.excerpt,
+  cover: coverUrl(item.cover),
+  kicker: item.level,
+  pills: item.topics,
+  meta: [item.meta, item.status ?? formatDateShort(item.date)],
+  tags: [...item.topics, item.level],
+}));
+
+const topics = [...new Set(resources.flatMap((item) => item.topics))].sort();
+---
+
+<BaseLayout title={hub.title} description={hub.description}>
+  <Layout08 eyebrow="Resource center" heading={hub.title} text={hub.description}>
+    <Layout21 current={hub.type} counts={counts} />
+  </Layout08>
+
+  <Layout09
+    items={cards}
+    filters={topics.length > 1 ? topics : []}
+    filterLabel={`Filter ${hub.plural} by topic`}
+    emptyLabel={`No ${hub.plural} on that topic yet.`}
+    padding="large"
+  />
+
+  <Layout07 />
+</BaseLayout>

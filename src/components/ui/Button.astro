@@ -1,0 +1,176 @@
+---
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "ghost" | "accent" | "inverse";
+  size?: "medium" | "large";
+  type?: "button" | "submit";
+  arrow?: boolean;
+  full?: boolean;
+  class?: string;
+  "aria-label"?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "medium",
+  type = "button",
+  arrow = false,
+  full = false,
+  class: className,
+  "aria-label": ariaLabel,
+} = Astro.props;
+
+const Tag = href ? "a" : "button";
+---
+
+<Tag
+  class:list={[
+    "button_component",
+    `is-${variant}`,
+    `is-${size}`,
+    full && "is-full",
+    className,
+  ]}
+  href={href}
+  type={href ? undefined : type}
+  aria-label={ariaLabel}
+>
+  <span class="button_label"><slot /></span>
+  {
+    arrow && (
+      <svg
+        class="button_arrow"
+        viewBox="0 0 16 16"
+        width="16"
+        height="16"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M3 8h10m0 0-3.75-3.75M13 8l-3.75 3.75"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    )
+  }
+</Tag>
+
+<style>
+  .button_component {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-8);
+    height: 2.75rem;
+    padding-inline: var(--space-20);
+    font-family: var(--font-body);
+    font-size: var(--text-small-size);
+    line-height: 1;
+    font-weight: var(--weight-semibold);
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    border: var(--border-width) solid transparent;
+    border-radius: var(--radius-small);
+    cursor: pointer;
+    transition: var(--transition-interactive);
+  }
+
+  .button_component.is-large {
+    height: 3.25rem;
+    padding-inline: var(--space-24);
+    font-size: var(--text-medium-size);
+  }
+
+  .button_component.is-full {
+    width: 100%;
+  }
+
+  .button_component:disabled {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  .button_arrow {
+    flex-shrink: 0;
+    transition: transform var(--transition-duration) var(--transition-easing);
+  }
+
+  @media (hover: hover) {
+    .button_component:hover .button_arrow {
+      transform: translateX(2px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .button_arrow {
+      transition: none;
+    }
+
+    .button_component:hover .button_arrow {
+      transform: none;
+    }
+  }
+
+  .button_component.is-primary {
+    color: var(--color-paper);
+    background-color: var(--color-ink);
+  }
+
+  @media (hover: hover) {
+    .button_component.is-primary:hover {
+      background-color: var(--color-accent);
+    }
+  }
+
+  .button_component.is-accent {
+    color: var(--color-paper);
+    background-color: var(--color-accent);
+  }
+
+  @media (hover: hover) {
+    .button_component.is-accent:hover {
+      background-color: var(--color-accent-strong);
+    }
+  }
+
+  .button_component.is-secondary {
+    color: var(--color-ink);
+    background-color: var(--color-paper);
+    border-color: var(--color-line-strong);
+  }
+
+  @media (hover: hover) {
+    .button_component.is-secondary:hover {
+      background-color: var(--color-surface);
+      border-color: var(--color-ink-subtle);
+    }
+  }
+
+  .button_component.is-ghost {
+    color: var(--color-ink);
+    padding-inline: var(--space-12);
+  }
+
+  @media (hover: hover) {
+    .button_component.is-ghost:hover {
+      color: var(--color-accent);
+      background-color: var(--color-ink-5);
+    }
+  }
+
+  .button_component.is-inverse {
+    color: var(--color-ink);
+    background-color: var(--color-paper);
+  }
+
+  @media (hover: hover) {
+    .button_component.is-inverse:hover {
+      color: var(--color-paper);
+      background-color: var(--color-accent);
+    }
+  }
+</style>

@@ -1,0 +1,14 @@
+---
+import { toPlainText } from "astro-portabletext";
+import { headingId } from "../../lib/text";
+
+interface Props {
+  node: { style?: string };
+}
+
+const { node } = Astro.props;
+const Tag = node.style === "h3" ? "h3" : "h2";
+const id = headingId(toPlainText(node as never));
+---
+
+<Tag id={id}><slot /></Tag>

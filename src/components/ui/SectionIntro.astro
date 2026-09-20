@@ -1,0 +1,86 @@
+---
+interface Props {
+  align?: "left" | "center";
+  inline?: boolean;
+  width?: "480px" | "520px" | "560px" | "600px" | "640px" | "720px" | "800px";
+  class?: string;
+}
+
+const { align = "left", width, inline = false, class: className } = Astro.props;
+const hasEyebrow = Astro.slots.has("eyebrow");
+const hasActions = Astro.slots.has("actions");
+---
+
+<div
+  class:list={[
+    "intro_component",
+    align === "center" && "is-center",
+    inline && "is-inline",
+    width && `max-width-${width}`,
+    className,
+  ]}
+>
+  {hasEyebrow && <slot name="eyebrow" />}
+  <div class="intro_text">
+    <slot />
+  </div>
+  {
+    hasActions && (
+      <div class="intro_actions button-group">
+        <slot name="actions" />
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .intro_component {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  .intro_component.is-center {
+    align-items: center;
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .intro_text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  .intro_component.is-center .intro_text {
+    align-items: center;
+  }
+
+  .intro_actions {
+    margin-top: var(--space-8);
+  }
+
+  .intro_component.is-inline {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-32);
+  }
+
+  .intro_component.is-inline .intro_actions {
+    margin-top: 0;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 767px) {
+    .intro_component.is-inline {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-16);
+    }
+  }
+
+  .intro_component.is-center .intro_actions {
+    justify-content: center;
+  }
+</style>

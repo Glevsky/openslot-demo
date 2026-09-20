@@ -1,0 +1,192 @@
+@layer tokens {
+  :root {
+    --color-paper: #ffffff;
+    --color-canvas: #f8f7f4;
+    --color-surface: #f1efe9;
+    --color-surface-strong: #e9e6de;
+
+    --color-ink: #17171b;
+    --color-ink-muted: #5c6068;
+    --color-ink-subtle: #8b8f97;
+
+    --color-line: #e7e4dc;
+    --color-line-strong: #d5d1c6;
+
+    --color-accent: #d9531e;
+    --color-accent-strong: #bc4416;
+    --color-accent-soft: #fbeee7;
+    --color-accent-ink: #8f3310;
+
+    --color-dark: #17171b;
+    --color-dark-raised: #232329;
+    --color-dark-line: #32323a;
+
+    --color-positive: #2f7a4f;
+    --color-error: #c0392b;
+
+    --color-ink-5: rgb(23 23 27 / 0.05);
+    --color-ink-8: rgb(23 23 27 / 0.08);
+    --color-ink-12: rgb(23 23 27 / 0.12);
+
+    --color-paper-10: rgb(255 255 255 / 0.1);
+    --color-paper-15: rgb(255 255 255 / 0.15);
+    --color-paper-60: rgb(255 255 255 / 0.6);
+    --color-paper-70: rgb(255 255 255 / 0.7);
+
+    --font-heading: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+
+    --heading-display-size: 4rem;
+    --heading-display-line: 1.03125;
+    --heading-display-weight: var(--weight-semibold);
+    --heading-display-tracking: -0.033em;
+
+    --heading-xlarge-size: 3.25rem;
+    --heading-xlarge-line: 1.07692;
+    --heading-xlarge-weight: var(--weight-semibold);
+    --heading-xlarge-tracking: -0.03em;
+
+    --heading-large-size: 2.25rem;
+    --heading-large-line: 1.16667;
+    --heading-large-weight: var(--weight-semibold);
+    --heading-large-tracking: -0.026em;
+
+    --heading-mlarge-size: 1.75rem;
+    --heading-mlarge-line: 1.25;
+    --heading-mlarge-weight: var(--weight-semibold);
+    --heading-mlarge-tracking: -0.022em;
+
+    --heading-medium-size: 1.375rem;
+    --heading-medium-line: 1.31818;
+    --heading-medium-weight: var(--weight-semibold);
+    --heading-medium-tracking: -0.018em;
+
+    --heading-small-size: 1.125rem;
+    --heading-small-line: 1.38889;
+    --heading-small-weight: var(--weight-semibold);
+    --heading-small-tracking: -0.014em;
+
+    --heading-xsmall-size: 1rem;
+    --heading-xsmall-line: 1.4;
+    --heading-xsmall-weight: var(--weight-semibold);
+    --heading-xsmall-tracking: -0.01em;
+
+    --heading-xxsmall-size: 0.875rem;
+    --heading-xxsmall-line: 1.42857;
+    --heading-xxsmall-weight: var(--weight-semibold);
+    --heading-xxsmall-tracking: 0em;
+
+    --text-xlarge-size: 1.3125rem;
+    --text-xlarge-line: 1.52381;
+
+    --text-large-size: 1.125rem;
+    --text-large-line: 1.55556;
+
+    --text-medium-size: 1rem;
+    --text-medium-line: 1.625;
+
+    --text-small-size: 0.875rem;
+    --text-small-line: 1.57143;
+
+    --text-xsmall-size: 0.8125rem;
+    --text-xsmall-line: 1.53846;
+
+    --label-size: 0.8125rem;
+    --label-line: 1.23077;
+    --label-tracking: 0.06em;
+
+    --space-0: 0rem;
+    --space-2: 0.125rem;
+    --space-4: 0.25rem;
+    --space-6: 0.375rem;
+    --space-8: 0.5rem;
+    --space-12: 0.75rem;
+    --space-16: 1rem;
+    --space-20: 1.25rem;
+    --space-24: 1.5rem;
+    --space-32: 2rem;
+    --space-40: 2.5rem;
+    --space-48: 3rem;
+    --space-56: 3.5rem;
+    --space-64: 4rem;
+    --space-80: 5rem;
+    --space-96: 6rem;
+    --space-120: 7.5rem;
+    --space-160: 10rem;
+
+    --container-large: 75rem;
+    --container-medium: 60rem;
+    --container-small: 44rem;
+
+    --padding-global: var(--space-40);
+    --padding-section-large: var(--space-120);
+    --padding-section-medium: var(--space-80);
+    --padding-section-small: var(--space-48);
+
+    --radius-xsmall: 0.5rem;
+    --radius-small: 0.75rem;
+    --radius-medium: 1rem;
+    --radius-large: 1.5rem;
+    --radius-xlarge: 2rem;
+    --radius-pill: 999px;
+
+    --border-width: 1px;
+
+    --shadow-card: 0 1px 2px rgb(23 23 27 / 0.04), 0 8px 24px -12px rgb(23 23 27 / 0.12);
+    --shadow-raised: 0 2px 4px rgb(23 23 27 / 0.05), 0 18px 40px -16px rgb(23 23 27 / 0.18);
+    --shadow-pop: 0 4px 8px rgb(23 23 27 / 0.06), 0 32px 64px -24px rgb(23 23 27 / 0.24);
+
+    --transition-duration: 0.18s;
+    --transition-easing: ease-out;
+    --transition-interactive:
+      background-color var(--transition-duration) var(--transition-easing),
+      border-color var(--transition-duration) var(--transition-easing),
+      box-shadow var(--transition-duration) var(--transition-easing),
+      color var(--transition-duration) var(--transition-easing),
+      fill var(--transition-duration) var(--transition-easing),
+      opacity var(--transition-duration) var(--transition-easing),
+      text-decoration-color var(--transition-duration) var(--transition-easing);
+  }
+
+  @media (max-width: 991px) {
+    :root {
+      --heading-display-size: 3rem;
+      --heading-display-line: 1.08333;
+      --heading-xlarge-size: 2.625rem;
+      --heading-xlarge-line: 1.11905;
+      --heading-large-size: 2rem;
+      --heading-mlarge-size: 1.5rem;
+      --text-xlarge-size: 1.1875rem;
+
+      --padding-global: var(--space-32);
+      --padding-section-large: var(--space-80);
+      --padding-section-medium: var(--space-64);
+      --padding-section-small: var(--space-40);
+    }
+  }
+
+  @media (max-width: 767px) {
+    :root {
+      --heading-display-size: 2.375rem;
+      --heading-display-line: 1.10526;
+      --heading-display-tracking: -0.028em;
+      --heading-xlarge-size: 2.125rem;
+      --heading-xlarge-line: 1.14706;
+      --heading-large-size: 1.75rem;
+      --heading-large-line: 1.21429;
+      --heading-mlarge-size: 1.375rem;
+      --heading-medium-size: 1.25rem;
+      --text-xlarge-size: 1.125rem;
+
+      --padding-global: var(--space-24);
+      --padding-section-large: var(--space-64);
+      --padding-section-medium: var(--space-48);
+      --padding-section-small: var(--space-32);
+    }
+  }
+}
