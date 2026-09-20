@@ -5,8 +5,6 @@ import sitemap from "@astrojs/sitemap";
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 
-import cloudflare from "@astrojs/cloudflare";
-
 const env = loadEnv(process.env.NODE_ENV ?? "development", process.cwd(), "");
 
 const PUBLIC_SANITY_PROJECT_ID = env.PUBLIC_SANITY_PROJECT_ID || "1zmf457v";
@@ -35,6 +33,4 @@ export default defineConfig({
       },
     }),
   ],
-
-  adapter: cloudflare(),
 });
