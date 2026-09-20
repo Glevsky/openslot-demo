@@ -50,7 +50,7 @@ const topics = [...new Set(resources.flatMap((item) => item.topics))].sort();
     filters={topics.length > 1 ? topics : []}
     filterLabel={`Filter ${hub.plural} by topic`}
     emptyLabel={`No ${hub.plural} on that topic yet.`}
-    padding="large"
+    padding="medium"
   />
 
   <Layout07 />
