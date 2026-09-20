@@ -26,7 +26,7 @@ highlights:
   - "Round-robin screens that spread interviewer load evenly"
   - "Collective panels when the overlap window is two hours wide"
   - "The weekly number that tells you the process is slipping"
-cover: "../../assets/resources/scaling-interview-scheduling.svg"
+cover: "../../assets/resources/scaling-interview-scheduling.jpg"
 ---
 
 Hiring teams usually meet the scheduling problem twice. First when a recruiter starts spending more of the day on calendars than on candidates, and again when the answer to that is to hire a coordinator whose job is to send the same messages faster. Neither point is a sourcing problem, and neither one is solved by working harder at the messages.

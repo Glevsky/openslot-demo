@@ -26,7 +26,7 @@ highlights:
   - "Availability rules that match how a clinic actually runs"
   - "What to do with a slot that frees up on Thursday afternoon"
   - "The front desk questions that stopped arriving altogether"
-cover: "../../assets/resources/filling-clinic-calendars.svg"
+cover: "../../assets/resources/filling-clinic-calendars.jpg"
 ---
 
 An empty appointment slot is not a small problem in a clinic. The room is staffed, the practitioner is there, and the patient who would have taken that hour is three weeks down the waiting list. Reminders are the usual answer, and most clinics already send them without seeing the rate move. Sending more of them is rarely the fix.

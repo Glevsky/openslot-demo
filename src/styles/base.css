@@ -1,23 +1,15 @@
 @layer base {
   @font-face {
-    font-family: "Instrument Serif";
-    src: url("/fonts/InstrumentSerif-Regular.woff2") format("woff2");
-    font-weight: 400;
+    font-family: "Work Sans";
+    src: url("/fonts/WorkSans-Variable.woff2") format("woff2-variations");
+    font-weight: 400 700;
     font-style: normal;
     font-display: swap;
   }
 
   @font-face {
-    font-family: "Instrument Serif";
-    src: url("/fonts/InstrumentSerif-Italic.woff2") format("woff2");
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Schibsted Grotesk";
-    src: url("/fonts/SchibstedGrotesk-Variable.woff2") format("woff2-variations");
+    font-family: "Merriweather";
+    src: url("/fonts/Merriweather-Variable.woff2") format("woff2-variations");
     font-weight: 400 700;
     font-style: normal;
     font-display: swap;
@@ -43,11 +35,7 @@
 
   h1,
   h2,
-  h3 {
-    font-family: var(--font-display);
-    text-wrap: balance;
-  }
-
+  h3,
   h4,
   h5,
   h6 {
@@ -118,6 +106,7 @@
   }
 
   blockquote {
+    font-family: var(--font-prose);
     font-size: var(--text-large-size);
     line-height: var(--text-large-line);
   }

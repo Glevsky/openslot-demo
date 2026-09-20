@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
-import sitemap from "@astrojs/sitemap";
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 
@@ -26,11 +25,5 @@ export default defineConfig({
       studioBasePath: "/admin",
     }),
     react(),
-    sitemap({
-      filter: (page) => {
-        const { pathname } = new URL(page);
-        return !["/privacy", "/terms"].includes(pathname) && !pathname.startsWith("/admin");
-      },
-    }),
   ],
 });

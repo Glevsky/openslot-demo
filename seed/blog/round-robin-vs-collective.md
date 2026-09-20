@@ -7,7 +7,7 @@ summary: "Round-robin spreads bookings across a team, collective needs everyone 
 excerpt: "Does the invitee need one of you, or all of you? That one question decides the model."
 readTime: 7
 author: "priya-raman"
-cover: "../../assets/blog/round-robin-vs-collective.svg"
+cover: "../../assets/blog/round-robin-vs-collective.jpg"
 ---
 
 Once a booking link is shared by more than one person, a question appears that a single-person page never has to answer: who gets the meeting? There are two common answers, and they solve different problems. Teams that pick the wrong one usually find out through a calendar that is either empty or impossible.

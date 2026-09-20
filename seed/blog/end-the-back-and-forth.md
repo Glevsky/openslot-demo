@@ -7,7 +7,7 @@ summary: "A practical guide to replacing the scheduling email chain with one boo
 excerpt: "The email chain is a process problem, not a politeness problem. Here is how to replace it with one link."
 readTime: 6
 author: "mara-lindqvist"
-cover: "../../assets/blog/end-the-back-and-forth.svg"
+cover: "../../assets/blog/end-the-back-and-forth.jpg"
 ---
 
 Before we started Openslot, I kept a tally for one month of how many messages it took to schedule a single sales call. The average was seven. Two to propose times, two to say those did not work, one to ask which time zone we were talking about, one to confirm, one to move it.

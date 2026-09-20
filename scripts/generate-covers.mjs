@@ -2,10 +2,10 @@ import { writeFileSync, readdirSync, readFileSync } from 'node:fs';
 
 const PALETTES = [
   { bg: '#e6ece0', ink: '#2f5d3f', soft: '#d2ddc7', line: '#6f9b7d' },
-  { bg: '#f2e9e3', ink: '#a8412a', soft: '#e6d5cb', line: '#c07a5e' },
+  { bg: '#e8eee2', ink: '#4f6b28', soft: '#d8e2c8', line: '#87a05e' },
   { bg: '#e9eee6', ink: '#16241c', soft: '#d5ded0', line: '#5d7264' },
   { bg: '#e7ece9', ink: '#2a5f56', soft: '#d1ded9', line: '#5f9187' },
-  { bg: '#f0e8e7', ink: '#8a3a32', soft: '#e0d0cd', line: '#b0655c' },
+  { bg: '#e6ebe7', ink: '#3d5a48', soft: '#d3dcd5', line: '#6d8a78' },
   { bg: '#eaefe4', ink: '#5a6b2e', soft: '#dae2cc', line: '#8a9b58' },
 ];
 

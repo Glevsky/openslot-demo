@@ -10,7 +10,8 @@
     "import": "node scripts/import-to-sanity.mjs",
     "generate-types": "wrangler types",
     "deploy": "npm run build && wrangler deploy",
-    "covers": "node scripts/generate-covers.mjs"
+    "covers": "node scripts/generate-covers.mjs",
+    "photos": "node scripts/fetch-photos.mjs"
   },
   "type": "module",
   "private": "true",

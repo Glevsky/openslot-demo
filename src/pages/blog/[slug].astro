@@ -29,7 +29,8 @@ if (!post) return Astro.rewrite("/404");
 const posts = await listPosts();
 const related = relatedPosts(posts, post);
 const contents = headings(post.body);
-const cover = coverUrl(post.cover, 1280);
+const cover = coverUrl(post.cover, 1600);
+const authorPhoto = coverUrl(post.author.avatar, 160);
 
 const cards = related.map((item) => ({
   href: blogHref(item.slug),
@@ -52,12 +53,16 @@ const cards = related.map((item) => ({
     backLabel="Back to the blog"
     kicker={post.category}
     title={post.title}
-    author={post.author}
+    author={{ ...post.author, photo: authorPhoto }}
     meta={[formatDate(post.date), `${post.readTime} min read`]}
     cover={cover}
   />
 
-  <Layout13 body={post.body} contents={contents} author={post.author} />
+  <Layout13
+    body={post.body}
+    contents={contents}
+    author={{ ...post.author, photo: coverUrl(post.author.avatar, 200) }}
+  />
 
   {
     cards.length > 0 && (

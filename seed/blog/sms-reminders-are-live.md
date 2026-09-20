@@ -7,7 +7,7 @@ summary: "SMS reminders are out of beta on Pro and Team. Every message carries r
 excerpt: "Out of beta today on Pro and Team: SMS reminders with a reschedule link in every message."
 readTime: 3
 author: "priya-raman"
-cover: "../../assets/blog/sms-reminders-are-live.svg"
+cover: "../../assets/blog/sms-reminders-are-live.jpg"
 ---
 
 SMS reminders are out of beta today and available on every paid plan. If your invitees are the kind of people who do not see an email until the meeting is over, this is the release for you.

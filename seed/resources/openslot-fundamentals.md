@@ -32,7 +32,7 @@ highlights:
   - "Start from an empty account, finish with a team setup"
   - "A written version under every video"
   - "Free, with no form and nothing to install"
-cover: "../../assets/resources/openslot-fundamentals.svg"
+cover: "../../assets/resources/openslot-fundamentals.jpg"
 ---
 
 Most people learn Openslot by clicking around, and that mostly works. This course is for the parts that do not come up until later: the availability rule that would have prevented a bad week, the reminder that stops a no-show, the team page that gives a coordinator their morning back.

@@ -38,6 +38,14 @@ const brands = [
     background-color: var(--color-dark);
   }
 
+  .section_layout02 {
+    border-top: var(--border-width) solid var(--color-line);
+  }
+
+  .section_layout02.is-dark {
+    border-top: 0;
+  }
+
   .layout02_padding {
     padding-block: var(--space-48);
   }
@@ -67,12 +75,12 @@ const brands = [
 
   .layout02_brand {
     color: var(--color-ink-muted);
-    font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 1.0625rem;
     line-height: 1.2;
-    font-weight: var(--weight-regular);
-    letter-spacing: -0.01em;
-    opacity: 0.78;
+    font-weight: var(--weight-semibold);
+    letter-spacing: -0.025em;
+    opacity: 0.72;
   }
 
   .section_layout02.is-dark .layout02_brand {

@@ -7,7 +7,7 @@ summary: "4.1 million bookings, 38,000 teams, 140 countries and 99.98 percent up
 excerpt: "A short year-end note on what 38,000 teams in 140 countries booked through Openslot in 2025."
 readTime: 4
 author: "mara-lindqvist"
-cover: "../../assets/blog/2025-in-numbers.svg"
+cover: "../../assets/blog/2025-in-numbers.jpg"
 ---
 
 At the end of each year we write down what it looked like in numbers, mostly so that we remember it correctly. This is the note for 2025. It is short, because the numbers are the point.

@@ -27,7 +27,7 @@ highlights:
   - "Rotating the awkward hour instead of always asking the same person"
   - "What the invitee sees when their zone is not yours"
   - "Ten minutes of live questions at the end"
-cover: "../../assets/resources/working-across-time-zones.svg"
+cover: "../../assets/resources/working-across-time-zones.jpg"
 ---
 
 Most distributed teams do not have a time zone problem. They have a fairness problem. There is one overlap that works for everybody, one person who keeps taking the call at 6am, and a week that nobody wants to look at on Monday morning.

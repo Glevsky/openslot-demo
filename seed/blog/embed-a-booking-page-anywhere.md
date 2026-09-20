@@ -7,7 +7,7 @@ summary: "Openslot embeds are live: put any booking page inline on your site or 
 excerpt: "Inline or popup, two lines of markup, and your booking page lives on your own site."
 readTime: 4
 author: "priya-raman"
-cover: "../../assets/blog/embed-a-booking-page-anywhere.svg"
+cover: "../../assets/blog/embed-a-booking-page-anywhere.jpg"
 ---
 
 Starting today you can put a booking page on your own website. Paste two lines, and the page renders inline where you put it, or opens as a popup from any button. Embeds are available on the Pro and Team plans.

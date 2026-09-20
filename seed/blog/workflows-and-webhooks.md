@@ -7,7 +7,7 @@ summary: "Workflows and webhooks are live on Pro and Team: send messages on a sc
 excerpt: "Run something after a booking is made, moved or cancelled, with no code or with a little."
 readTime: 6
 author: "tomasz-wierzbicki"
-cover: "../../assets/blog/workflows-and-webhooks.svg"
+cover: "../../assets/blog/workflows-and-webhooks.jpg"
 ---
 
 A booking is rarely the end of a process. Someone needs to be told, a record needs to exist somewhere, a message needs to go out the day before. Until now, doing that with Openslot meant watching your inbox. Today we are shipping two ways to do it automatically. Both are available on the Pro and Team plans.

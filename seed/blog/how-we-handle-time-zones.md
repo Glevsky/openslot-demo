@@ -7,7 +7,7 @@ summary: "How Openslot stores availability, generates slots and shows every invi
 excerpt: "Wall-clock rules, absolute bookings, and a daylight saving bug that moved meetings by an hour."
 readTime: 8
 author: "tomasz-wierzbicki"
-cover: "../../assets/blog/how-we-handle-time-zones.svg"
+cover: "../../assets/blog/how-we-handle-time-zones.jpg"
 ---
 
 Time zones are the part of scheduling software that looks solved. Every language has a date library and every browser reports a zone. Then a government moves a clock change by a week, or a host books an invitee across a daylight saving boundary, and a meeting quietly lands an hour off.

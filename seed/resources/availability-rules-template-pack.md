@@ -18,7 +18,7 @@ highlights:
   - "A short note on when to use each one"
   - "Numbers you can copy straight into a booking page"
   - "Free, with no form to fill in first"
-cover: "../../assets/resources/availability-rules-template-pack.svg"
+cover: "../../assets/resources/availability-rules-template-pack.jpg"
 ---
 
 Availability is five settings: working hours per weekday, buffers before and after, a daily limit, minimum notice, and the date range you are bookable in. Most people set the hours, skip the other four, and then wonder why the week has no shape to it.

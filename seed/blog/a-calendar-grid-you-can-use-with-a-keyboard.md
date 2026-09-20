@@ -7,7 +7,7 @@ summary: "How we rebuilt the Openslot month grid for keyboard and screen reader 
 excerpt: "One tab stop, four arrow keys, and a name on every day. What changed, and the bug we shipped first."
 readTime: 7
 author: "elena-saenz"
-cover: "../../assets/blog/a-calendar-grid-you-can-use-with-a-keyboard.svg"
+cover: "../../assets/blog/a-calendar-grid-you-can-use-with-a-keyboard.jpg"
 ---
 
 The month grid is the first thing every invitee touches. Until this month, if you reached it with a keyboard it was up to 31 tab stops in a row, and if you reached it with a screen reader, every one of them was called "button".

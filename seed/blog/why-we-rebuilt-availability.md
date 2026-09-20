@@ -7,7 +7,7 @@ summary: "How Openslot replaced precomputed slot tables with interval arithmetic
 excerpt: "We threw out the slot table, moved to interval math, and shipped one bug on the way. Here is the whole story."
 readTime: 9
 author: "tomasz-wierzbicki"
-cover: "../../assets/blog/why-we-rebuilt-availability.svg"
+cover: "../../assets/blog/why-we-rebuilt-availability.jpg"
 ---
 
 Since launch, the question "when is this person free?" was answered by a table. Every night, and whenever a rule changed, a job wrote out every bookable slot for every booking page for the next 60 days.

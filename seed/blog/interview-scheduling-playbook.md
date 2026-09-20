@@ -7,7 +7,7 @@ summary: "A playbook for remote hiring teams: one page per interview stage, roun
 excerpt: "How remote hiring teams take time to first interview from days to hours with pages, buffers and reminders."
 readTime: 7
 author: "jonah-adebayo"
-cover: "../../assets/blog/interview-scheduling-playbook.svg"
+cover: "../../assets/blog/interview-scheduling-playbook.jpg"
 ---
 
 Every hiring team we talk to has the same bottleneck, and it is not sourcing. It is the days between "we would like to talk to you" and the first call. Candidates go quiet in that gap. Recruiters spend it chasing interviewers for free time.

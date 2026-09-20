@@ -65,24 +65,24 @@ const Tag = href ? "a" : "button";
     align-items: center;
     justify-content: center;
     gap: var(--space-8);
-    height: 2.75rem;
-    padding-inline: var(--space-20);
-    font-family: var(--font-body);
-    font-size: var(--text-small-size);
+    height: 2.875rem;
+    padding-inline: var(--space-24);
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
     line-height: 1;
-    font-weight: var(--weight-semibold);
-    letter-spacing: -0.005em;
+    font-weight: var(--weight-medium);
+    letter-spacing: -0.006em;
     white-space: nowrap;
-    border: var(--border-width) solid transparent;
-    border-radius: var(--radius-small);
+    border: 1px solid transparent;
+    border-radius: 0.1875rem;
     cursor: pointer;
     transition: var(--transition-interactive);
   }
 
   .button_component.is-large {
-    height: 3.25rem;
-    padding-inline: var(--space-24);
-    font-size: var(--text-medium-size);
+    height: 3.125rem;
+    padding-inline: var(--space-32);
+    font-size: 1rem;
   }
 
   .button_component.is-full {
@@ -96,12 +96,13 @@ const Tag = href ? "a" : "button";
 
   .button_arrow {
     flex-shrink: 0;
+    margin-right: calc(var(--space-4) * -1);
     transition: transform var(--transition-duration) var(--transition-easing);
   }
 
   @media (hover: hover) {
     .button_component:hover .button_arrow {
-      transform: translateX(2px);
+      transform: translateX(3px);
     }
   }
 
@@ -118,59 +119,68 @@ const Tag = href ? "a" : "button";
   .button_component.is-primary {
     color: var(--color-paper);
     background-color: var(--color-ink);
+    border-color: var(--color-ink);
   }
 
   @media (hover: hover) {
     .button_component.is-primary:hover {
       background-color: var(--color-accent);
+      border-color: var(--color-accent);
     }
   }
 
   .button_component.is-accent {
     color: var(--color-paper);
     background-color: var(--color-accent);
+    border-color: var(--color-accent);
   }
 
   @media (hover: hover) {
     .button_component.is-accent:hover {
       background-color: var(--color-accent-strong);
+      border-color: var(--color-accent-strong);
     }
   }
 
   .button_component.is-secondary {
     color: var(--color-ink);
-    background-color: var(--color-paper);
-    border-color: var(--color-line-strong);
+    background-color: transparent;
+    border-color: var(--color-ink);
   }
 
   @media (hover: hover) {
     .button_component.is-secondary:hover {
-      background-color: var(--color-surface);
-      border-color: var(--color-ink-subtle);
+      color: var(--color-paper);
+      background-color: var(--color-ink);
     }
   }
 
   .button_component.is-ghost {
-    color: var(--color-ink);
-    padding-inline: var(--space-12);
+    color: inherit;
+    padding-inline: 0;
+    height: auto;
+    border: 0;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+    border-radius: 0;
+    padding-bottom: var(--space-6);
   }
 
   @media (hover: hover) {
     .button_component.is-ghost:hover {
-      color: var(--color-accent);
-      background-color: var(--color-ink-5);
+      border-bottom-color: currentColor;
     }
   }
 
   .button_component.is-inverse {
     color: var(--color-ink);
     background-color: var(--color-paper);
+    border-color: var(--color-paper);
   }
 
   @media (hover: hover) {
     .button_component.is-inverse:hover {
       color: var(--color-paper);
-      background-color: var(--color-accent);
+      background-color: transparent;
     }
   }
 </style>

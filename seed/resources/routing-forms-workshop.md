@@ -27,7 +27,7 @@ highlights:
   - "Rules that send each answer to the right booking page"
   - "A fallback route for answers you did not plan for"
   - "How to test routing before it meets real traffic"
-cover: "../../assets/resources/routing-forms-workshop.svg"
+cover: "../../assets/resources/routing-forms-workshop.jpg"
 ---
 
 A routing form asks a question first and sends the invitee to the right booking page. That is the whole idea, and it goes wrong in ways that only surface three weeks later: a rule that catches everything, a question nobody outside the company can answer, a page with nobody behind it.

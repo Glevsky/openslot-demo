@@ -20,7 +20,7 @@ highlights:
   - "Why the average team takes two days to reach its first booking"
   - "Where round-robin helps a team and where it gets in the way"
   - "Five charts with the counting method printed next to each one"
-cover: "../../assets/resources/state-of-scheduling-2026.svg"
+cover: "../../assets/resources/state-of-scheduling-2026.jpg"
 ---
 
 Once a year we look at what a full year of bookings says, and write down only the parts we can defend. This is the 2026 edition, and it covers 2025: 4.1 million bookings made through Openslot by 38,000 teams across 140 countries.

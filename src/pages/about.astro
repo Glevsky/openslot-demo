@@ -6,18 +6,17 @@ import Layout05 from "../components/sections/Layout05.astro";
 import Layout16 from "../components/sections/Layout16.astro";
 import Layout07 from "../components/sections/Layout07.astro";
 import { listAuthors } from "../lib/content";
+import { coverUrl } from "../lib/image";
 
-const authors = await listAuthors();
+const people = (await listAuthors()).map((person) => ({
+  name: person.name,
+  role: person.role,
+  bio: person.bio,
+  photo: coverUrl(person.avatar, 640),
+}));
 
-const others = [
-  { name: "Ruth Kaplan", role: "Customer Support Lead" },
-  { name: "Diego Ferreira", role: "Backend Engineer" },
-  { name: "Hana Sato", role: "Frontend Engineer" },
-  { name: "Olu Adeyemi", role: "Security Engineer" },
-  { name: "Ingrid Vos", role: "Finance and Operations" },
-  { name: "Samir Haddad", role: "Account Executive" },
-  { name: "Noor Farahani", role: "Content Writer" },
-];
+const writers = people.filter((person) => person.bio);
+const others = people.filter((person) => !person.bio);
 
 const beliefs = [
   {
@@ -62,7 +61,7 @@ const stats = [
     secondary={{ label: "Talk to us", href: "/contact" }}
   />
 
-  <Layout05 stats={stats} tone="canvas" />
+  <Layout05 stats={stats} />
 
   <Layout03
     eyebrow="How we work"
@@ -76,13 +75,8 @@ const stats = [
     eyebrow="The team"
     heading="Who writes the software and answers the tickets"
     text="Everyone here talks to customers. The five people who write on the blog also build the thing they are writing about."
-    people={authors.map((author) => ({
-      name: author.name,
-      role: author.role,
-      bio: author.bio,
-    }))}
+    people={writers}
     columns={3}
-    tone="canvas"
   />
 
   <Layout16

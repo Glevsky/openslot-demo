@@ -18,7 +18,7 @@ highlights:
   - "Three booking form questions for each one"
   - "Confirmation and reminder copy you can paste"
   - "A follow-up that fits on a phone screen"
-cover: "../../assets/resources/first-call-agenda-templates.svg"
+cover: "../../assets/resources/first-call-agenda-templates.jpg"
 ---
 
 A first call goes well or badly in the first two minutes, and that is decided before anyone joins. If you already know what the other person is trying to fix, the half hour is theirs. If you do not, ten minutes of it go on finding out, and those ten minutes are never given back.

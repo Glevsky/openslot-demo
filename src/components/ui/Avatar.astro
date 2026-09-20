@@ -1,11 +1,12 @@
 ---
 interface Props {
   name: string;
-  size?: "small" | "medium" | "large";
+  src?: string;
+  size?: "small" | "medium" | "large" | "xlarge";
   class?: string;
 }
 
-const { name, size = "small", class: className } = Astro.props;
+const { name, src, size = "small", class: className } = Astro.props;
 
 const initials = name
   .split(" ")
@@ -19,10 +20,26 @@ const sum = [...name].reduce((total, char) => total + char.charCodeAt(0), 0);
 const tone = tones[sum % tones.length];
 ---
 
-<span
-  class:list={["avatar_component", `is-${size}`, `is-tone-${tone}`, className]}
-  aria-hidden="true">{initials}</span
->
+{
+  src ? (
+    <img
+      class:list={["avatar_component", "is-photo", `is-${size}`, className]}
+      src={src}
+      alt=""
+      width="640"
+      height="640"
+      loading="lazy"
+      decoding="async"
+    />
+  ) : (
+    <span
+      class:list={["avatar_component", `is-${size}`, `is-tone-${tone}`, className]}
+      aria-hidden="true"
+    >
+      {initials}
+    </span>
+  )
+}
 
 <style>
   .avatar_component {
@@ -52,28 +69,40 @@ const tone = tones[sum % tones.length];
     font-size: 1.25rem;
   }
 
+  .avatar_component.is-xlarge {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: var(--radius-medium);
+  }
+
+  .avatar_component.is-photo {
+    object-fit: cover;
+    background-color: var(--color-surface);
+  }
+
   .avatar_component.is-tone-a {
-    color: #8f3310;
-    background-color: #fbeee7;
+    color: #3a5020;
+    background-color: #e7eeda;
   }
 
   .avatar_component.is-tone-b {
-    color: #1f4f6b;
-    background-color: #e6f0f5;
+    color: #2c5b4a;
+    background-color: #dfeae5;
   }
 
   .avatar_component.is-tone-c {
     color: #2f5d3f;
-    background-color: #e8f1ea;
+    background-color: #e3ece3;
   }
 
   .avatar_component.is-tone-d {
-    color: #5a4275;
-    background-color: #efeaf5;
+    color: #44543f;
+    background-color: #e6ebdf;
   }
 
   .avatar_component.is-tone-e {
-    color: #6b5320;
-    background-color: #f5efe0;
+    color: #2a5f56;
+    background-color: #ddeae7;
   }
 </style>

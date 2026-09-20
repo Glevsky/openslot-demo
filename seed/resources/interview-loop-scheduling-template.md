@@ -18,7 +18,7 @@ highlights:
   - "Availability rules that protect interviewer focus time"
   - "Candidate messages for the invitation and the reschedule"
   - "A debrief slot booked before the loop starts"
-cover: "../../assets/resources/interview-loop-scheduling-template.svg"
+cover: "../../assets/resources/interview-loop-scheduling-template.jpg"
 ---
 
 An interview loop falls apart in the gaps. The screen is booked within a day, then the technical stage waits four days for two calendars to agree, and by the time the final conversation happens the candidate has an offer somewhere else. Nobody made a bad decision along the way. The loop just had no shape, and every handover cost a day.

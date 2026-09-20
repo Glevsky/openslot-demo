@@ -7,7 +7,7 @@ summary: "Back-to-back meetings look efficient and run late. Three availability 
 excerpt: "A calendar with no gaps is not a productive calendar. It is a late one. Here is the fix."
 readTime: 4
 author: "jonah-adebayo"
-cover: "../../assets/blog/buffer-time-is-not-optional.svg"
+cover: "../../assets/blog/buffer-time-is-not-optional.jpg"
 ---
 
 A calendar with no gaps looks like a productive day. In practice it is a late one. The 10:00 runs to 10:34, the 10:30 starts four minutes behind, and by 3:00 the person you are meeting has been waiting in a lobby, virtual or otherwise, for a quarter of an hour.

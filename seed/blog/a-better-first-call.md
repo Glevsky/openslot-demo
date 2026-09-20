@@ -7,7 +7,7 @@ summary: "The best first calls are decided before they start. Three booking-form
 excerpt: "Ask three questions on the booking form and the first call starts halfway done, in the prospect's own words."
 readTime: 5
 author: "mara-lindqvist"
-cover: "../../assets/blog/a-better-first-call.svg"
+cover: "../../assets/blog/a-better-first-call.jpg"
 ---
 
 I still take a share of our first calls. Not because nobody else can, but because it is the fastest way to find out what people actually want from us, and because I like them. I have done enough of them by now that I can tell in the first two minutes which kind of call it is going to be.

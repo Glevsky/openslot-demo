@@ -7,7 +7,7 @@ summary: "The 15-minute meeting promises to save time and delivers a calendar of
 excerpt: "Fifteen minutes is long enough to interrupt a day and too short to decide anything. Book something else."
 readTime: 5
 author: "mara-lindqvist"
-cover: "../../assets/blog/the-case-against-15-minute-meetings.svg"
+cover: "../../assets/blog/the-case-against-15-minute-meetings.jpg"
 ---
 
 We removed the 15 minute option from our own booking pages in September. This post is the reasoning. It is not a rule for you, and Openslot will keep letting you create 15 minute event types. But if you have been booking them by default, I would like you to reconsider.

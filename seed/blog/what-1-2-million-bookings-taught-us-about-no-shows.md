@@ -7,7 +7,7 @@ summary: "We studied 1.2 million bookings. No-shows ran at 19 percent without re
 excerpt: "19 percent without reminders, 11 percent with email, SMS and a reschedule link. The details matter."
 readTime: 6
 author: "jonah-adebayo"
-cover: "../../assets/blog/what-1-2-million-bookings-taught-us-about-no-shows.svg"
+cover: "../../assets/blog/what-1-2-million-bookings-taught-us-about-no-shows.jpg"
 ---
 
 A no-show is the most expensive thing that can happen to a booking. The time was reserved, the preparation was done, and nothing came back. We wanted to know how often it happens and what actually changes the number, so we looked at 1.2 million bookings made through Openslot.

@@ -19,7 +19,7 @@ highlights:
   - "Collective panels, and the three rules that keep them bookable"
   - "Candidate reminders for people who already have a job"
   - "Time to first interview: how to measure it every week"
-cover: "../../assets/resources/remote-hiring-the-scheduling-chapter.svg"
+cover: "../../assets/resources/remote-hiring-the-scheduling-chapter.jpg"
 ---
 
 Most hiring problems get blamed on sourcing. The gap that actually loses candidates sits later, between the message that says you would like to talk and the first call that happens. Candidates go quiet in that gap, and recruiters spend it chasing interviewers for free time.

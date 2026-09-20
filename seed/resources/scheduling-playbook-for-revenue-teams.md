@@ -19,7 +19,7 @@ highlights:
   - "A booking form of three questions, and what each one is for"
   - "Reminder sequences for the calls that get booked furthest out"
   - "A one-page setup checklist to hand a new rep in week one"
-cover: "../../assets/resources/scheduling-playbook-for-revenue-teams.svg"
+cover: "../../assets/resources/scheduling-playbook-for-revenue-teams.jpg"
 ---
 
 A prospect is at their most interested in the ten minutes after they ask for a call. Most revenue teams spend the next two days proving otherwise, in an email chain about whether Tuesday works. By the time a slot is agreed, the reason for the call has cooled. The request is the warmest part of the whole process, and the calendar is what cools it.

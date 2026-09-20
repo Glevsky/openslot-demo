@@ -7,6 +7,7 @@ interface Person {
   name: string;
   role: string;
   bio?: string;
+  photo?: string;
 }
 
 interface Props {
@@ -35,7 +36,7 @@ const { eyebrow, heading, text, people, columns = 4, tone = "paper" } = Astro.pr
           {
             people.map((person) => (
               <li class="layout16_item">
-                <Avatar name={person.name} size="large" />
+                <Avatar name={person.name} src={person.photo} size="xlarge" />
                 <p class="layout16_name">{person.name}</p>
                 <p class="layout16_role">{person.role}</p>
                 {person.bio && <p class="layout16_bio">{person.bio}</p>}
@@ -50,8 +51,8 @@ const { eyebrow, heading, text, people, columns = 4, tone = "paper" } = Astro.pr
 
 <style>
   .section_layout16.is-canvas {
-    background-color: var(--color-canvas);
-    border-block: var(--border-width) solid var(--color-line);
+    background-color: var(--color-paper);
+    border-top: var(--border-width) solid var(--color-line);
   }
 
   .layout16_component {
@@ -76,12 +77,12 @@ const { eyebrow, heading, text, people, columns = 4, tone = "paper" } = Astro.pr
   .layout16_item {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: var(--space-4);
   }
 
   .layout16_name {
-    margin-top: var(--space-12);
+    margin-top: var(--space-16);
     font-family: var(--font-heading);
     font-size: var(--heading-xsmall-size);
     line-height: 1.3;

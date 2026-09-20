@@ -7,10 +7,10 @@ interface Stat {
 interface Props {
   heading?: string;
   stats: Stat[];
-  tone?: "dark" | "canvas";
+  tone?: "plain" | "dark";
 }
 
-const { heading, stats, tone = "dark" } = Astro.props;
+const { heading, stats, tone = "plain" } = Astro.props;
 ---
 
 <section class:list={["section_layout05", `is-${tone}`]}>
@@ -40,9 +40,9 @@ const { heading, stats, tone = "dark" } = Astro.props;
     background-color: var(--color-dark);
   }
 
-  .section_layout05.is-canvas {
-    background-color: var(--color-canvas);
-    border-block: var(--border-width) solid var(--color-line);
+  .section_layout05.is-plain {
+    background-color: var(--color-paper);
+    border-top: var(--border-width) solid var(--color-line);
   }
 
   .layout05_component {
@@ -74,11 +74,16 @@ const { heading, stats, tone = "dark" } = Astro.props;
     gap: var(--space-6);
   }
 
+  .section_layout05.is-plain .layout05_item {
+    padding-left: var(--space-20);
+    border-left: var(--border-width) solid var(--color-line);
+  }
+
   .layout05_value {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: var(--heading-large-size);
     line-height: 1.1;
-    font-weight: var(--weight-regular);
+    font-weight: var(--weight-semibold);
     letter-spacing: var(--heading-large-tracking);
   }
 
@@ -93,7 +98,7 @@ const { heading, stats, tone = "dark" } = Astro.props;
     color: var(--color-paper-60);
   }
 
-  .section_layout05.is-canvas .layout05_label {
+  .section_layout05.is-plain .layout05_label {
     color: var(--color-ink-muted);
   }
 

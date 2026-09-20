@@ -20,7 +20,7 @@ highlights:
   - "Which sectors move furthest once reminders are turned on"
   - "First appointments against repeat ones, cut by sector"
   - "The full counting method, so you can run the same cut yourself"
-cover: "../../assets/resources/no-show-benchmarks-by-industry.svg"
+cover: "../../assets/resources/no-show-benchmarks-by-industry.jpg"
 ---
 
 The question we get after publishing a no-show number is always the same: is that us. An overall rate of 19 percent is not much help to a clinic manager with 200 appointments a week, and it is no help at all to a tutoring marketplace where every session is booked by a different person. An average is a fact about everybody and a description of nobody.

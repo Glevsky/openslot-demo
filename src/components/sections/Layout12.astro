@@ -8,7 +8,7 @@ interface Props {
   backLabel: string;
   kicker: string;
   title: string;
-  author?: { name: string; role: string };
+  author?: { name: string; role: string; photo?: string };
   meta: string[];
   cover?: string;
 }
@@ -32,7 +32,7 @@ const { backHref, backLabel, kicker, title, author, meta, cover } = Astro.props;
         {
           author && (
             <span class="layout12_author">
-              <Avatar name={author.name} />
+              <Avatar name={author.name} src={author.photo} />
               <span class="layout12_author-body">
                 <span class="layout12_author-name">{author.name}</span>
                 <span class="layout12_author-role">{author.role}</span>

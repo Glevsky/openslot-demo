@@ -19,7 +19,7 @@ highlights:
   - "A decision page: keep, shorten, make async, or drop"
   - "A worked example so you can see what a finished audit looks like"
   - "A short script for proposing cuts to a meeting you do not own"
-cover: "../../assets/resources/the-meetings-audit-workbook.svg"
+cover: "../../assets/resources/the-meetings-audit-workbook.jpg"
 ---
 
 Every team that complains about meetings is working from an impression. Ask how many hours went to meetings last month and almost nobody can answer, which is why the conversation goes in circles and why the recurring invite nobody wants survives another quarter.

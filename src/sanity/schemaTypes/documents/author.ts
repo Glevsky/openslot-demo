@@ -17,10 +17,26 @@ export const author = defineType({
     defineField({ name: "role", type: "string", validation: (rule) => rule.required() }),
     defineField({
       name: "bio",
+      title: "Bio",
+      description: "Only people who write on the blog need one.",
       type: "text",
       rows: 3,
-      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "avatar",
+      title: "Photo",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: "order",
+      title: "Sort order",
+      type: "number",
+      initialValue: 50,
     }),
   ],
-  preview: { select: { title: "name", subtitle: "role" } },
+  preview: { select: { title: "name", subtitle: "role", media: "avatar" } },
+  orderings: [
+    { title: "Team order", name: "order", by: [{ field: "order", direction: "asc" }] },
+  ],
 });

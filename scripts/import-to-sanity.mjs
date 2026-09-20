@@ -51,7 +51,8 @@ const assetCache = new Map();
 
 const uploadCover = async (relative, kind) => {
   if (!relative) return undefined;
-  const path = join("src/assets", kind, relative.split("/").pop());
+  const file = relative.split("/").pop();
+  const path = join("src/assets", kind, file);
   if (assetCache.has(path)) return assetCache.get(path);
 
   const filename = path.split("/").pop();
@@ -67,7 +68,7 @@ const uploadCover = async (relative, kind) => {
   if (!id) {
     const asset = await client.assets.upload("image", readFileSync(path), {
       filename,
-      contentType: "image/svg+xml",
+      contentType: filename.endsWith(".svg") ? "image/svg+xml" : "image/jpeg",
     });
     id = asset._id;
   }
@@ -101,7 +102,9 @@ const run = async () => {
     const id = await upsert("author", entry.data.id, {
       name: entry.data.name,
       role: entry.data.role,
-      bio: entry.data.bio,
+      order: entry.data.order ?? 50,
+      ...(entry.data.bio ? { bio: entry.data.bio } : {}),
+      avatar: await uploadCover(entry.data.avatar, "people"),
     });
     authorIds.set(entry.data.id, id);
   }

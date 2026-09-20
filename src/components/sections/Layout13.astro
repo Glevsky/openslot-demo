@@ -5,7 +5,7 @@ import Avatar from "../ui/Avatar.astro";
 interface Props {
   body: unknown;
   contents?: { id: string; text: string }[];
-  author?: { name: string; role: string; bio?: string };
+  author?: { name: string; role: string; bio?: string; photo?: string };
 }
 
 const { body, contents = [], author } = Astro.props;
@@ -19,9 +19,12 @@ const { body, contents = [], author } = Astro.props;
           <nav class="layout13_index" aria-label="On this page">
             <p class="layout13_index-label text-label">On this page</p>
             <ul class="layout13_index-list" role="list">
-              {contents.map((item) => (
+              {contents.map((item, index) => (
                 <li>
-                  <a class="layout13_index-link" href={`#${item.id}`}>
+                  <a
+                    class:list={["layout13_index-link", index === 0 && "is-active"]}
+                    href={`#${item.id}`}
+                  >
                     {item.text}
                   </a>
                 </li>
@@ -37,7 +40,7 @@ const { body, contents = [], author } = Astro.props;
         {
           author?.bio && (
             <aside class="layout13_author">
-              <Avatar name={author.name} size="medium" />
+              <Avatar name={author.name} src={author.photo} size="medium" />
               <div class="layout13_author-body">
                 <p class="layout13_author-name">{author.name}</p>
                 <p class="layout13_author-role">{author.role}</p>
@@ -85,23 +88,31 @@ const { body, contents = [], author } = Astro.props;
 
   .layout13_index-link {
     display: block;
-    padding: var(--space-6) var(--space-12);
-    margin-left: -1px;
+    padding: var(--space-8) var(--space-16);
+    margin-left: -2px;
     border-left: 2px solid transparent;
     color: var(--color-ink-subtle);
     font-size: var(--text-small-size);
-    line-height: 1.42857;
+    line-height: 1.35;
     text-wrap: pretty;
+    transition: var(--transition-interactive);
   }
 
-  .layout13_index-link:hover,
+  @media (hover: hover) {
+    .layout13_index-link:hover {
+      color: var(--color-ink);
+      border-left-color: var(--color-line-strong);
+    }
+  }
+
   .layout13_index-link:focus-visible {
     color: var(--color-ink);
   }
 
   .layout13_index-link.is-active {
     color: var(--color-ink);
-    font-weight: var(--weight-medium);
+    font-weight: var(--weight-semibold);
+    background-color: var(--color-accent-soft);
     border-left-color: var(--color-accent);
   }
 

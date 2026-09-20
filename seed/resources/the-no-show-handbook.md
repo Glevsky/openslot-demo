@@ -20,7 +20,7 @@ highlights:
   - "Why the reschedule link belongs in every message you send"
   - "How lead time quietly raises the rate on bookings made far ahead"
   - "A setup checklist that fits on one page"
-cover: "../../assets/resources/the-no-show-handbook.svg"
+cover: "../../assets/resources/the-no-show-handbook.jpg"
 ---
 
 A no-show is the most expensive thing that can happen to a booking. The slot was held, the preparation was done, and nothing came back from it. This handbook is what we learned after studying 1.2 million bookings made through Openslot, turned into steps you can apply this week. It is written for the person who owns the number rather than the person who reports it.

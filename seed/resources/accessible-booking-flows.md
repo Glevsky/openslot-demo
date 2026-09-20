@@ -30,7 +30,7 @@ highlights:
   - "Dates and times written so nobody has to guess"
   - "Error and focus handling that does not lose the invitee"
   - "Contrast and motion decided by numbers, not opinion"
-cover: "../../assets/resources/accessible-booking-flows.svg"
+cover: "../../assets/resources/accessible-booking-flows.jpg"
 ---
 
 A booking flow is a small piece of software with a hard part in the middle. The calendar grid has to be operable with a keyboard, readable by a screen reader, and clear to someone who cannot see which month they landed on. Most implementations get the layout right and the rest wrong, and the rest is where the booking is lost.

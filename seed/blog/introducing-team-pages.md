@@ -7,7 +7,7 @@ summary: "Team pages are live on the Team plan: round-robin pages that rotate bo
 excerpt: "One link for a whole team. Round-robin and collective pages ship today on the Team plan."
 readTime: 3
 author: "priya-raman"
-cover: "../../assets/blog/introducing-team-pages.svg"
+cover: "../../assets/blog/introducing-team-pages.jpg"
 ---
 
 Team pages are live today. A Team page is a booking page with more than one person behind it, and it comes in the two forms we described [last month](/blog/round-robin-vs-collective): round-robin, where each booking goes to one member of the group in rotation, and collective, where every member has to be free and the meeting lands on all of their calendars.

@@ -5,7 +5,9 @@ export interface AuthorRef {
   name: string;
   role: string;
   bio?: string;
+  avatar?: unknown;
   slug: string;
+  order?: number;
 }
 
 export interface BlogPost {
@@ -67,7 +69,7 @@ export interface LegalPage {
   body?: unknown[];
 }
 
-const AUTHOR = `author->{name, role, bio, "slug": slug.current}`;
+const AUTHOR = `author->{name, role, bio, avatar, "slug": slug.current}`;
 
 const POST_CARD = `{
   "slug": slug.current, title, category, date, readTime, summary, excerpt, cover,
@@ -138,7 +140,7 @@ export const getLegalPage = (slug: string): Promise<LegalPage | null> =>
 
 export const listAuthors = (): Promise<AuthorRef[]> =>
   sanityClient.fetch(
-    `*[_type == "author"] | order(name asc) {name, role, bio, "slug": slug.current}`
+    `*[_type == "author"] | order(order asc) {name, role, bio, avatar, order, "slug": slug.current}`
   );
 
 export const headings = (body: unknown[] | undefined) =>

@@ -55,7 +55,7 @@ const cards = related.map((item) => ({
     backLabel={`Back to ${hub.title.toLowerCase()}`}
     kicker={hub.title}
     title={resource.title}
-    author={resource.author}
+    author={{ ...resource.author, photo: coverUrl(resource.author.avatar, 160) }}
     meta={meta}
   />
 

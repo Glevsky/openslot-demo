@@ -7,7 +7,7 @@ summary: "Meeting polls are live on the Team plan: propose several times, let th
 excerpt: "Propose a few times, let everyone vote, book the winner. Meeting polls are on Team today."
 readTime: 3
 author: "priya-raman"
-cover: "../../assets/blog/meeting-polls.svg"
+cover: "../../assets/blog/meeting-polls.jpg"
 ---
 
 Some meetings do not fit a booking page. A booking page works when one side offers times and the other side picks. A project kickoff with six people, a board call, a panel interview with three interviewers and a candidate: nobody is the host, and every calendar has a say.

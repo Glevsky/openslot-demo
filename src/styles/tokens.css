@@ -1,95 +1,96 @@
 @layer tokens {
   :root {
     --color-paper: #ffffff;
-    --color-canvas: #edf1e8;
-    --color-surface: #e2e8da;
-    --color-surface-strong: #d4dcc8;
+    --color-canvas: #fbfbfa;
+    --color-surface: #f4f4f2;
+    --color-surface-strong: #eaeae6;
 
-    --color-ink: #16241c;
-    --color-ink-muted: #4d5b52;
-    --color-ink-subtle: #65746a;
+    --color-ink: #121212;
+    --color-ink-muted: #5b5b58;
+    --color-ink-subtle: #86867f;
 
-    --color-line: #dde3d5;
-    --color-line-strong: #c6cfba;
+    --color-line: #e8e8e4;
+    --color-line-strong: #d5d5cf;
 
-    --color-accent: #a8412a;
-    --color-accent-strong: #8b3421;
-    --color-accent-soft: #f4e7e1;
-    --color-accent-ink: #73301e;
+    --color-accent: #1f6f4a;
+    --color-accent-strong: #185839;
+    --color-accent-soft: #e8f1ec;
+    --color-accent-ink: #17543a;
 
-    --color-dark: #16241c;
-    --color-dark-raised: #1f3227;
-    --color-dark-line: #31453a;
+    --color-dark: #121212;
+    --color-dark-raised: #1d1d1d;
+    --color-dark-line: #2e2e2e;
 
-    --color-positive: #2f6b45;
+    --color-positive: #1f6f4a;
     --color-error: #b23a2b;
 
-    --color-ink-5: rgb(22 36 28 / 0.05);
-    --color-ink-8: rgb(22 36 28 / 0.08);
-    --color-ink-12: rgb(22 36 28 / 0.12);
+    --color-ink-5: rgb(18 18 18 / 0.05);
+    --color-ink-8: rgb(18 18 18 / 0.08);
+    --color-ink-12: rgb(18 18 18 / 0.12);
 
     --color-paper-10: rgb(255 255 255 / 0.1);
     --color-paper-15: rgb(255 255 255 / 0.15);
     --color-paper-60: rgb(255 255 255 / 0.62);
     --color-paper-70: rgb(255 255 255 / 0.74);
 
-    --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
-    --font-heading: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
-    --font-body: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --font-display: "Work Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-heading: "Work Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Work Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-prose: "Merriweather", Georgia, "Times New Roman", serif;
 
     --weight-regular: 400;
     --weight-medium: 500;
     --weight-semibold: 600;
     --weight-bold: 700;
 
-    --heading-display-size: 4.5rem;
-    --heading-display-line: 1.02778;
-    --heading-display-weight: var(--weight-regular);
-    --heading-display-tracking: -0.021em;
+    --heading-display-size: 4rem;
+    --heading-display-line: 1.046875;
+    --heading-display-weight: var(--weight-semibold);
+    --heading-display-tracking: -0.032em;
 
-    --heading-xlarge-size: 3.5rem;
-    --heading-xlarge-line: 1.07143;
-    --heading-xlarge-weight: var(--weight-regular);
-    --heading-xlarge-tracking: -0.019em;
+    --heading-xlarge-size: 3.125rem;
+    --heading-xlarge-line: 1.08;
+    --heading-xlarge-weight: var(--weight-semibold);
+    --heading-xlarge-tracking: -0.029em;
 
-    --heading-large-size: 2.5rem;
-    --heading-large-line: 1.125;
-    --heading-large-weight: var(--weight-regular);
-    --heading-large-tracking: -0.016em;
+    --heading-large-size: 2.25rem;
+    --heading-large-line: 1.16667;
+    --heading-large-weight: var(--weight-semibold);
+    --heading-large-tracking: -0.025em;
 
-    --heading-mlarge-size: 1.9375rem;
-    --heading-mlarge-line: 1.19355;
-    --heading-mlarge-weight: var(--weight-regular);
-    --heading-mlarge-tracking: -0.013em;
+    --heading-mlarge-size: 1.75rem;
+    --heading-mlarge-line: 1.25;
+    --heading-mlarge-weight: var(--weight-semibold);
+    --heading-mlarge-tracking: -0.021em;
 
-    --heading-medium-size: 1.375rem;
-    --heading-medium-line: 1.31818;
+    --heading-medium-size: 1.3125rem;
+    --heading-medium-line: 1.33333;
     --heading-medium-weight: var(--weight-semibold);
     --heading-medium-tracking: -0.016em;
 
-    --heading-small-size: 1.125rem;
-    --heading-small-line: 1.38889;
+    --heading-small-size: 1.0625rem;
+    --heading-small-line: 1.41176;
     --heading-small-weight: var(--weight-semibold);
-    --heading-small-tracking: -0.013em;
+    --heading-small-tracking: -0.012em;
 
-    --heading-xsmall-size: 1rem;
+    --heading-xsmall-size: 0.9375rem;
     --heading-xsmall-line: 1.4;
     --heading-xsmall-weight: var(--weight-semibold);
-    --heading-xsmall-tracking: -0.009em;
+    --heading-xsmall-tracking: -0.008em;
 
-    --heading-xxsmall-size: 0.875rem;
-    --heading-xxsmall-line: 1.42857;
+    --heading-xxsmall-size: 0.8125rem;
+    --heading-xxsmall-line: 1.46154;
     --heading-xxsmall-weight: var(--weight-semibold);
     --heading-xxsmall-tracking: 0em;
 
-    --text-xlarge-size: 1.3125rem;
-    --text-xlarge-line: 1.52381;
+    --text-xlarge-size: 1.125rem;
+    --text-xlarge-line: 1.66667;
 
-    --text-large-size: 1.125rem;
-    --text-large-line: 1.55556;
+    --text-large-size: 1rem;
+    --text-large-line: 1.75;
 
-    --text-medium-size: 1rem;
-    --text-medium-line: 1.625;
+    --text-medium-size: 0.9375rem;
+    --text-medium-line: 1.73333;
 
     --text-small-size: 0.875rem;
     --text-small-line: 1.57143;
@@ -129,18 +130,18 @@
     --padding-section-medium: var(--space-80);
     --padding-section-small: var(--space-48);
 
-    --radius-xsmall: 0.5rem;
-    --radius-small: 0.75rem;
-    --radius-medium: 1rem;
-    --radius-large: 1.5rem;
-    --radius-xlarge: 2rem;
+    --radius-xsmall: 0.1875rem;
+    --radius-small: 0.25rem;
+    --radius-medium: 0.375rem;
+    --radius-large: 0.5rem;
+    --radius-xlarge: 0.75rem;
     --radius-pill: 999px;
 
     --border-width: 1px;
 
-    --shadow-card: 0 1px 2px rgb(22 36 28 / 0.05), 0 8px 24px -12px rgb(22 36 28 / 0.14);
-    --shadow-raised: 0 2px 4px rgb(22 36 28 / 0.06), 0 18px 40px -16px rgb(22 36 28 / 0.2);
-    --shadow-pop: 0 4px 8px rgb(22 36 28 / 0.07), 0 32px 64px -24px rgb(22 36 28 / 0.26);
+    --shadow-card: 0 1px 2px rgb(18 18 18 / 0.04), 0 10px 28px -16px rgb(18 18 18 / 0.14);
+    --shadow-raised: 0 2px 4px rgb(18 18 18 / 0.05), 0 20px 44px -20px rgb(18 18 18 / 0.18);
+    --shadow-pop: 0 4px 10px rgb(18 18 18 / 0.06), 0 34px 70px -28px rgb(18 18 18 / 0.24);
 
     --transition-duration: 0.18s;
     --transition-easing: ease-out;
@@ -156,13 +157,13 @@
 
   @media (max-width: 991px) {
     :root {
-      --heading-display-size: 3.375rem;
-      --heading-display-line: 1.07407;
-      --heading-xlarge-size: 2.875rem;
-      --heading-xlarge-line: 1.10345;
-      --heading-large-size: 2.125rem;
-      --heading-mlarge-size: 1.6875rem;
-      --text-xlarge-size: 1.1875rem;
+      --heading-display-size: 3.125rem;
+      --heading-display-line: 1.08;
+      --heading-xlarge-size: 2.5rem;
+      --heading-xlarge-line: 1.125;
+      --heading-large-size: 2rem;
+      --heading-mlarge-size: 1.625rem;
+      --text-xlarge-size: 1.0625rem;
 
       --padding-global: var(--space-32);
       --padding-section-large: var(--space-80);
@@ -173,16 +174,16 @@
 
   @media (max-width: 767px) {
     :root {
-      --heading-display-size: 2.625rem;
-      --heading-display-line: 1.09524;
-      --heading-display-tracking: -0.018em;
-      --heading-xlarge-size: 2.25rem;
-      --heading-xlarge-line: 1.13889;
-      --heading-large-size: 1.875rem;
-      --heading-large-line: 1.2;
-      --heading-mlarge-size: 1.5rem;
-      --heading-medium-size: 1.25rem;
-      --text-xlarge-size: 1.125rem;
+      --heading-display-size: 2.3125rem;
+      --heading-display-line: 1.10811;
+      --heading-display-tracking: -0.028em;
+      --heading-xlarge-size: 2rem;
+      --heading-xlarge-line: 1.15625;
+      --heading-large-size: 1.75rem;
+      --heading-large-line: 1.21429;
+      --heading-mlarge-size: 1.4375rem;
+      --heading-medium-size: 1.1875rem;
+      --text-xlarge-size: 1.0625rem;
 
       --padding-global: var(--space-24);
       --padding-section-large: var(--space-64);

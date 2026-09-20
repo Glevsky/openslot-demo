@@ -5,7 +5,7 @@ export const RESOURCE_HUBS = [
     title: "Webinars",
     plural: "webinars",
     description:
-      "Recorded sessions and live workshops with our team and the people who run scheduling every day.",
+      "Recorded sessions and live workshops.",
   },
   {
     type: "Ebook",
@@ -13,7 +13,7 @@ export const RESOURCE_HUBS = [
     title: "Guides and ebooks",
     plural: "guides",
     description:
-      "Long-form guides you can hand to a team, written from what we see across 38,000 workspaces.",
+      "Long-form guides you can hand to a team.",
   },
   {
     type: "Report",
@@ -21,7 +21,7 @@ export const RESOURCE_HUBS = [
     title: "Reports",
     plural: "reports",
     description:
-      "Benchmarks and research drawn from the bookings that run through Openslot.",
+      "Benchmarks drawn from real bookings.",
   },
   {
     type: "Template",
@@ -29,7 +29,7 @@ export const RESOURCE_HUBS = [
     title: "Templates",
     plural: "templates",
     description:
-      "Availability rules, interview loops and agendas you can copy into your own workspace.",
+      "Setups you can copy into your workspace.",
   },
   {
     type: "Course",
@@ -37,7 +37,7 @@ export const RESOURCE_HUBS = [
     title: "Courses",
     plural: "courses",
     description:
-      "Short video courses that take you from a first booking page to a workspace a whole team can use.",
+      "Short video courses, start to finish.",
   },
 ] as const;
 
