@@ -5,6 +5,8 @@ import sitemap from "@astrojs/sitemap";
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 
+import cloudflare from "@astrojs/cloudflare";
+
 const env = loadEnv(process.env.NODE_ENV ?? "development", process.cwd(), "");
 
 const PUBLIC_SANITY_PROJECT_ID = env.PUBLIC_SANITY_PROJECT_ID || "1zmf457v";
@@ -13,9 +15,11 @@ const PUBLIC_SANITY_DATASET = env.PUBLIC_SANITY_DATASET || "production";
 export default defineConfig({
   site: "https://demo.glevsky.com",
   trailingSlash: "never",
+
   build: {
     format: "file",
   },
+
   integrations: [
     sanity({
       projectId: PUBLIC_SANITY_PROJECT_ID,
@@ -31,4 +35,6 @@ export default defineConfig({
       },
     }),
   ],
+
+  adapter: cloudflare(),
 });

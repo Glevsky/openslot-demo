@@ -8,3 +8,7 @@ npm-debug.log*
 .DS_Store
 .idea/
 .wrangler/
+
+.dev.vars*
+!.dev.vars.example
+!.env.example
