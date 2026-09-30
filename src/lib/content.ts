@@ -1,4 +1,4 @@
-import { sanityClient } from "sanity:client";
+import { client } from "openslot:client";
 import { headingId } from "./text";
 
 export interface AuthorRef {
@@ -88,12 +88,12 @@ const STORY_CARD = `{
 }`;
 
 export const listPosts = (): Promise<BlogPost[]> =>
-  sanityClient.fetch(
+  client.fetch(
     `*[_type == "blogPost" && draft != true] | order(date desc) ${POST_CARD}`
   );
 
 export const getPost = (slug: string): Promise<BlogPost | null> =>
-  sanityClient.fetch(
+  client.fetch(
     `*[_type == "blogPost" && slug.current == $slug][0] {
       "slug": slug.current, title, category, date, readTime, summary, excerpt,
       cover, body, ${AUTHOR}
@@ -102,12 +102,12 @@ export const getPost = (slug: string): Promise<BlogPost | null> =>
   );
 
 export const listResources = (): Promise<Resource[]> =>
-  sanityClient.fetch(
+  client.fetch(
     `*[_type == "resource"] | order(date desc) ${RESOURCE_CARD}`
   );
 
 export const getResource = (slug: string): Promise<Resource | null> =>
-  sanityClient.fetch(
+  client.fetch(
     `*[_type == "resource" && slug.current == $slug][0] {
       "slug": slug.current, title, type, topics, level, date, meta, cta, gated,
       featured, summary, excerpt, highlights, cover, duration, status, speakers,
@@ -117,12 +117,12 @@ export const getResource = (slug: string): Promise<Resource | null> =>
   );
 
 export const listCustomers = (): Promise<CustomerStory[]> =>
-  sanityClient.fetch(
+  client.fetch(
     `*[_type == "customerStory"] | order(order asc) ${STORY_CARD}`
   );
 
 export const getCustomer = (slug: string): Promise<CustomerStory | null> =>
-  sanityClient.fetch(
+  client.fetch(
     `*[_type == "customerStory" && slug.current == $slug][0] {
       "slug": slug.current, name, title, industry, plan, order, products, stats,
       quote, summary, excerpt, body
@@ -131,7 +131,7 @@ export const getCustomer = (slug: string): Promise<CustomerStory | null> =>
   );
 
 export const getLegalPage = (slug: string): Promise<LegalPage | null> =>
-  sanityClient.fetch(
+  client.fetch(
     `*[_type == "legalPage" && slug.current == $slug][0] {
       "slug": slug.current, title, updated, summary, body
     }`,
@@ -139,7 +139,7 @@ export const getLegalPage = (slug: string): Promise<LegalPage | null> =>
   );
 
 export const listAuthors = (): Promise<AuthorRef[]> =>
-  sanityClient.fetch(
+  client.fetch(
     `*[_type == "author"] | order(order asc) {name, role, bio, avatar, order, "slug": slug.current}`
   );
 

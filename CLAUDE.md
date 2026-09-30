@@ -24,6 +24,29 @@ The site reads Sanity at build time. Do not add a second source of truth.
 A resource's hub comes from its `type` through `src/lib/taxonomy.ts`. Never
 hardcode `/resources/guides/...` anywhere; call `resourceHref`.
 
+## Publishing
+
+Two branches, two sites. Cloudflare Workers Builds builds both from GitHub on
+every push.
+
+| Branch | Worker | Address | What it shows |
+|---|---|---|---|
+| `staging` | `openslot-preview` | https://demo-staging.glevsky.com | New code plus Sanity drafts, behind Cloudflare Access |
+| `main` | `openslot` | https://demo.glevsky.com | Static build, published content only |
+
+- Every change lands on `staging` first. Never commit to `main`; it is
+  protected against direct pushes.
+- Release: open a pull request from `staging` into `main`, merge it only after
+  the client approves what they saw on staging.
+- Publishing a document in Sanity fires a webhook that rebuilds `main`.
+  Staging needs no rebuild for content: it reads Sanity on every request.
+- Page copy lives in code under `src/pages`. Sanity holds the collections only.
+- Rollback: Cloudflare dashboard, Workers, `openslot`, Deployments, Rollback
+  for an instant revert. Then `git revert` on `staging` and release again so
+  the code matches what is live.
+- `npm run deploy` and `npm run deploy:preview` are a manual fallback, not the
+  normal path.
+
 ## Network
 
 Nothing is pulled from the internet at runtime. Fonts ship from `public/fonts`,

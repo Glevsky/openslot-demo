@@ -2,6 +2,8 @@
 import "../styles/main.css";
 import Navbar from "../components/sections/Navbar.astro";
 import Footer from "../components/sections/Footer.astro";
+import Overlay from "openslot:overlay";
+import { stegaClean } from "@sanity/client/stega";
 
 interface Props {
   title: string;
@@ -12,13 +14,15 @@ interface Props {
 }
 
 const {
-  title,
-  description,
+  title: rawTitle,
+  description: rawDescription,
   ogType = "website",
   preloadImage,
   bodyClass,
 } = Astro.props;
 
+const title = stegaClean(rawTitle);
+const description = stegaClean(rawDescription);
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const fullTitle = title === "Openslot" ? title : `${title} | Openslot`;
 ---
@@ -68,6 +72,7 @@ const fullTitle = title === "Openslot" ? title : `${title} | Openslot`;
       </main>
       <Footer />
     </div>
+    <Overlay />
 
     <style is:global>
       .skip-link {
