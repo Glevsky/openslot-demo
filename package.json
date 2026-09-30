@@ -32,6 +32,7 @@
     "astro": "^7.3.3",
     "astro-portabletext": "^1.0.1",
     "groq": "^6.15.0",
+    "jose": "^6.2.12",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "sanity": "^6.15.0",

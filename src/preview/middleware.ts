@@ -1,4 +1,6 @@
 import { defineMiddleware } from "astro:middleware";
+import { env } from "cloudflare:workers";
+import { createRemoteJWKSet, jwtVerify } from "jose";
 import { LIVE_URL } from "./constants";
 
 const CLOSED = `<!doctype html>
@@ -15,8 +17,22 @@ const CLOSED = `<!doctype html>
   </body>
 </html>`;
 
+const team = env.ACCESS_TEAM_DOMAIN;
+const audience = env.ACCESS_AUD;
+const keys = team ? createRemoteJWKSet(new URL("/cdn-cgi/access/certs", team)) : undefined;
+
+const allowed = async (token: string | null) => {
+  if (!token || !keys || !team || !audience) return false;
+  try {
+    await jwtVerify(token, keys, { issuer: team, audience });
+    return true;
+  } catch {
+    return false;
+  }
+};
+
 export const onRequest = defineMiddleware(async (context, next) => {
-  if (!context.request.headers.get("cf-access-jwt-assertion")) {
+  if (!(await allowed(context.request.headers.get("cf-access-jwt-assertion")))) {
     return new Response(CLOSED, {
       status: 401,
       headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" },
