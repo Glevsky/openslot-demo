@@ -45,6 +45,10 @@ every push.
 - Publishing a document in Sanity fires a webhook that rebuilds `main`.
   Staging needs no rebuild for content: it reads Sanity on every request.
 - Page copy lives in code under `src/pages`. Sanity holds the collections only.
+- One Astro config builds both sites. `npm run build:preview` sets
+  `PUBLIC_SANITY_VISUAL_EDITING_ENABLED=true`, which switches on server
+  rendering, drafts, click-to-edit and the Access check in `src/middleware.ts`.
+  Without the flag the build is static and none of that ships.
 - Rollback: Cloudflare dashboard, Workers, `openslot`, Deployments, Rollback
   for an instant revert. Then `git revert` on `staging` and release again so
   the code matches what is live.

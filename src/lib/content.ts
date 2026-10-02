@@ -1,4 +1,4 @@
-import { client } from "openslot:client";
+import { client } from "./client";
 import { headingId } from "./text";
 
 export interface AuthorRef {

@@ -12,7 +12,7 @@
     "deploy": "npm run build && wrangler deploy -c wrangler.jsonc",
     "covers": "node scripts/generate-covers.mjs",
     "photos": "node scripts/fetch-photos.mjs",
-    "build:preview": "astro build --config astro.preview.config.mjs",
+    "build:preview": "PUBLIC_SANITY_VISUAL_EDITING_ENABLED=true astro build",
     "deploy:preview": "npm run build:preview && wrangler deploy -c dist-preview/server/wrangler.json && rm -rf .wrangler/deploy",
     "studio": "npm --prefix studio run dev",
     "deploy:studio": "npm --prefix studio run deploy"
@@ -24,10 +24,11 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.3",
+    "@astrojs/react": "^6.0.6",
     "@astrojs/sitemap": "^3.7.4",
+    "@sanity/astro": "^3.5.1",
     "@sanity/client": "^8.6.2",
     "@sanity/image-url": "^2.1.1",
-    "@sanity/visual-editing": "^6.1.2",
     "astro": "^7.3.3",
     "astro-portabletext": "^1.0.1",
     "jose": "^6.2.12",
