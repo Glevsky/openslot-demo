@@ -7,6 +7,9 @@ import { schemaTypes } from "./schemaTypes";
 import { structure } from "./structure";
 import { PREVIEW_URL, resolve } from "./presentation";
 
+const SINGLETONS = new Set(["pricingPage"]);
+const SINGLETON_ACTIONS = new Set(["publish", "discardChanges", "restore"]);
+
 export default defineConfig({
   name: "openslot",
   title: "Openslot",
@@ -21,5 +24,14 @@ export default defineConfig({
     }),
     visionTool({ defaultApiVersion: "2026-02-01" }),
   ],
-  schema: { types: schemaTypes },
+  schema: {
+    types: schemaTypes,
+    templates: (templates) => templates.filter((template) => !SINGLETONS.has(template.schemaType)),
+  },
+  document: {
+    actions: (actions, context) =>
+      SINGLETONS.has(context.schemaType)
+        ? actions.filter((action) => action.action && SINGLETON_ACTIONS.has(action.action))
+        : actions,
+  },
 });

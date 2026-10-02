@@ -69,6 +69,42 @@ export interface LegalPage {
   body?: unknown[];
 }
 
+export interface PageLink {
+  label: string;
+  href: string;
+}
+
+export interface PricingPlan {
+  name: string;
+  featured?: boolean;
+  yearly: string;
+  monthly: string;
+  unit?: string;
+  text?: string;
+  cta: PageLink;
+  features?: string[];
+}
+
+export interface PricingPage {
+  title: string;
+  summary: string;
+  eyebrow?: string;
+  heading: string;
+  text?: string;
+  saving?: string;
+  plans: PricingPlan[];
+  note?: string;
+  faqHeading?: string;
+  faq?: { question: string; answer: string }[];
+  closing?: {
+    heading: string;
+    text?: string;
+    primary?: PageLink;
+    secondary?: PageLink;
+    note?: string;
+  };
+}
+
 const AUTHOR = `author->{name, role, bio, avatar, "slug": slug.current}`;
 
 const POST_CARD = `{
@@ -136,6 +172,16 @@ export const getLegalPage = (slug: string): Promise<LegalPage | null> =>
       "slug": slug.current, title, updated, summary, body
     }`,
     { slug }
+  );
+
+export const getPricingPage = (): Promise<PricingPage | null> =>
+  client.fetch(
+    `*[_type == "pricingPage"][0] {
+      title, summary, eyebrow, heading, text, saving, note, faqHeading,
+      plans[]{name, featured, yearly, monthly, unit, text, cta, features},
+      faq[]{question, answer},
+      closing
+    }`
   );
 
 export const listAuthors = (): Promise<AuthorRef[]> =>

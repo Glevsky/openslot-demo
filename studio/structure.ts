@@ -1,6 +1,7 @@
 import type { StructureResolver } from "sanity/structure";
 import { BookIcon } from "@sanity/icons/Book";
 import { CaseIcon } from "@sanity/icons/Case";
+import { CreditCardIcon } from "@sanity/icons/CreditCard";
 import { DocumentIcon } from "@sanity/icons/Document";
 import { DocumentTextIcon } from "@sanity/icons/DocumentText";
 import { UserIcon } from "@sanity/icons/User";
@@ -58,4 +59,12 @@ export const structure: StructureResolver = (S) =>
 
       S.documentTypeListItem("author").title("Authors").icon(UserIcon),
       S.documentTypeListItem("legalPage").title("Legal pages").icon(DocumentIcon),
+
+      S.divider(),
+
+      S.listItem()
+        .title("Pricing page")
+        .id("pricingPage")
+        .icon(CreditCardIcon)
+        .child(S.document().schemaType("pricingPage").documentId("pricingPage").title("Pricing page")),
     ]);

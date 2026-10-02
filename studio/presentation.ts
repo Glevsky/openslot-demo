@@ -8,6 +8,7 @@ export const resolve: PresentationPluginOptions["resolve"] = {
     { route: "/blog/:slug", filter: `_type == "blogPost" && slug.current == $slug` },
     { route: "/resources/:hub/:slug", filter: `_type == "resource" && slug.current == $slug` },
     { route: "/customers/:slug", filter: `_type == "customerStory" && slug.current == $slug` },
+    { route: "/pricing", filter: `_type == "pricingPage"` },
     { route: "/privacy", filter: `_type == "legalPage" && slug.current == "privacy"` },
     { route: "/terms", filter: `_type == "legalPage" && slug.current == "terms"` },
   ],
@@ -45,6 +46,10 @@ export const resolve: PresentationPluginOptions["resolve"] = {
             ]
           : [],
       }),
+    }),
+    pricingPage: defineLocations({
+      select: { title: "title" },
+      resolve: () => ({ locations: [{ title: "Pricing", href: "/pricing" }] }),
     }),
     legalPage: defineLocations({
       select: { title: "title", slug: "slug.current" },

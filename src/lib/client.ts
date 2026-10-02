@@ -16,6 +16,17 @@ const EDITABLE = new Set([
   "highlights",
   "duration",
   "status",
+  "eyebrow",
+  "heading",
+  "saving",
+  "yearly",
+  "monthly",
+  "unit",
+  "features",
+  "note",
+  "faqHeading",
+  "question",
+  "answer",
 ]);
 
 export const preview = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true";

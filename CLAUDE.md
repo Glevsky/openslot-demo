@@ -44,7 +44,10 @@ every push.
   the client approves what they saw on staging.
 - Publishing a document in Sanity fires a webhook that rebuilds `main`.
   Staging needs no rebuild for content: it reads Sanity on every request.
-- Page copy lives in code under `src/pages`. Sanity holds the collections only.
+- Page copy lives in code under `src/pages`, with one exception: the pricing
+  page reads its copy from the `pricingPage` document, so people edit it in the
+  Studio and in Presentation. Its starting content is `seed/pages/pricing.json`.
+  Sanity otherwise holds the collections only.
 - One Astro config builds both sites. `npm run build:preview` sets
   `PUBLIC_SANITY_VISUAL_EDITING_ENABLED=true`, which switches on server
   rendering, drafts, click-to-edit and the Access check in `src/middleware.ts`.

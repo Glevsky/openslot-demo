@@ -17,7 +17,7 @@ number.
 | `layout07` | dark closing CTA, heading left, buttons right | almost all |
 | `layout08` | inner-page hero on canvas, eyebrow, h1, text, optional buttons, slot below | every inner page |
 | `layout09` | filter pills plus a card grid, filters by tag in the browser | `/blog`, `/resources`, `/resources/*`, `/customers` |
-| `layout10` | four pricing plans with a CSS-only yearly/monthly switch | `/pricing` |
+| `layout10` | pricing plans passed in as props, with a CSS-only yearly/monthly switch | `/pricing` |
 | `layout11` | FAQ, intro left and accordion right, animated `::details-content` | `/product`, `/pricing`, `/contact` |
 | `layout12` | article hero, back link, pill, title, author and meta, optional cover | `/blog/*`, `/resources/*/*` |
 | `layout13` | article body, sticky table of contents left, prose right, author box below | `/blog/*` |

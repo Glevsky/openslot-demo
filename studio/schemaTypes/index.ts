@@ -8,6 +8,7 @@ import { blogPost } from "./documents/blogPost";
 import { customerStory } from "./documents/customerStory";
 import { resource } from "./documents/resource";
 import { legalPage } from "./documents/legalPage";
+import { pricingPage } from "./documents/pricingPage";
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   author,
@@ -15,6 +16,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   resource,
   customerStory,
   legalPage,
+  pricingPage,
   richText,
   tableBlock,
   tableRow,
