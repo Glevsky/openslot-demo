@@ -5,10 +5,12 @@ import Layout10 from "../components/sections/Layout10.astro";
 import Layout11 from "../components/sections/Layout11.astro";
 import Layout02 from "../components/sections/Layout02.astro";
 import Layout07 from "../components/sections/Layout07.astro";
-import { getPricingPage } from "../lib/content";
+import { getPricingPage, listFaq } from "../lib/content";
 
 const page = await getPricingPage();
 if (!page) throw new Error("The pricing page is missing from Sanity.");
+
+const faq = await listFaq("pricing");
 ---
 
 <BaseLayout title={page.title} description={page.summary}>
@@ -18,7 +20,7 @@ if (!page) throw new Error("The pricing page is missing from Sanity.");
 
   <Layout02 label="Teams already on a paid plan" />
 
-  <Layout11 heading={page.faqHeading ?? undefined} items={page.faq ?? []} />
+  <Layout11 heading={page.faqHeading ?? undefined} items={faq} />
 
   {
     page.closing && (

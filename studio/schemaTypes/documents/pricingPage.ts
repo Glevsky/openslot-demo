@@ -115,30 +115,13 @@ export const pricingPage = defineType({
       group: "plans",
     }),
 
-    defineField({ name: "faqHeading", title: "Heading", type: "string", group: "faq" }),
     defineField({
-      name: "faq",
-      title: "Questions",
-      type: "array",
+      name: "faqHeading",
+      title: "Heading",
+      type: "string",
+      description: "The questions themselves live in FAQ. Tick Pricing on a question to show it here.",
       group: "faq",
-      of: [
-        defineArrayMember({
-          type: "object",
-          name: "item",
-          fields: [
-            defineField({ name: "question", type: "string", validation: (rule) => rule.required() }),
-            defineField({
-              name: "answer",
-              type: "text",
-              rows: 3,
-              validation: (rule) => rule.required(),
-            }),
-          ],
-          preview: { select: { title: "question", subtitle: "answer" } },
-        }),
-      ],
     }),
-
     defineField({
       name: "closing",
       title: "Closing block",

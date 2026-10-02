@@ -1,4 +1,5 @@
 import { defineLocations, type PresentationPluginOptions } from "sanity/presentation";
+import { FAQ_PAGES } from "./schemaTypes/documents/faqItem";
 import { blogHref, customerHref, resourceHref } from "../src/lib/taxonomy";
 
 export const PREVIEW_URL = "https://demo-staging.glevsky.com";
@@ -45,6 +46,15 @@ export const resolve: PresentationPluginOptions["resolve"] = {
               { title: "Customer stories", href: "/customers" },
             ]
           : [],
+      }),
+    }),
+    faqItem: defineLocations({
+      select: { pages: "pages" },
+      resolve: (doc) => ({
+        locations: FAQ_PAGES.filter((page) => doc?.pages?.includes(page.value)).map((page) => ({
+          title: page.title,
+          href: page.href,
+        })),
       }),
     }),
     pricingPage: defineLocations({

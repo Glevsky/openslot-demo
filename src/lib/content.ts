@@ -85,6 +85,11 @@ export interface PricingPlan {
   features?: string[];
 }
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface PricingPage {
   title: string;
   summary: string;
@@ -95,7 +100,6 @@ export interface PricingPage {
   plans: PricingPlan[];
   note?: string;
   faqHeading?: string;
-  faq?: { question: string; answer: string }[];
   closing?: {
     heading: string;
     text?: string;
@@ -179,9 +183,14 @@ export const getPricingPage = (): Promise<PricingPage | null> =>
     `*[_type == "pricingPage"][0] {
       title, summary, eyebrow, heading, text, saving, note, faqHeading,
       plans[]{name, featured, yearly, monthly, unit, text, cta, features},
-      faq[]{question, answer},
       closing
     }`
+  );
+
+export const listFaq = (page: string): Promise<FaqItem[]> =>
+  client.fetch(
+    `*[_type == "faqItem" && $page in pages] | order(order asc) {question, answer}`,
+    { page }
   );
 
 export const listAuthors = (): Promise<AuthorRef[]> =>

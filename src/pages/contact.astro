@@ -3,24 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Layout08 from "../components/sections/Layout08.astro";
 import Layout17 from "../components/sections/Layout17.astro";
 import Layout11 from "../components/sections/Layout11.astro";
+import { listFaq } from "../lib/content";
 
-const faq = [
-  {
-    question: "How fast do you reply?",
-    answer:
-      "Within one working day for everything, and sooner for anything that has stopped a workspace from booking. Team and Enterprise go to the front of the queue.",
-  },
-  {
-    question: "Can we get a security review pack?",
-    answer:
-      "Yes. Pick the security topic on the form and say which framework your team works to, and we will send what we have rather than making you ask twice.",
-  },
-  {
-    question: "Do you do demos?",
-    answer:
-      "For teams of ten and up, yes. Below that the free plan will tell you more in twenty minutes than we could in a call.",
-  },
-];
+const faq = await listFaq("contact");
 ---
 
 <BaseLayout

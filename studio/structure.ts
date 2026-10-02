@@ -3,6 +3,7 @@ import { BookIcon } from "@sanity/icons/Book";
 import { CaseIcon } from "@sanity/icons/Case";
 import { CreditCardIcon } from "@sanity/icons/CreditCard";
 import { DocumentIcon } from "@sanity/icons/Document";
+import { HelpCircleIcon } from "@sanity/icons/HelpCircle";
 import { DocumentTextIcon } from "@sanity/icons/DocumentText";
 import { UserIcon } from "@sanity/icons/User";
 
@@ -61,6 +62,15 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("legalPage").title("Legal pages").icon(DocumentIcon),
 
       S.divider(),
+
+      S.listItem()
+        .title("FAQ")
+        .icon(HelpCircleIcon)
+        .child(
+          S.documentTypeList("faqItem")
+            .title("FAQ")
+            .defaultOrdering([{ field: "order", direction: "asc" }])
+        ),
 
       S.listItem()
         .title("Pricing page")

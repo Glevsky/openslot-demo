@@ -8,6 +8,7 @@ import { blogPost } from "./documents/blogPost";
 import { customerStory } from "./documents/customerStory";
 import { resource } from "./documents/resource";
 import { legalPage } from "./documents/legalPage";
+import { faqItem } from "./documents/faqItem";
 import { pricingPage } from "./documents/pricingPage";
 
 export const schemaTypes: SchemaTypeDefinition[] = [
@@ -17,6 +18,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   customerStory,
   legalPage,
   pricingPage,
+  faqItem,
   richText,
   tableBlock,
   tableRow,
