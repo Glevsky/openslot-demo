@@ -1,4 +1,4 @@
-import { sanityClient } from "sanity:client";
+import { sanityClient } from "../lib/sanity";
 import { env } from "cloudflare:workers";
 import { API_VERSION, STUDIO_URL } from "./constants";
 

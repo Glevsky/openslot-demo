@@ -6,12 +6,11 @@
     "./worker-configuration.d.ts"
   ],
   "exclude": [
-    "dist"
+    "dist",
+    "dist-preview",
+    "studio"
   ],
   "compilerOptions": {
-    "types": [
-      "@sanity/astro/module"
-    ],
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   }

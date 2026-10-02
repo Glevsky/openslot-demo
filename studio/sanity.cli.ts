@@ -5,4 +5,8 @@ export default defineCliConfig({
     projectId: "1zmf457v",
     dataset: "production",
   },
+  studioHost: "openslot",
+  deployment: {
+    appId: "r9l9ajtwpmu4tzyblragat4y",
+  },
 });

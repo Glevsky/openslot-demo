@@ -1,1 +1,1 @@
-export { sanityClient as client } from "sanity:client";
+export { sanityClient as client } from "./sanity";

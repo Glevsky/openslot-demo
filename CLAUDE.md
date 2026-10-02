@@ -15,7 +15,11 @@ Never link off the site.
 
 The site reads Sanity at build time. Do not add a second source of truth.
 
-- Schema: `src/sanity/schemaTypes/`. Change it there, never in the dataset.
+- Schema: `studio/schemaTypes/`. Change it there, never in the dataset.
+- The Studio is its own package in `studio/`, hosted by Sanity at
+  https://openslot.sanity.studio. The site never installs it, which keeps the
+  build light. After a schema or Studio change run `npm run deploy:studio`.
+  `demo.glevsky.com/admin` redirects there through `public/_redirects`.
 - Queries: `src/lib/content.ts`. Every page goes through it, no page calls
   `sanityClient` directly.
 - `seed/` is the original markdown, kept for re-seeding. It is not read at
