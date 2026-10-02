@@ -32,7 +32,7 @@ that contradicts something here; add it here first.
 | --- | --- | --- |
 | Free | $0 | 1 booking page, 1 calendar, email reminders, Openslot branding |
 | Pro | $12 per user per month billed yearly, $15 monthly | unlimited booking pages, SMS reminders, workflows and webhooks, embeds, no branding |
-| Team | $20 per user per month billed yearly, $24 monthly | everything in Pro, round-robin and collective team pages, routing forms, meeting polls, admin controls, priority support |
+| Team | $25 per user per month billed yearly, $31 monthly | everything in Pro, round-robin and collective team pages, routing forms, meeting polls, admin controls, priority support |
 | Enterprise | custom | everything in Team, SSO, audit log, data residency, dedicated support |
 
 14-day free trial of Team. No card needed. Annual billing saves 20 percent.

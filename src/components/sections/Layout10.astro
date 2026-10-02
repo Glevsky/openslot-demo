@@ -27,8 +27,7 @@ const plans = [
     unit: "per user, per month",
     text: "For one person or a small team who books all day.",
     cta: { label: "Start the trial", href: "/signup" },
-    variant: "primary" as const,
-    featured: true,
+    variant: "secondary" as const,
     features: [
       "Unlimited booking pages",
       "SMS reminders",
@@ -39,12 +38,13 @@ const plans = [
   },
   {
     name: "Team",
-    yearly: "$20",
-    monthly: "$24",
+    yearly: "$25",
+    monthly: "$31",
     unit: "per user, per month",
     text: "For teams where a booking has to reach the right person.",
     cta: { label: "Start the trial", href: "/signup" },
-    variant: "secondary" as const,
+    variant: "primary" as const,
+    featured: true,
     features: [
       "Everything in Pro",
       "Round-robin team pages",
