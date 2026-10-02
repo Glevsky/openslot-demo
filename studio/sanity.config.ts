@@ -3,16 +3,15 @@ import { structureTool } from "sanity/structure";
 import { presentationTool } from "sanity/presentation";
 import { visionTool } from "@sanity/vision";
 
-import { schemaTypes } from "./src/sanity/schemaTypes";
-import { structure } from "./src/sanity/structure";
-import { PREVIEW_URL, resolve } from "./src/sanity/presentation";
+import { schemaTypes } from "./schemaTypes";
+import { structure } from "./structure";
+import { PREVIEW_URL, resolve } from "./presentation";
 
 export default defineConfig({
   name: "openslot",
   title: "Openslot",
   projectId: "1zmf457v",
   dataset: "production",
-  basePath: "/admin",
   plugins: [
     structureTool({ structure }),
     presentationTool({

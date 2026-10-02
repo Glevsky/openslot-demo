@@ -1,5 +1,21 @@
----
-import { VisualEditing } from "@sanity/astro/visual-editing";
----
+<script>
+  import { enableVisualEditing } from "@sanity/visual-editing";
 
-<VisualEditing enabled />
+  enableVisualEditing({
+    history: {
+      subscribe: (navigate) => {
+        navigate({ type: "push", url: `${location.pathname}${location.search}` });
+        return () => {};
+      },
+      update: (update) => {
+        if (update.type === "pop") history.back();
+        else location.assign(update.url);
+      },
+    },
+    refresh: () =>
+      new Promise((resolve) => {
+        location.reload();
+        resolve();
+      }),
+  });
+</script>

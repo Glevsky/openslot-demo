@@ -1,5 +1,5 @@
 import { defineLocations, type PresentationPluginOptions } from "sanity/presentation";
-import { blogHref, customerHref, resourceHref } from "../lib/taxonomy";
+import { blogHref, customerHref, resourceHref } from "../src/lib/taxonomy";
 
 export const PREVIEW_URL = "https://demo-staging.glevsky.com";
 

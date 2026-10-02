@@ -1,0 +1,19 @@
+{
+  "name": "openslot-studio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "sanity": "^6.15.0",
+    "@sanity/vision": "^6.15.0",
+    "@sanity/icons": "^5.2.2",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "styled-components": "^6.5.3"
+  }
+}
