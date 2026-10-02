@@ -2,74 +2,15 @@
 import Button from "../ui/Button.astro";
 import Icon from "../ui/Icon.astro";
 import Pill from "../ui/Pill.astro";
+import type { PricingPlan } from "../../lib/content";
 
-const plans = [
-  {
-    name: "Free",
-    yearly: "$0",
-    monthly: "$0",
-    unit: "forever",
-    text: "One booking page, for one person who just needs a link.",
-    cta: { label: "Start free", href: "/signup" },
-    variant: "secondary" as const,
-    features: [
-      "1 booking page",
-      "1 calendar connected",
-      "Email reminders",
-      "Time-zone detection",
-      "Openslot branding on the page",
-    ],
-  },
-  {
-    name: "Pro",
-    yearly: "$12",
-    monthly: "$15",
-    unit: "per user, per month",
-    text: "For one person or a small team who books all day.",
-    cta: { label: "Start the trial", href: "/signup" },
-    variant: "secondary" as const,
-    features: [
-      "Unlimited booking pages",
-      "SMS reminders",
-      "Workflows and webhooks",
-      "Inline and popup embeds",
-      "No Openslot branding",
-    ],
-  },
-  {
-    name: "Team",
-    yearly: "$25",
-    monthly: "$31",
-    unit: "per user, per month",
-    text: "For teams where a booking has to reach the right person.",
-    cta: { label: "Start the trial", href: "/signup" },
-    variant: "primary" as const,
-    featured: true,
-    features: [
-      "Everything in Pro",
-      "Round-robin team pages",
-      "Collective team pages",
-      "Routing forms and meeting polls",
-      "Admin controls and priority support",
-    ],
-  },
-  {
-    name: "Enterprise",
-    yearly: "Custom",
-    monthly: "Custom",
-    unit: "talk to us",
-    text: "For organizations with procurement and a security review.",
-    cta: { label: "Contact us", href: "/contact" },
-    variant: "secondary" as const,
-    features: [
-      "Everything in Team",
-      "Single sign-on",
-      "Audit log",
-      "Data residency",
-      "Dedicated support contact",
-    ],
-  },
-];
+interface Props {
+  plans: PricingPlan[];
+  saving?: string;
+  note?: string;
+}
+
+const { plans, saving, note } = Astro.props;
 ---
 
 <section class="section_layout10">
@@ -89,7 +30,7 @@ const plans = [
             </span>
             Bill yearly
           </label>
-          <Pill tone="accent">Save 20 percent</Pill>
+          {saving && <Pill tone="accent">{saving}</Pill>}
         </div>
 
         <ul class="layout10_list" role="list">
@@ -109,12 +50,12 @@ const plans = [
 
                 <p class="layout10_text">{plan.text}</p>
 
-                <Button href={plan.cta.href} variant={plan.variant} full>
+                <Button href={plan.cta.href} variant={plan.featured ? "primary" : "secondary"} full>
                   {plan.cta.label}
                 </Button>
 
                 <ul class="layout10_features" role="list">
-                  {plan.features.map((feature) => (
+                  {(plan.features ?? []).map((feature) => (
                     <li>
                       <Icon name="check" size={16} />
                       <span>{feature}</span>
@@ -126,10 +67,7 @@ const plans = [
           }
         </ul>
 
-        <p class="layout10_note">
-          Prices are per user, per month, and exclude tax. The Team trial runs
-          for 14 days and does not ask for a card.
-        </p>
+        {note && <p class="layout10_note">{note}</p>}
       </div>
     </div>
   </div>

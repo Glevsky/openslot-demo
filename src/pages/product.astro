@@ -10,6 +10,7 @@ import BookingMock from "../components/visuals/BookingMock.astro";
 import TeamRotation from "../components/visuals/TeamRotation.astro";
 import ReminderThread from "../components/visuals/ReminderThread.astro";
 import WorkflowChain from "../components/visuals/WorkflowChain.astro";
+import { listFaq } from "../lib/content";
 
 const rules = [
   {
@@ -51,33 +52,7 @@ const stats = [
   { value: "99.98%", label: "uptime in 2025" },
 ];
 
-const faq = [
-  {
-    question: "Which calendar does it work with?",
-    answer:
-      "Openslot connects to the calendar your team already uses and writes the meeting straight into it. Free connects one calendar per person, paid plans connect as many as you need.",
-  },
-  {
-    question: "What happens when somebody reschedules?",
-    answer:
-      "Every reminder and confirmation carries a link to move or cancel. The change is written to both calendars, and any workflow you have set on reschedule runs.",
-  },
-  {
-    question: "Can I put a booking page on my own site?",
-    answer:
-      "Yes. An embed is two lines of markup, inline or behind a button, and it is on Pro and above. The page keeps working on its own link at the same time.",
-  },
-  {
-    question: "Do invitees need an account?",
-    answer:
-      "No. They open a link, pick a time, and fill in whatever fields you asked for. Nothing to install and nothing to sign up for.",
-  },
-  {
-    question: "How do routing forms work?",
-    answer:
-      "You ask a question first, such as company size or which product the person is asking about, and the answer decides which booking page they land on. Routing forms are on Team.",
-  },
-];
+const faq = await listFaq("product");
 ---
 
 <BaseLayout

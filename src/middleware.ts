@@ -1,7 +1,10 @@
 import { defineMiddleware } from "astro:middleware";
-import { env } from "cloudflare:workers";
 import { createRemoteJWKSet, jwtVerify } from "jose";
-import { LIVE_URL } from "./constants";
+
+const LIVE_URL = "https://demo.glevsky.com";
+const team = "https://web-preview.cloudflareaccess.com";
+const audience = "c0de5a8aba3ce26ae1f79887c3f47f2fabfbdf02ed5bbafad88e6d17d549140c";
+const preview = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true";
 
 const CLOSED = `<!doctype html>
 <html lang="en">
@@ -17,12 +20,10 @@ const CLOSED = `<!doctype html>
   </body>
 </html>`;
 
-const team = env.ACCESS_TEAM_DOMAIN;
-const audience = env.ACCESS_AUD;
-const keys = team ? createRemoteJWKSet(new URL("/cdn-cgi/access/certs", team)) : undefined;
+const keys = createRemoteJWKSet(new URL("/cdn-cgi/access/certs", team));
 
 const allowed = async (token: string | null) => {
-  if (!token || !keys || !team || !audience) return false;
+  if (!token) return false;
   try {
     await jwtVerify(token, keys, { issuer: team, audience });
     return true;
@@ -32,6 +33,8 @@ const allowed = async (token: string | null) => {
 };
 
 export const onRequest = defineMiddleware(async (context, next) => {
+  if (!preview) return next();
+
   if (!(await allowed(context.request.headers.get("cf-access-jwt-assertion")))) {
     return new Response(CLOSED, {
       status: 401,

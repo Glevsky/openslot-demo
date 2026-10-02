@@ -1,0 +1,111 @@
+{
+  "_id": "pricingPage",
+  "_type": "pricingPage",
+  "title": "Pricing",
+  "summary": "Openslot pricing: a free plan with no card, Pro from $12 per user per month, Team from $25, and Enterprise with SSO and audit logs.",
+  "eyebrow": "Pricing",
+  "heading": "Pay for the people who host meetings",
+  "text": "Start free and stay free if one booking page is all you need. Every paid plan has a 14-day Team trial with no card.",
+  "saving": "Save 20 percent",
+  "plans": [
+    {
+      "_key": "plan01",
+      "_type": "plan",
+      "name": "Free",
+      "yearly": "$0",
+      "monthly": "$0",
+      "unit": "forever",
+      "text": "One booking page, for one person who just needs a link.",
+      "cta": {
+        "label": "Start free",
+        "href": "/signup"
+      },
+      "featured": false,
+      "features": [
+        "1 booking page",
+        "1 calendar connected",
+        "Email reminders",
+        "Time-zone detection",
+        "Openslot branding on the page"
+      ]
+    },
+    {
+      "_key": "plan02",
+      "_type": "plan",
+      "name": "Pro",
+      "yearly": "$12",
+      "monthly": "$15",
+      "unit": "per user, per month",
+      "text": "For one person or a small team who books all day.",
+      "cta": {
+        "label": "Start the trial",
+        "href": "/signup"
+      },
+      "featured": false,
+      "features": [
+        "Unlimited booking pages",
+        "SMS reminders",
+        "Workflows and webhooks",
+        "Inline and popup embeds",
+        "No Openslot branding"
+      ]
+    },
+    {
+      "_key": "plan03",
+      "_type": "plan",
+      "name": "Team",
+      "yearly": "$25",
+      "monthly": "$31",
+      "unit": "per user, per month",
+      "text": "For teams where a booking has to reach the right person.",
+      "cta": {
+        "label": "Start the trial",
+        "href": "/signup"
+      },
+      "featured": true,
+      "features": [
+        "Everything in Pro",
+        "Round-robin team pages",
+        "Collective team pages",
+        "Routing forms and meeting polls",
+        "Admin controls and priority support"
+      ]
+    },
+    {
+      "_key": "plan04",
+      "_type": "plan",
+      "name": "Enterprise",
+      "yearly": "Custom",
+      "monthly": "Custom",
+      "unit": "talk to us",
+      "text": "For organizations with procurement and a security review.",
+      "cta": {
+        "label": "Contact us",
+        "href": "/contact"
+      },
+      "featured": false,
+      "features": [
+        "Everything in Team",
+        "Single sign-on",
+        "Audit log",
+        "Data residency",
+        "Dedicated support contact"
+      ]
+    }
+  ],
+  "note": "Prices are per user, per month, and exclude tax. The Team trial runs for 14 days and does not ask for a card.",
+  "faqHeading": "Questions about plans and billing",
+  "closing": {
+    "heading": "Try Team for 14 days",
+    "text": "No card, no sales call, and nothing locks when the trial ends. The workspace drops to Free and your links keep working.",
+    "primary": {
+      "label": "Start the trial",
+      "href": "/signup"
+    },
+    "secondary": {
+      "label": "Talk to us",
+      "href": "/contact"
+    },
+    "note": "Cancel any time, from inside the app."
+  }
+}

@@ -193,6 +193,13 @@ const run = async () => {
     count += 1;
   }
   console.log(`legal pages: ${count}`);
+
+  await client.createOrReplace(JSON.parse(readFileSync("seed/pages/pricing.json", "utf8")));
+  console.log("pricing page: 1");
+
+  const faq = JSON.parse(readFileSync("seed/faq.json", "utf8"));
+  for (const item of faq) await client.createOrReplace(item);
+  console.log(`faq items: ${faq.length}`);
 };
 
 run().then(

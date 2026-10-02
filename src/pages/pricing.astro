@@ -5,63 +5,32 @@ import Layout10 from "../components/sections/Layout10.astro";
 import Layout11 from "../components/sections/Layout11.astro";
 import Layout02 from "../components/sections/Layout02.astro";
 import Layout07 from "../components/sections/Layout07.astro";
+import { getPricingPage, listFaq } from "../lib/content";
 
-const faq = [
-  {
-    question: "Is the free plan really free?",
-    answer:
-      "Yes. One booking page, one calendar and email reminders, with no card and no time limit. The page carries a small Openslot mark, which paid plans remove.",
-  },
-  {
-    question: "How does the trial work?",
-    answer:
-      "The Team trial runs for 14 days and does not ask for a card. When it ends, the workspace drops to Free rather than locking you out, and your booking pages keep their links.",
-  },
-  {
-    question: "What does billing yearly save?",
-    answer:
-      "Twenty percent. Pro is $12 per user per month billed yearly against $15 billed monthly, and Team is $25 against $31.",
-  },
-  {
-    question: "What counts as a user?",
-    answer:
-      "Anyone whose calendar Openslot reads to work out availability. People who only receive bookings through a team page and never host are not charged.",
-  },
-  {
-    question: "Can we change plan mid-month?",
-    answer:
-      "Yes, in either direction. Upgrades take effect straight away and are prorated. Downgrades take effect at the end of the period you have already paid for.",
-  },
-  {
-    question: "What is in Enterprise?",
-    answer:
-      "Everything in Team, plus single sign-on, an audit log, a choice of data residency and a named support contact. Pricing depends on size, so it starts with a conversation.",
-  },
-];
+const page = await getPricingPage();
+if (!page) throw new Error("The pricing page is missing from Sanity.");
+
+const faq = await listFaq("pricing");
 ---
 
-<BaseLayout
-  title="Pricing"
-  description="Openslot pricing: a free plan with no card, Pro from $12 per user per month, Team from $25, and Enterprise with SSO and audit logs."
->
-  <Layout08
-    eyebrow="Pricing"
-    heading="Pay for the people who host meetings"
-    text="Start free and stay free if one booking page is all you need. Every paid plan has a 14-day Team trial with no card."
-    align="center"
-  />
+<BaseLayout title={page.title} description={page.summary}>
+  <Layout08 eyebrow={page.eyebrow ?? undefined} heading={page.heading} text={page.text ?? undefined} align="center" />
 
-  <Layout10 />
+  <Layout10 plans={page.plans} saving={page.saving ?? undefined} note={page.note ?? undefined} />
 
   <Layout02 label="Teams already on a paid plan" />
 
-  <Layout11 heading="Questions about plans and billing" items={faq} />
+  <Layout11 heading={page.faqHeading ?? undefined} items={faq} />
 
-  <Layout07
-    heading="Try Team for 14 days"
-    text="No card, no sales call, and nothing locks when the trial ends. The workspace drops to Free and your links keep working."
-    primary={{ label: "Start the trial", href: "/signup" }}
-    secondary={{ label: "Talk to us", href: "/contact" }}
-    note="Cancel any time, from inside the app."
-  />
+  {
+    page.closing && (
+      <Layout07
+        heading={page.closing.heading}
+        text={page.closing.text ?? undefined}
+        primary={page.closing.primary ?? undefined}
+        secondary={page.closing.secondary ?? undefined}
+        note={page.closing.note ?? undefined}
+      />
+    )
+  }
 </BaseLayout>
