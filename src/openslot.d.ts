@@ -10,5 +10,7 @@ declare module "openslot:overlay" {
 declare module "cloudflare:workers" {
   export const env: {
     SANITY_API_READ_TOKEN?: string;
+    ACCESS_TEAM_DOMAIN?: string;
+    ACCESS_AUD?: string;
   };
 }

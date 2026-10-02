@@ -47,6 +47,18 @@ every push.
 - `npm run deploy` and `npm run deploy:preview` are a manual fallback, not the
   normal path.
 
+### What the user sees after a change
+
+1. Commit to `staging` and push. Wait for the `openslot-preview` build to
+   finish (about a minute). Reply with the staging link to the exact page that
+   changed, for example `https://demo-staging.glevsky.com/pricing`, and one
+   line on what changed.
+2. Nothing goes to `main` until the user says to ship it ("катим", "ship it",
+   "publish", "на прод"). Then open the pull request from `staging` into
+   `main`, merge it, wait for the `openslot` build (about two minutes), and
+   reply with the live link to the same page.
+3. If a build fails, say so with the error and do not hand over a link.
+
 ## Network
 
 Nothing is pulled from the internet at runtime. Fonts ship from `public/fonts`,

@@ -5,6 +5,10 @@
 	"compatibility_flags": ["nodejs_compat"],
 	"workers_dev": false,
 	"preview_urls": false,
+	"vars": {
+		"ACCESS_TEAM_DOMAIN": "https://web-preview.cloudflareaccess.com",
+		"ACCESS_AUD": "c0de5a8aba3ce26ae1f79887c3f47f2fabfbdf02ed5bbafad88e6d17d549140c"
+	},
 	"routes": [{ "pattern": "demo-staging.glevsky.com", "custom_domain": true }],
 	"observability": {
 		"enabled": true
